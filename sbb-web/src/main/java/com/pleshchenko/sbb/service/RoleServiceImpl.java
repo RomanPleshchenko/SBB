@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("userProfileService")
+@Service("RoleService")
 @Transactional
 public class RoleServiceImpl implements RoleService {
 
