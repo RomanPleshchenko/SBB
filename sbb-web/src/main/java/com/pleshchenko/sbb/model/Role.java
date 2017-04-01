@@ -7,6 +7,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "role")
 public class Role implements Serializable{
+//    ????? Why Serializable
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
