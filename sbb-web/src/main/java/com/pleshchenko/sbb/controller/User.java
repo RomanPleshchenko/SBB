@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.web.controller;
+package com.pleshchenko.sbb.controller;
 
 public class User {
 
