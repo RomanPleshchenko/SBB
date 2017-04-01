@@ -28,4 +28,9 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
+    <error-page>
+        <location>/errors/404</location>
+    </error-page>
+
 </web-app>

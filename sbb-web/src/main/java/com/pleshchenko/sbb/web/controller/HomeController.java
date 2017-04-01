@@ -16,7 +16,7 @@ public class HomeController {
     public ModelAndView main(HttpSession session) {
 
         WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
-        return new ModelAndView("login", "user", new User());
+        return new ModelAndView("auth/login", "user", new User());
     }
 
 
