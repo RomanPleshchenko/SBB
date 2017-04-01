@@ -19,7 +19,7 @@
       <configuration />
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/../sbbweb/target/classes" />
     <output-test url="file://$MODULE_DIR$/../sbbweb/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -47,5 +47,6 @@
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.3.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.3.4.RELEASE" level="project" />
+    <orderEntry type="module" module-name="sbb-model" />
   </component>
 </module>
