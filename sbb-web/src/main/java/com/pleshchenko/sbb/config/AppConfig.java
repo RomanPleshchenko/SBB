@@ -55,7 +55,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addConverter(roleToRoleConverter);
     }
 
-
     /**
      * Configure MessageSource to lookup any validation/error message in internationalized property files
      */
