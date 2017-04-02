@@ -40,6 +40,7 @@ public class AppController {
 
         List<User> users = userService.findAllUsers();
         model.addAttribute("users", users);
+        System.out.println("dhfjhdgfjhdfbfmdbfkjdhgjdfhg");
         return "userslist";
     }
 
