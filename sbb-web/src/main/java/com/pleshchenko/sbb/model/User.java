@@ -53,12 +53,12 @@ public class User {
         this.name = name;
     }
 
-    public Set<Role> getUserProfiles() {
+    public Set<Role> getUserRoles() {
         return roles;
     }
 
-    public void setUserProfiles(Set<Role> userProfiles) {
-        this.roles = userProfiles;
+    public void setUserRoles(Set<Role> userRoles) {
+        this.roles = userRoles;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	public User findById(int id) {
 		User user = getByKey(id);
 		if(user!=null){
-			initializeCollection(user.getUserProfiles());
+			initializeCollection(user.getUserRoles());
 		}
 		return user;
 	}
@@ -22,12 +22,12 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	public User findByName(String name) {
 		try{
 			User user = (User) getEntityManager()
-					.createQuery("SELECT u FROM User u WHERE u.ssoId LIKE :ssoId")
-					.setParameter("ssoId", name)
+					.createQuery("SELECT u FROM User u WHERE u.name LIKE :name")
+					.setParameter("name", name)
 					.getSingleResult();
 			
 			if(user!=null){
-				initializeCollection(user.getUserProfiles());
+				initializeCollection(user.getUserRoles());
 			}
 			return user; 
 		}catch(NoResultException ex){
@@ -38,7 +38,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	@SuppressWarnings("unchecked")
 	public List<User> findAllUsers() {
 		List<User> users = getEntityManager()
-				.createQuery("SELECT u FROM User u ORDER BY u.firstName ASC")
+				.createQuery("SELECT u FROM User u ORDER BY u.name ASC")
 				.getResultList();
 		return users;
 	}
@@ -49,7 +49,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
 	public void deleteByName(String name) {
 		User user = (User) getEntityManager()
-				.createQuery("SELECT u FROM User u WHERE u.ssoId LIKE :name")
+				.createQuery("SELECT u FROM User u WHERE u.name LIKE :name")
 				.setParameter("name", name)
 				.getSingleResult();
 		delete(user);

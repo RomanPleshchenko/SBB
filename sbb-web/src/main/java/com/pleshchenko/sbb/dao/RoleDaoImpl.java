@@ -18,7 +18,7 @@ public class RoleDaoImpl extends AbstractDao<Integer,Role>implements RoleDao{
     public Role findByName(String name) {
         try{
             Role userProfile = (Role) getEntityManager()
-                    .createQuery("SELECT p FROM Role p WHERE p.type LIKE :name")
+                    .createQuery("SELECT p FROM Role p WHERE p.name LIKE :name")
                     .setParameter("name", name)
                     .getSingleResult();
             return userProfile;
@@ -30,7 +30,7 @@ public class RoleDaoImpl extends AbstractDao<Integer,Role>implements RoleDao{
     @Override
     public List<Role> findAll() {
         List<Role> userProfiles = getEntityManager()
-                .createQuery("SELECT p FROM Role p  ORDER BY p.type ASC")
+                .createQuery("SELECT p FROM Role p  ORDER BY p.name ASC")
                 .getResultList();
         return userProfiles;
     }
