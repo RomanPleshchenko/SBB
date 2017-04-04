@@ -4,6 +4,7 @@ import com.pleshchenko.sbb.model.Role;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository("RoleDao")
@@ -17,11 +18,11 @@ public class RoleDaoImpl extends AbstractDao<Integer,Role>implements RoleDao{
     @Override
     public Role findByName(String name) {
         try{
-            Role userProfile = (Role) getEntityManager()
+            Role role = (Role) getEntityManager()
                     .createQuery("SELECT p FROM Role p WHERE p.name LIKE :name")
                     .setParameter("name", name)
                     .getSingleResult();
-            return userProfile;
+            return role;
         }catch(NoResultException ex){
             return null;
         }
@@ -29,11 +30,9 @@ public class RoleDaoImpl extends AbstractDao<Integer,Role>implements RoleDao{
 
     @Override
     public List<Role> findAll() {
-        List<Role> userProfiles = getEntityManager()
+        List<Role> role = getEntityManager()
                 .createQuery("SELECT p FROM Role p  ORDER BY p.name ASC")
                 .getResultList();
-        return userProfiles;
+        return role;
     }
-
-
 }

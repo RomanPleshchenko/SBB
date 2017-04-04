@@ -3,9 +3,7 @@ package com.pleshchenko.sbb.controller;
 import com.pleshchenko.sbb.model.Role;
 import com.pleshchenko.sbb.model.User;
 import com.pleshchenko.sbb.service.RoleService;
-import com.pleshchenko.sbb.service.RoleServiceImpl;
 import com.pleshchenko.sbb.service.UserService;
-import com.pleshchenko.sbb.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -40,7 +38,6 @@ public class AppController {
 
         List<User> users = userService.findAllUsers();
         model.addAttribute("users", users);
-        System.out.println("dhfjhdgfjhdfbfmdbfkjdhgjdfhg");
         return "userslist";
     }
 
