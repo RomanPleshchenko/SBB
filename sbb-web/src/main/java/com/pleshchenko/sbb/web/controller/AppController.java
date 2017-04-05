@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/qqqqqqqqq")
 @SessionAttributes("roles")
 public class AppController {
 
@@ -34,7 +34,7 @@ public class AppController {
     /**
      * This method will list all existing users.
      */
-    @RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/qqqqqqqqq", "/list" }, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
 
         List<User> users = userService.findAllUsers();

@@ -6,19 +6,28 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
-/**
- * Created by РОМАН on 31.03.2017.
- */
 @Entity
 public class Schedule {
-    private int id;
-    private int trainId;
-    private Timestamp departureTime;
-    private Timestamp destinationTime;
-    private int routeId;
-
     @Id
     @Column(name = "id")
+    private int id;
+
+    @Basic
+    @Column(name = "trainId")
+    private int trainId;
+
+    @Basic
+    @Column(name = "departureTime")
+    private Timestamp departureTime;
+
+    @Basic
+    @Column(name = "destinationTime")
+    private Timestamp destinationTime;
+
+    @Basic
+    @Column(name = "routeId")
+    private int routeId;
+
     public int getId() {
         return id;
     }
@@ -27,8 +36,6 @@ public class Schedule {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "trainId")
     public int getTrainId() {
         return trainId;
     }
@@ -37,8 +44,6 @@ public class Schedule {
         this.trainId = trainId;
     }
 
-    @Basic
-    @Column(name = "departureTime")
     public Timestamp getDepartureTime() {
         return departureTime;
     }
@@ -47,8 +52,6 @@ public class Schedule {
         this.departureTime = departureTime;
     }
 
-    @Basic
-    @Column(name = "destinationTime")
     public Timestamp getDestinationTime() {
         return destinationTime;
     }
@@ -57,8 +60,6 @@ public class Schedule {
         this.destinationTime = destinationTime;
     }
 
-    @Basic
-    @Column(name = "routeId")
     public int getRouteId() {
         return routeId;
     }

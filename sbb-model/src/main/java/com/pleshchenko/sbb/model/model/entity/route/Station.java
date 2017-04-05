@@ -10,11 +10,14 @@ import javax.persistence.Id;
  */
 @Entity
 public class Station {
-    private int id;
-    private String name;
-
     @Id
     @Column(name = "id")
+    private int id;
+
+    @Basic
+    @Column(name = "name")
+    private String name;
+
     public int getId() {
         return id;
     }
@@ -23,8 +26,6 @@ public class Station {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }

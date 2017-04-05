@@ -11,14 +11,26 @@ import java.sql.Date;
  */
 @Entity
 public class Passenger {
-    private int id;
-    private String name;
-    private String surname;
-    private Date birthDate;
-    private int idUser;
-
     @Id
     @Column(name = "id")
+    private int id;
+
+    @Basic
+    @Column(name = "name")
+    private String name;
+
+    @Basic
+    @Column(name = "surname")
+    private String surname;
+
+    @Basic
+    @Column(name = "birthDate")
+    private Date birthDate;
+
+    @Basic
+    @Column(name = "idUser")
+    private int idUser;
+
     public int getId() {
         return id;
     }
@@ -27,8 +39,6 @@ public class Passenger {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -37,8 +47,6 @@ public class Passenger {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "surname")
     public String getSurname() {
         return surname;
     }
@@ -47,8 +55,6 @@ public class Passenger {
         this.surname = surname;
     }
 
-    @Basic
-    @Column(name = "birthDate")
     public Date getBirthDate() {
         return birthDate;
     }
@@ -57,8 +63,6 @@ public class Passenger {
         this.birthDate = birthDate;
     }
 
-    @Basic
-    @Column(name = "idUser")
     public int getIdUser() {
         return idUser;
     }

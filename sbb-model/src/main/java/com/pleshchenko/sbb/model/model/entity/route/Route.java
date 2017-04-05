@@ -10,12 +10,20 @@ import javax.persistence.Id;
  */
 @Entity
 public class Route {
-    private int id;
-    private int departureStationId;
-    private int destinationStationId;
 
     @Id
     @Column(name = "id")
+    private int id;
+
+    @Basic
+    @Column(name = "departureStationId")
+    private int departureStationId;
+
+    @Basic
+    @Column(name = "destinationStationId")
+    private int destinationStationId;
+
+
     public int getId() {
         return id;
     }
@@ -24,8 +32,6 @@ public class Route {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "departureStationId")
     public int getDepartureStationId() {
         return departureStationId;
     }
@@ -34,8 +40,6 @@ public class Route {
         this.departureStationId = departureStationId;
     }
 
-    @Basic
-    @Column(name = "destinationStationId")
     public int getDestinationStationId() {
         return destinationStationId;
     }

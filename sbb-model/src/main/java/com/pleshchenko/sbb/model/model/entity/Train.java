@@ -10,12 +10,19 @@ import javax.persistence.Id;
  */
 @Entity
 public class Train {
-    private int id;
-    private String number;
-    private int capacity;
 
     @Id
     @Column(name = "id")
+    private int id;
+
+    @Basic
+    @Column(name = "number")
+    private String number;
+
+    @Basic
+    @Column(name = "capacity")
+    private int capacity;
+
     public int getId() {
         return id;
     }
@@ -24,8 +31,6 @@ public class Train {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "number")
     public String getNumber() {
         return number;
     }
@@ -34,8 +39,6 @@ public class Train {
         this.number = number;
     }
 
-    @Basic
-    @Column(name = "capacity")
     public int getCapacity() {
         return capacity;
     }
