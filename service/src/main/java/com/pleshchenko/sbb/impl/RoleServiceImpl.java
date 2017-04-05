@@ -1,10 +1,12 @@
-package com.pleshchenko.sbb.service;
+package com.pleshchenko.sbb.impl;
 
 import com.pleshchenko.sbb.dao.RoleDao;
+import com.pleshchenko.sbb.interfaces.RoleService;
 import com.pleshchenko.sbb.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 

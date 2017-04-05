@@ -12,7 +12,14 @@
     <modules>
         <module>sbb-web</module>
         <module>sbb-model</module>
+        <module>service</module>
     </modules>
+
+    <properties>
+        <springframework.version>4.3.4.RELEASE</springframework.version>
+        <hibernate.version>4.2.1.Final</hibernate.version>
+        <mysql.connector.version>5.1.34</mysql.connector.version>
+    </properties>
 
     <build>
         <pluginManagement>

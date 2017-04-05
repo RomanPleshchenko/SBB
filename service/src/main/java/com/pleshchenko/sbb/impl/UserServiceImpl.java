@@ -1,7 +1,8 @@
-package com.pleshchenko.sbb.service;
+package com.pleshchenko.sbb.impl;
 
 
 import com.pleshchenko.sbb.dao.UserDao;
+import com.pleshchenko.sbb.interfaces.UserService;
 import com.pleshchenko.sbb.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Service("userService")
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao dao;

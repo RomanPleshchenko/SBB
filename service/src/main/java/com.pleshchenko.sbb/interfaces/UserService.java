@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.service;
+package com.pleshchenko.sbb.interfaces;
 
 
 

@@ -11,12 +11,6 @@
 
     <artifactId>sbb-model</artifactId>
 
-    <properties>
-        <springframework.version>4.3.4.RELEASE</springframework.version>
-        <hibernate.version>4.2.1.Final</hibernate.version>
-        <mysql.connector.version>5.1.34</mysql.connector.version>
-    </properties>
-
     <dependencies>
 
         <!-- Spring -->
