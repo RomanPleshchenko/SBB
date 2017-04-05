@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.dao;
+package com.pleshchenko.sbb.model.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

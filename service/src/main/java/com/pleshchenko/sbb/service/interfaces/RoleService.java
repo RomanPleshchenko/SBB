@@ -1,6 +1,6 @@
-package com.pleshchenko.sbb.interfaces;
+package com.pleshchenko.sbb.service.interfaces;
 
-import com.pleshchenko.sbb.model.Role;
+import com.pleshchenko.sbb.model.model.Role;
 
 import java.util.List;
 

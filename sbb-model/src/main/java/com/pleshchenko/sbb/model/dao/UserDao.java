@@ -1,8 +1,8 @@
-package com.pleshchenko.sbb.dao;
+package com.pleshchenko.sbb.model.dao;
 
 
 
-import com.pleshchenko.sbb.model.User;
+import com.pleshchenko.sbb.model.model.User;
 
 import java.util.List;
 

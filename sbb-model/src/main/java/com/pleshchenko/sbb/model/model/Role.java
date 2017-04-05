@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.model;
+package com.pleshchenko.sbb.model.model;
 
 
 import javax.persistence.*;

@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.config;
+package com.pleshchenko.sbb.web.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.Properties;
 
 @Configuration

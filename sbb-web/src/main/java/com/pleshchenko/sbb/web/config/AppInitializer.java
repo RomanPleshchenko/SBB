@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.config;
+package com.pleshchenko.sbb.web.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

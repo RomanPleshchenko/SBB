@@ -1,6 +1,6 @@
-package com.pleshchenko.sbb.dao;
+package com.pleshchenko.sbb.model.dao;
 
-import com.pleshchenko.sbb.model.Role;
+import com.pleshchenko.sbb.model.model.Role;
 
 import java.util.List;
 

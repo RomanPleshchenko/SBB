@@ -1,10 +1,9 @@
-package com.pleshchenko.sbb.dao;
+package com.pleshchenko.sbb.model.dao;
 
-import com.pleshchenko.sbb.model.Role;
+import com.pleshchenko.sbb.model.model.Role;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository("RoleDao")

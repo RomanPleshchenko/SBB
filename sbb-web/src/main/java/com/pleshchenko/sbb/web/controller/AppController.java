@@ -1,9 +1,7 @@
-package com.pleshchenko.sbb.controller;
+package com.pleshchenko.sbb.web.controller;
 
-import com.pleshchenko.sbb.model.Role;
-import com.pleshchenko.sbb.model.User;
-import com.pleshchenko.sbb.service.RoleService;
-import com.pleshchenko.sbb.service.UserService;
+import com.pleshchenko.sbb.model.model.Role;
+import com.pleshchenko.sbb.model.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -11,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import com.pleshchenko.sbb.service.interfaces.UserService;
+import com.pleshchenko.sbb.service.interfaces.RoleService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,6 +23,7 @@ public class AppController {
 
     @Autowired
     UserService userService;
+
 
     @Autowired
     RoleService roleService;

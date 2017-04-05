@@ -1,6 +1,6 @@
-package com.pleshchenko.sbb.config;
+package com.pleshchenko.sbb.web.config;
 
-import com.pleshchenko.sbb.converter.RoleToRoleConverter;
+import com.pleshchenko.sbb.web.converter.RoleToRoleConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

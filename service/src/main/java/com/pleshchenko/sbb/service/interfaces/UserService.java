@@ -1,8 +1,8 @@
-package com.pleshchenko.sbb.interfaces;
+package com.pleshchenko.sbb.service.interfaces;
 
 
 
-import com.pleshchenko.sbb.model.User;
+import com.pleshchenko.sbb.model.model.User;
 
 import java.util.List;
 

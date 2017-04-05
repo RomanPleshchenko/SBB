@@ -1,6 +1,6 @@
-package com.pleshchenko.sbb.converter;
+package com.pleshchenko.sbb.web.converter;
 
-import com.pleshchenko.sbb.model.Role;
+import com.pleshchenko.sbb.model.model.Role;
 import com.pleshchenko.sbb.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
