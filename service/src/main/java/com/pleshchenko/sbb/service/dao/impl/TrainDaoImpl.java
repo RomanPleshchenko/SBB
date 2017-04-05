@@ -19,6 +19,19 @@ public class TrainDaoImpl extends AbstractDao<Integer,Train> implements TrainDao
                 .createQuery("SELECT t FROM Train t ORDER BY t.number ASC")
                 .getResultList();
         return trains;
+    }
 
+    @Override
+    public void deleteByNumber(String number) {
+        Train train = (Train) getEntityManager()
+                .createQuery("SELECT t FROM Train t WHERE t.number LIKE :number")
+                .setParameter("number", number)
+                .getSingleResult();
+        delete(train);
+    }
+
+    @Override
+    public void saveTrain(Train train) {
+        persist(train);
     }
 }

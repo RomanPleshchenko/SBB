@@ -33,13 +33,17 @@
             <tbody>
             <c:forEach items="${trains}" var="train">
                 <tr>
-                    <td>${train.number}</td>
-
+                    <td>${train.number}  </td>
+                    <td><a href="<c:url value='/delete-train-${train.number}' />" class="btn btn-success custom-width">delete</a></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </div>
+    <div class="well">
+        <a href="<c:url value='/newTrain' />">Add new train</a>
+    </div>
+
 </div>
 </body>
 

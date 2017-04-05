@@ -11,4 +11,8 @@ public interface TrainDao {
 
     List<Train> findAll();
 
+    void deleteByNumber(String number);
+
+    void saveTrain(Train train);
+
 }

@@ -25,4 +25,14 @@ public class TrainServiceImpl implements TrainService {
         List<Train> trains = dao.findAll();
         return trains;
     }
+
+    @Override
+    public void deleteByNumber(String number) {
+        dao.deleteByNumber(number);
+    }
+
+    @Override
+    public void saveTrain(Train train) {
+        dao.saveTrain(train);
+    }
 }

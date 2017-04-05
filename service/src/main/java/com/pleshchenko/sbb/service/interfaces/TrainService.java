@@ -12,5 +12,10 @@ import java.util.List;
 @Service("trainService")
 @Transactional
 public interface TrainService {
+
     List<Train> findAll() ;
+
+    void deleteByNumber(String number);
+
+    void saveTrain(Train train);
 }
