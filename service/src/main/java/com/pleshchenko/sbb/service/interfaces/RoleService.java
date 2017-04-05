@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.service.interfaces;
 
-import com.pleshchenko.sbb.model.model.Role;
+import com.pleshchenko.sbb.model.model.entity.authorization.Role;
 
 import java.util.List;
 

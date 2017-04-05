@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.model.model;
+package com.pleshchenko.sbb.model.model.entity.authorization;
 
 public enum UserRoleType {
 	USER("USER"),

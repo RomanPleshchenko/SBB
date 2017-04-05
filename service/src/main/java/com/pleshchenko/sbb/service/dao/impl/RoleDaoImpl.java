@@ -1,13 +1,15 @@
-package com.pleshchenko.sbb.model.dao;
+package com.pleshchenko.sbb.service.dao.impl;
 
-import com.pleshchenko.sbb.model.model.Role;
+import com.pleshchenko.sbb.model.model.entity.authorization.Role;
+import com.pleshchenko.sbb.service.dao.interfaces.AbstractDao;
+import com.pleshchenko.sbb.service.dao.interfaces.RoleDao;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import java.util.List;
 
 @Repository("RoleDao")
-public class RoleDaoImpl extends AbstractDao<Integer,Role>implements RoleDao{
+public class RoleDaoImpl extends AbstractDao<Integer,Role>implements RoleDao {
 
     @Override
     public Role findById(int id) {

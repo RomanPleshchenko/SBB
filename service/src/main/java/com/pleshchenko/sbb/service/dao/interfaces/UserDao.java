@@ -1,8 +1,8 @@
-package com.pleshchenko.sbb.model.dao;
+package com.pleshchenko.sbb.service.dao.interfaces;
 
 
 
-import com.pleshchenko.sbb.model.model.User;
+import com.pleshchenko.sbb.model.model.entity.authorization.User;
 
 import java.util.List;
 

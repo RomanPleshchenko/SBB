@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.web.controller;
 
-import com.pleshchenko.sbb.model.model.Role;
-import com.pleshchenko.sbb.model.model.User;
+import com.pleshchenko.sbb.model.model.entity.authorization.Role;
+import com.pleshchenko.sbb.model.model.entity.authorization.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;

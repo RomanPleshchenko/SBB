@@ -2,7 +2,7 @@ package com.pleshchenko.sbb.service.interfaces;
 
 
 
-import com.pleshchenko.sbb.model.model.User;
+import com.pleshchenko.sbb.model.model.entity.authorization.User;
 
 import java.util.List;
 
