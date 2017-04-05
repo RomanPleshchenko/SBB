@@ -9,14 +9,14 @@
 <html>
 <head>
     <jsp:include page="header.jsp" flush="true" >
-        <jsp:param name="title" value="Home"/>
+        <jsp:param name="title" value="Schedule"/>
     </jsp:include>
 </head>
 <body>
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
-<br>Тут будет тело страницы!!!<br>
+
 
 <jsp:include page="footer.jsp"/>
 </body>
