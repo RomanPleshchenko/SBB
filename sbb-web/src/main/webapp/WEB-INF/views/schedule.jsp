@@ -31,13 +31,20 @@
             </tr>
             </thead>
             <tbody>
+            <tr>
+                <td>id</td>
+                <%--<td>trainId</td>--%>
+                <td>departureTime</td>
+                <td>destinationTime</td>
+                <%--<td>routeId</td>--%>
+            </tr>
             <c:forEach items="${schedule}" var="dir">
                 <tr>
                     <td>${dir.id}</td>
-                    <td>${dir.trainId}</td>
+                    <%--<td>${dir.trainId}</td>--%>
                     <td>${dir.departureTime}</td>
                     <td>${dir.destinationTime}</td>
-                    <td>${dir.routeId}</td>
+                    <%--<td>${dir.routeId}</td>--%>
                     <%--<td><a href="<c:url value='/delete-train-${train.number}' />" class="btn btn-success custom-width">delete</a></td>--%>
                 </tr>
             </c:forEach>
