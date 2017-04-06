@@ -27,7 +27,6 @@ public class TrainsListController {
     public String goHome(ModelMap model){
 
         List<Train> trains  = trainService.findAll();
-
         model.addAttribute("trains", trains);
         return "trainslist";
     }

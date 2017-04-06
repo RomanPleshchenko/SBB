@@ -1,9 +1,8 @@
 package com.pleshchenko.sbb.model.model.entity.route;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.pleshchenko.sbb.model.model.entity.Train;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
