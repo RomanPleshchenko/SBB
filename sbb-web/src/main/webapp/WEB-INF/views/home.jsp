@@ -51,8 +51,8 @@
     <form:form method="POST" commandName="parametersForSearch" action="findTrainByParameter" class="box login">
         <fieldset class="boxBody">
 
-            <%--<form:label path="station1">station1:</form:label>--%>
-            <%--<form:input path="station1"/>--%>
+            <form:label path="station1">station1:</form:label>
+            <form:input path="station1"/>
 
             <form:label path="station2">station2:</form:label>
             <form:input path="station2"/>
