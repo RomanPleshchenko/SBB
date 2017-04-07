@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.service.dao.interfaces;
 
-import com.pleshchenko.sbb.model.model.entity.Train;
+import com.pleshchenko.sbb.model.entity.Train;
 
 import java.util.List;
 

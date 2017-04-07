@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.service.dto.impl;
 
-import com.pleshchenko.sbb.model.model.entity.Train;
+import com.pleshchenko.sbb.model.entity.Train;
 import com.pleshchenko.sbb.service.dao.interfaces.TrainDao;
 import com.pleshchenko.sbb.service.dto.interfaces.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;

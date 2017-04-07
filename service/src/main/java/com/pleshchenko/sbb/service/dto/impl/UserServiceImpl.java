@@ -3,7 +3,7 @@ package com.pleshchenko.sbb.service.dto.impl;
 
 import com.pleshchenko.sbb.service.dao.interfaces.UserDao;
 import com.pleshchenko.sbb.service.dto.interfaces.UserService;
-import com.pleshchenko.sbb.model.model.entity.authorization.User;
+import com.pleshchenko.sbb.model.entity.authorization.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.service.dao.interfaces;
 
-import com.pleshchenko.sbb.model.model.entity.route.Schedule;
+import com.pleshchenko.sbb.model.entity.route.Schedule;
 
 import java.util.List;
 

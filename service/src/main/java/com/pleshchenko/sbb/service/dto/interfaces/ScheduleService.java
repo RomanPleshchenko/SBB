@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.service.dto.interfaces;
 
-import com.pleshchenko.sbb.model.model.entity.route.Schedule;
+import com.pleshchenko.sbb.model.entity.route.Schedule;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

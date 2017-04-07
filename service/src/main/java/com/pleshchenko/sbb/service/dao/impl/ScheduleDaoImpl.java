@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.service.dao.impl;
 
-import com.pleshchenko.sbb.model.model.entity.route.Schedule;
+import com.pleshchenko.sbb.model.entity.route.Schedule;
 import com.pleshchenko.sbb.service.dao.interfaces.AbstractDao;
 import com.pleshchenko.sbb.service.dao.interfaces.ScheduleDao;
 import org.springframework.stereotype.Repository;

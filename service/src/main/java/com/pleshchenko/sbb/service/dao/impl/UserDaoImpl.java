@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.service.dao.impl;
 
-import com.pleshchenko.sbb.model.model.entity.authorization.User;
+import com.pleshchenko.sbb.model.entity.authorization.User;
 import com.pleshchenko.sbb.service.dao.interfaces.AbstractDao;
 import com.pleshchenko.sbb.service.dao.interfaces.UserDao;
 import org.springframework.stereotype.Repository;

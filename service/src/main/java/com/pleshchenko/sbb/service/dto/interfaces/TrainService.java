@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.service.dto.interfaces;
 
-import com.pleshchenko.sbb.model.model.entity.Train;
+import com.pleshchenko.sbb.model.entity.Train;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

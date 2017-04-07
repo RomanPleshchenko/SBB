@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.service.dao.interfaces;
 
-import com.pleshchenko.sbb.model.model.entity.authorization.Role;
+import com.pleshchenko.sbb.model.entity.authorization.Role;
 
 import java.util.List;
 

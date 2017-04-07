@@ -1,21 +1,16 @@
 package com.pleshchenko.sbb.web.controller;
 
-import com.pleshchenko.sbb.model.model.entity.route.Schedule;
+import com.pleshchenko.sbb.model.entity.route.Schedule;
 import com.pleshchenko.sbb.service.dto.impl.ParametersForSearch;
 import com.pleshchenko.sbb.service.dto.interfaces.ScheduleService;
-import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.validation.Valid;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
