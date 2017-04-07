@@ -1,6 +1,7 @@
 package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.model.model.entity.route.Station;
+import com.pleshchenko.sbb.model.model.otherClasses.ParametersForSearch;
 import com.pleshchenko.sbb.service.interfaces.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,11 @@ public class HomeController {
     public String goHome(ModelMap model){
 
         List<Station> stations  = stationService.findAll();
+        ParametersForSearch parametersForSearch = new ParametersForSearch();
         model.addAttribute("stations",stations);
+        model.addAttribute("parametersForSearch",parametersForSearch);
         return "home";
     }
 
 }
+

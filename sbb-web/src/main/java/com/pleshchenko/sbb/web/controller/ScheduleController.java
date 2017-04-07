@@ -1,14 +1,16 @@
 package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.model.model.entity.route.Schedule;
-import com.pleshchenko.sbb.service.dao.interfaces.ScheduleDao;
+import com.pleshchenko.sbb.model.model.otherClasses.ParametersForSearch;
 import com.pleshchenko.sbb.service.interfaces.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -28,4 +30,11 @@ public class ScheduleController {
         model.addAttribute("schedule",schedule);
         return "schedule";
     }
+
+    @RequestMapping(value = "/findTrainByParameter",method = RequestMethod.POST)
+    public String findTrainByParameter(@Valid ParametersForSearch parametersForSearch, BindingResult result,
+                                       ModelMap model){
+        return "trainByParameter";
+    }
+
 }
