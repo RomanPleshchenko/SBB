@@ -48,48 +48,48 @@
     <%--</form>--%>
 
 
-    <%--<form:form method="POST" commandName="parametersForSearch" action="findTrainByParameter" class="box login">--%>
-        <%--<fieldset class="boxBody">--%>
+    <form:form method="POST" commandName="parametersForSearch" action="findTrainByParameter" class="box login">
+        <fieldset class="boxBody">
 
-            <%--&lt;%&ndash;<form:label path="station1">station1:</form:label>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<form:input path="station1"/>&ndash;%&gt;--%>
+            <%--<form:label path="station1">station1:</form:label>--%>
+            <%--<form:input path="station1"/>--%>
 
-            <%--<form:label path="station2">station2:</form:label>--%>
-            <%--<form:input path="station2"/>--%>
+            <form:label path="station2">station2:</form:label>
+            <form:input path="station2"/>
 
-            <%--<form:label path="data1">data1:</form:label>--%>
-            <%--<form:input path="data1"/>--%>
+            <form:label path="data1">data1:</form:label>
+            <form:input path="data1"/>
 
-            <%--<form:label path="data2">data2:</form:label>--%>
-            <%--<form:input path="data2"/>--%>
+            <form:label path="data2">data2:</form:label>
+            <form:input path="data2"/>
 
-        <%--</fieldset>--%>
-
-        <%--<footer>--%>
-            <%--<input type="submit" class="btnLogin" value="to find" tabindex="4">--%>
-        <%--</footer>--%>
-
-    <%--</form:form>--%>
-
-    <form method="GET" action="findTrainByParameter" modelAttribute="parametersForSearch">
-
-        <form:label path="station1">station1:</form:label>
-        <form:input path="station1"/>
-
-        <form:label path="station2">station2:</form:label>
-        <form:input path="station2"/>
-
-        <form:label path="data1">data1:</form:label>
-        <form:input path="data1"/>
-
-        <form:label path="data2">data2:</form:label>
-        <form:input path="data2"/>
-
+        </fieldset>
 
         <footer>
             <input type="submit" class="btnLogin" value="to find" tabindex="4">
         </footer>
-    </form>
+
+    </form:form>
+
+    <%--<form method="GET" action="findTrainByParameter" modelAttribute="parametersForSearch">--%>
+
+        <%--<form:label path="station1">station1:</form:label>--%>
+        <%--<form:input path="station1"/>--%>
+
+        <%--<form:label path="station2">station2:</form:label>--%>
+        <%--<form:input path="station2"/>--%>
+
+        <%--<form:label path="data1">data1:</form:label>--%>
+        <%--<form:input path="data1"/>--%>
+
+        <%--<form:label path="data2">data2:</form:label>--%>
+        <%--<form:input path="data2"/>--%>
+
+
+        <%--<footer>--%>
+            <%--<input type="submit" class="btnLogin" value="to find" tabindex="4">--%>
+        <%--</footer>--%>
+    <%--</form>--%>
 
 
 </div>

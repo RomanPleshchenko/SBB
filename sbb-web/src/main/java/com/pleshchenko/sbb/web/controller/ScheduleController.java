@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -33,33 +36,33 @@ public class ScheduleController {
         return "schedule";
     }
 
-//    @RequestMapping(value = "/findTrainByParameter",method = RequestMethod.POST)
-//    public String findTrainByParameter(@Valid ParametersForSearch parametersForSearch, BindingResult result,
-//                                       ModelMap model){
-//
-//        parametersForSearch = new ParametersForSearch();//?????
-//
-//        parametersForSearch.setStation1("Moscow");
-//        parametersForSearch.setStation2("Berlin");
-//
-//        Timestamp date1 = new Timestamp(2017-1900,4-1,6,10-1,0,0,0);
-//        Timestamp date2 = new Timestamp(2017-1900,4-1,8,10-1,0,0,0);
-//        parametersForSearch.setData1(date1);
-//        parametersForSearch.setData1(date2);
-//
-//
-//
-//        model.addAttribute("parametersForSearch",parametersForSearch);
-//        return "trainByParameter";
-//    }
-
     @RequestMapping(value = "/findTrainByParameter",method = RequestMethod.POST)
-    public String saveStation(final Model model, @ModelAttribute("parametersForSearch") ParametersForSearch parametersForSearch) throws ServiceException {
+    public String findTrainByParameter(@Valid ParametersForSearch parametersForSearch, BindingResult result,
+                                       ModelMap model){
+
+        parametersForSearch = new ParametersForSearch();//?????
+
+        parametersForSearch.setStation1("Moscow");
+        parametersForSearch.setStation2("Berlin");
+
+        Timestamp date1 = new Timestamp(2017-1900,4-1,6,10-1,0,0,0);
+        Timestamp date2 = new Timestamp(2017-1900,4-1,8,10-1,0,0,0);
+        parametersForSearch.setData1(date1);
+        parametersForSearch.setData1(date2);
 
 
-        //model.addAttribute("parametersForSearch",parametersForSearch);
+
+        model.addAttribute("parametersForSearch",parametersForSearch);
         return "trainByParameter";
     }
+
+//    @RequestMapping(value = "/findTrainByParameter",method = RequestMethod.POST)
+//    public String findTrainByParameter(final Model model, @ModelAttribute("parametersForSearch") ParametersForSearch parametersForSearch) throws ServiceException {
+//
+//
+//        //model.addAttribute("parametersForSearch",parametersForSearch);
+//        return "trainByParameter";
+//    }
 
 
 
