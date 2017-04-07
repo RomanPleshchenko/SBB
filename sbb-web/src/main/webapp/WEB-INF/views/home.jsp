@@ -23,53 +23,53 @@
 <div class="container">
     <h2>Find a train</h2>
 
-    <form method="post" action="findTrainByParameter">
-        <div class="form-group">
-            <label for="sel1">Select departure station:</label>
-            <select class="form-control" id="sel1">
-                <c:forEach items="${stations}" var="station">
-                    <option>${station.name}</option>
-                </c:forEach>
-            </select>
+    <%--<form method="post" action="findTrainByParameter">--%>
+        <%--<div class="form-group">--%>
+            <%--<label for="sel1">Select departure station:</label>--%>
+            <%--<select class="form-control" id="sel1">--%>
+                <%--<c:forEach items="${stations}" var="station">--%>
+                    <%--<option>${station.name}</option>--%>
+                <%--</c:forEach>--%>
+            <%--</select>--%>
 
-            <label for="sel1">Select destination station:</label>
-            <select class="form-control" id="sel2">
-                <c:forEach items="${stations}" var="station">
-                    <option>${station.name}</option>
-                </c:forEach>
-            </select>
-            <h4>look for</h4>
-            <input name="date1" TYPE = date>-<input name="date2" TYPE = date>
-        </div>
+            <%--<label for="sel1">Select destination station:</label>--%>
+            <%--<select class="form-control" id="sel2">--%>
+                <%--<c:forEach items="${stations}" var="station">--%>
+                    <%--<option>${station.name}</option>--%>
+                <%--</c:forEach>--%>
+            <%--</select>--%>
+            <%--<h4>look for</h4>--%>
+            <%--<input name="date1" TYPE = date>-<input name="date2" TYPE = date>--%>
+        <%--</div>--%>
+
+        <%--<footer>--%>
+            <%--<input type="submit" class="btn btn-success" value="to find" tabindex="4">--%>
+        <%--</footer>--%>
+    <%--</form>--%>
+
+
+    <form:form method="POST" commandName="parametersForSearch" action="findTrainByParameter" class="box login">
+        <fieldset class="boxBody">
+
+            <form:label path="station1">station1:</form:label>
+            <form:input path="station1" />
+
+            <form:label path="station2">station2:</form:label>
+            <form:input path="station2"/>
+
+            <form:label path="data1">data1:</form:label>
+            <form:input path="data1"/>
+
+            <form:label path="data2">data2:</form:label>
+            <form:input path="data2"/>
+
+        </fieldset>
 
         <footer>
-            <input type="submit" class="btn btn-success" value="to find" tabindex="4">
+            <input type="submit" class="btnLogin" value="to find" tabindex="4">
         </footer>
-    </form>
 
-
-    <%--<form:form method="POST" commandName="parametersForSearch" action="parametersForSearch" class="box login">--%>
-        <%--<fieldset class="boxBody">--%>
-
-            <%--<form:label path="station1">station1:</form:label>--%>
-            <%--<form:input path="station1" />--%>
-
-            <%--<form:label path="station2">station2:</form:label>--%>
-            <%--<form:input path="station2"/>--%>
-
-            <%--<form:label path="data1">data1:</form:label>--%>
-            <%--<form:input path="data1"/>--%>
-
-            <%--<form:label path="data2">data2:</form:label>--%>
-            <%--<form:input path="data2"/>--%>
-
-        <%--</fieldset>--%>
-
-        <%--<footer> <label><input type="checkbox" tabindex="3">Keep me logged in</label>--%>
-            <%--<input type="submit" class="btnLogin" value="Login" tabindex="4">--%>
-        <%--</footer>--%>
-
-    <%--</form:form>--%>
+    </form:form>
 
 
 
