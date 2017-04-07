@@ -1,9 +1,11 @@
 package com.pleshchenko.sbb.model.model.entity.route;
 
 import com.pleshchenko.sbb.model.model.entity.Train;
+import com.pleshchenko.sbb.web.converter.InstantAttributeConverter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity
 public class Schedule {
@@ -11,11 +13,19 @@ public class Schedule {
     @Column(name = "id")
     private int id;
 
+//    @Column(name = "departureTime")
+//    private Timestamp departureTime;
+//
+//    @Column(name = "destinationTime")
+//    private Timestamp destinationTime;
+
     @Column(name = "departureTime")
-    private Timestamp departureTime;
+    @Convert(converter = InstantAttributeConverter.class)
+    private Instant departureTime;
 
     @Column(name = "destinationTime")
-    private Timestamp destinationTime;
+    @Convert(converter = InstantAttributeConverter.class)
+    private Instant destinationTime;
 
     @ManyToOne
     @JoinColumn(name = "trainId")
@@ -33,19 +43,19 @@ public class Schedule {
         this.id = id;
     }
 
-    public Timestamp getDepartureTime() {
+    public Instant getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Timestamp departureTime) {
+    public void setDepartureTime(Instant departureTime) {
         this.departureTime = departureTime;
     }
 
-    public Timestamp getDestinationTime() {
+    public Instant getDestinationTime() {
         return destinationTime;
     }
 
-    public void setDestinationTime(Timestamp destinationTime) {
+    public void setDestinationTime(Instant destinationTime) {
         this.destinationTime = destinationTime;
     }
 

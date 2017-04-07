@@ -24,9 +24,10 @@ public class HomeController {
     @RequestMapping("/")
     public String goHome(ModelMap model){
 
-        //List<Station> stations  = stationService.findAll();
+        List<Station> stations  = stationService.findAll();
         ParametersForSearch parametersForSearch = new ParametersForSearch();
         model.addAttribute("parametersForSearch",parametersForSearch);
+        model.addAttribute("stations", stationService.findAll());
         return "home";
     }
 

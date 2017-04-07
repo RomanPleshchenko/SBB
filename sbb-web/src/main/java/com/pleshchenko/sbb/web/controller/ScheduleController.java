@@ -36,34 +36,15 @@ public class ScheduleController {
         return "schedule";
     }
 
-    @RequestMapping(value = "/findTrainByParameter",method = RequestMethod.POST)
+    @RequestMapping(value = "/findTrainByParameter",method = RequestMethod.GET)
     public String findTrainByParameter(@Valid ParametersForSearch parametersForSearch, BindingResult result,
                                        ModelMap model){
 
-        parametersForSearch = new ParametersForSearch();//?????
-
-        parametersForSearch.setStation1("Moscow");
-        parametersForSearch.setStation2("Berlin");
-
-        Timestamp date1 = new Timestamp(2017-1900,4-1,6,10-1,0,0,0);
-        Timestamp date2 = new Timestamp(2017-1900,4-1,8,10-1,0,0,0);
-        parametersForSearch.setData1(date1);
-        parametersForSearch.setData1(date2);
-
-
+        System.out.println(parametersForSearch.getStation1());
+        System.out.println(parametersForSearch.getStation2());
 
         model.addAttribute("parametersForSearch",parametersForSearch);
         return "trainByParameter";
     }
-
-//    @RequestMapping(value = "/findTrainByParameter",method = RequestMethod.POST)
-//    public String findTrainByParameter(final Model model, @ModelAttribute("parametersForSearch") ParametersForSearch parametersForSearch) throws ServiceException {
-//
-//
-//        //model.addAttribute("parametersForSearch",parametersForSearch);
-//        return "trainByParameter";
-//    }
-
-
 
 }

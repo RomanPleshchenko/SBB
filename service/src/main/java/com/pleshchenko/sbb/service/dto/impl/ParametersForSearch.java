@@ -9,24 +9,24 @@ import java.sql.Timestamp;
  */
 
 public class ParametersForSearch {
-    private Timestamp data1;
-    private Timestamp data2;
+    private String data1;
+    private String data2;
     private String station1;
     private String station2;
 
-    public Timestamp getData1() {
+    public String getData1() {
         return data1;
     }
 
-    public void setData1(Timestamp data1) {
+    public void setData1(String data1) {
         this.data1 = data1;
     }
 
-    public Timestamp getData2() {
+    public String getData2() {
         return data2;
     }
 
-    public void setData2(Timestamp data2) {
+    public void setData2(String data2) {
         this.data2 = data2;
     }
 
