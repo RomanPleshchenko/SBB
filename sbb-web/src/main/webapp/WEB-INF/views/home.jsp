@@ -48,7 +48,7 @@
     </form>
 
 
-    <%--<form:form method="POST" commandName="user" action="check-user" class="box login">--%>
+    <%--<form:form method="POST" commandName="parametersForSearch" action="parametersForSearch" class="box login">--%>
         <%--<fieldset class="boxBody">--%>
 
             <%--<form:label path="station1">station1:</form:label>--%>
