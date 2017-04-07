@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.model.model.entity.Train;
-import com.pleshchenko.sbb.service.interfaces.TrainService;
+import com.pleshchenko.sbb.service.dto.interfaces.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

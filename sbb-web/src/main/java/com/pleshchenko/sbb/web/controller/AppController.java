@@ -9,8 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import com.pleshchenko.sbb.service.interfaces.UserService;
-import com.pleshchenko.sbb.service.interfaces.RoleService;
+import com.pleshchenko.sbb.service.dto.interfaces.UserService;
+import com.pleshchenko.sbb.service.dto.interfaces.RoleService;
 
 import javax.validation.Valid;
 import java.util.List;

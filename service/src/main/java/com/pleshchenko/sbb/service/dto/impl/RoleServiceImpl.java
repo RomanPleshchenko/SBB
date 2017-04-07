@@ -1,7 +1,7 @@
-package com.pleshchenko.sbb.service.impl;
+package com.pleshchenko.sbb.service.dto.impl;
 
 import com.pleshchenko.sbb.service.dao.interfaces.RoleDao;
-import com.pleshchenko.sbb.service.interfaces.RoleService;
+import com.pleshchenko.sbb.service.dto.interfaces.RoleService;
 import com.pleshchenko.sbb.model.model.entity.authorization.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

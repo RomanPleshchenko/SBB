@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.service.interfaces;
+package com.pleshchenko.sbb.service.dto.interfaces;
 
 import com.pleshchenko.sbb.model.model.entity.authorization.Role;
 

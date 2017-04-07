@@ -1,10 +1,13 @@
-package com.pleshchenko.sbb.model.model.otherClasses;
+package com.pleshchenko.sbb.service.dto.impl;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.sql.Timestamp;
 
 /**
  * Created by РОМАН on 07.04.2017.
  */
+
 public class ParametersForSearch {
     private Timestamp data1;
     private Timestamp data2;

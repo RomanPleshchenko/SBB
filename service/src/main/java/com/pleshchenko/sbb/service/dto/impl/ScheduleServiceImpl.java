@@ -1,8 +1,8 @@
-package com.pleshchenko.sbb.service.impl;
+package com.pleshchenko.sbb.service.dto.impl;
 
 import com.pleshchenko.sbb.model.model.entity.route.Schedule;
 import com.pleshchenko.sbb.service.dao.interfaces.ScheduleDao;
-import com.pleshchenko.sbb.service.interfaces.ScheduleService;
+import com.pleshchenko.sbb.service.dto.interfaces.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

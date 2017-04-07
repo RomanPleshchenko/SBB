@@ -1,8 +1,8 @@
-package com.pleshchenko.sbb.service.impl;
+package com.pleshchenko.sbb.service.dto.impl;
 
 
 import com.pleshchenko.sbb.service.dao.interfaces.UserDao;
-import com.pleshchenko.sbb.service.interfaces.UserService;
+import com.pleshchenko.sbb.service.dto.interfaces.UserService;
 import com.pleshchenko.sbb.model.model.entity.authorization.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
