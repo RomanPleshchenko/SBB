@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -36,10 +37,14 @@ public class ScheduleController {
                                        ModelMap model){
 
         parametersForSearch = new ParametersForSearch();//?????
+
         parametersForSearch.setStation1("Moscow");
         parametersForSearch.setStation2("Berlin");
 
-        DateTime date1 = new DateTime();
+        Timestamp date1 = new Timestamp(2017-1900,4-1,6,10-1,0,0,0);
+        Timestamp date2 = new Timestamp(2017-1900,4-1,8,10-1,0,0,0);
+        parametersForSearch.setData1(date1);
+        parametersForSearch.setData1(date2);
 
 
 
