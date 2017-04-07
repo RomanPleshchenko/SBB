@@ -16,22 +16,22 @@
 
 <body>
 
-<form:form method="POST" commandName="findTrainByParameter" action="findTrainByParameter" class="box login">
-	<fieldset class="boxBody">
+<%--<form:form method="POST" commandName="findTrainByParameter" action="findTrainByParameter" class="box login">--%>
+	<%--<fieldset class="boxBody">--%>
 
-		<form:label path="name">Name:</form:label>
-		<form:input path="name" />
+		<%--<form:label path="name">Name:</form:label>--%>
+		<%--<form:input path="name" />--%>
 
-		<form:label path="password">Password:</form:label>
-		<form:password path="password"/>
+		<%--<form:label path="password">Password:</form:label>--%>
+		<%--<form:password path="password"/>--%>
 
-	</fieldset>
+	<%--</fieldset>--%>
 
-	<footer>
-		<input type="submit" class="btn btn-success" value="to find" tabindex="4">
-	</footer>
+	<%--<footer>--%>
+		<%--<input type="submit" class="btn btn-success" value="to find" tabindex="4">--%>
+	<%--</footer>--%>
 
-</form:form>
+<%--</form:form>--%>
 
 </body>
 </html>
