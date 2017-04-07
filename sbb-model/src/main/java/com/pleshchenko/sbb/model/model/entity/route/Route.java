@@ -1,9 +1,6 @@
 package com.pleshchenko.sbb.model.model.entity.route;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by РОМАН on 31.03.2017.
@@ -15,15 +12,6 @@ public class Route {
     @Column(name = "id")
     private int id;
 
-    @Basic
-    @Column(name = "departureStationId")
-    private int departureStationId;
-
-    @Basic
-    @Column(name = "destinationStationId")
-    private int destinationStationId;
-
-
     public int getId() {
         return id;
     }
@@ -32,20 +20,28 @@ public class Route {
         this.id = id;
     }
 
-    public int getDepartureStationId() {
-        return departureStationId;
+    @ManyToOne
+    @JoinColumn(name = "departureStationId")
+    private Station departureStation;
+
+    @ManyToOne
+    @JoinColumn(name = "destinationStationId")
+    private Station destinationStation;
+
+    public Station getDepartureStation() {
+        return departureStation;
     }
 
-    public void setDepartureStationId(int departureStationId) {
-        this.departureStationId = departureStationId;
+    public void setDepartureStation(Station departureStation) {
+        this.departureStation = departureStation;
     }
 
-    public int getDestinationStationId() {
-        return destinationStationId;
+    public Station getDestinationStation() {
+        return destinationStation;
     }
 
-    public void setDestinationStationId(int destinationStationId) {
-        this.destinationStationId = destinationStationId;
+    public void setDestinationStation(Station destinationStation) {
+        this.destinationStation = destinationStation;
     }
 
     @Override
@@ -56,17 +52,12 @@ public class Route {
         Route route = (Route) o;
 
         if (id != route.id) return false;
-        if (departureStationId != route.departureStationId) return false;
-        if (destinationStationId != route.destinationStationId) return false;
-
         return true;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + departureStationId;
-        result = 31 * result + destinationStationId;
         return result;
     }
 }

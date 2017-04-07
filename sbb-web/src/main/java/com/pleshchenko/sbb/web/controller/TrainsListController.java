@@ -33,7 +33,6 @@ public class TrainsListController {
 
     @RequestMapping(value = { "/delete-train-{number}" }, method = RequestMethod.GET)
     public String deleteTrain(@PathVariable String number) {
-        System.out.println("====================================================================");
         trainService.deleteByNumber(number);
 //        return "trainslist";
         return "redirect:/trainslist";//????? не возвращает обратно

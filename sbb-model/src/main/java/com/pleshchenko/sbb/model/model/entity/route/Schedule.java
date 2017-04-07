@@ -11,21 +11,19 @@ public class Schedule {
     @Column(name = "id")
     private int id;
 
-    @Basic
-    @Column(name = "trainId")
-    private int trainId;
-
-    @Basic
     @Column(name = "departureTime")
     private Timestamp departureTime;
 
-    @Basic
     @Column(name = "destinationTime")
     private Timestamp destinationTime;
 
-    @Basic
-    @Column(name = "routeId")
-    private int routeId;
+    @ManyToOne
+    @JoinColumn(name = "trainId")
+    private Train train;
+
+    @ManyToOne
+    @JoinColumn(name = "routeId")
+    private Route route;
 
     public int getId() {
         return id;
@@ -33,14 +31,6 @@ public class Schedule {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getTrainId() {
-        return trainId;
-    }
-
-    public void setTrainId(int trainId) {
-        this.trainId = trainId;
     }
 
     public Timestamp getDepartureTime() {
@@ -59,12 +49,20 @@ public class Schedule {
         this.destinationTime = destinationTime;
     }
 
-    public int getRouteId() {
-        return routeId;
+    public Train getTrain() {
+        return train;
     }
 
-    public void setRouteId(int routeId) {
-        this.routeId = routeId;
+    public void setTrain(Train train) {
+        this.train = train;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
     @Override
@@ -75,8 +73,6 @@ public class Schedule {
         Schedule schedule = (Schedule) o;
 
         if (id != schedule.id) return false;
-        if (trainId != schedule.trainId) return false;
-        if (routeId != schedule.routeId) return false;
         if (departureTime != null ? !departureTime.equals(schedule.departureTime) : schedule.departureTime != null)
             return false;
         if (destinationTime != null ? !destinationTime.equals(schedule.destinationTime) : schedule.destinationTime != null)
@@ -88,10 +84,6 @@ public class Schedule {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + trainId;
-        result = 31 * result + (departureTime != null ? departureTime.hashCode() : 0);
-        result = 31 * result + (destinationTime != null ? destinationTime.hashCode() : 0);
-        result = 31 * result + routeId;
         return result;
     }
 }

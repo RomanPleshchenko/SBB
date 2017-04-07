@@ -33,28 +33,28 @@
             <tbody>
             <tr>
                 <td>id</td>
-                <%--<td>trainId</td>--%>
+                <td>train number</td>
                 <td>departureTime</td>
                 <td>destinationTime</td>
-                <%--<td>routeId</td>--%>
+                <td>routeId</td>
+                <td>departureStation</td>
+                <td>departureStation</td>
             </tr>
             <c:forEach items="${schedule}" var="dir">
                 <tr>
                     <td>${dir.id}</td>
-                    <%--<td>${dir.trainId}</td>--%>
+                    <td>${dir.train.number}</td>
                     <td>${dir.departureTime}</td>
                     <td>${dir.destinationTime}</td>
-                    <%--<td>${dir.routeId}</td>--%>
+                    <td>${dir.route.id}</td>
+                    <td>${dir.route.departureStation.name}</td>
+                    <td>${dir.route.destinationStation.name}</td>
                     <%--<td><a href="<c:url value='/delete-train-${train.number}' />" class="btn btn-success custom-width">delete</a></td>--%>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </div>
-    <%--<div class="well">--%>
-        <%--<a href="<c:url value='/newTrain' />">Add new train</a>--%>
-    <%--</div>--%>
-
 </div>
 </body>
 
