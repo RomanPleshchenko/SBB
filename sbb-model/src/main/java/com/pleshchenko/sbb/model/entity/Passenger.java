@@ -10,6 +10,7 @@ import java.util.List;
  * Created by РОМАН on 31.03.2017.
  */
 @Entity
+@Table(name = "passenger")
 public class Passenger {
     @Id
     @Column(name = "id")
@@ -27,17 +28,17 @@ public class Passenger {
     @Column(name = "birthDate")
     private Date birthDate;
 
-    @ManyToOne
-    @JoinColumn(name = "idUser")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "idUser")
+//    private User user;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
 //    @OneToMany(mappedBy = "passanger", cascade = {CascadeType.ALL})
 //    private List<Ticket> tickets;

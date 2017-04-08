@@ -1,13 +1,16 @@
 package com.pleshchenko.sbb.model.entity.route;
 
+import com.pleshchenko.sbb.model.entity.Ticket;
 import com.pleshchenko.sbb.model.entity.Train;
 import com.pleshchenko.sbb.model.converter.InstantAttributeConverter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
+@Table(name = "schedule")
 public class Schedule {
     @Id
     @Column(name = "id")
@@ -34,6 +37,9 @@ public class Schedule {
     @ManyToOne
     @JoinColumn(name = "routeId")
     private Route route;
+
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Ticket> tickets;
 
     public int getId() {
         return id;
@@ -74,6 +80,22 @@ public class Schedule {
     public void setRoute(Route route) {
         this.route = route;
     }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+//    public List<Ticket> getTickets() {
+//        return tickets;
+//    }
+//
+//    public void setTickets(List<Ticket> tickets) {
+//        this.tickets = tickets;
+//    }
 
     @Override
     public boolean equals(Object o) {

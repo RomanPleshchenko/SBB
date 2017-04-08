@@ -16,9 +16,9 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
 
-@Controller
-@RequestMapping("/old")
-@SessionAttributes("roles")
+//@Controller
+//@RequestMapping("/old")
+//@SessionAttributes("roles")
 public class AppController {
 
     @Autowired

@@ -1,14 +1,12 @@
 package com.pleshchenko.sbb.model.entity.route;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by РОМАН on 31.03.2017.
  */
 @Entity
+@Table(name = "station")
 public class Station {
     @Id
     @Column(name = "id")

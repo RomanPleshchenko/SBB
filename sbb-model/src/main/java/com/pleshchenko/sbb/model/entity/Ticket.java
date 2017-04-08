@@ -8,6 +8,7 @@ import javax.persistence.*;
  * Created by РОМАН on 31.03.2017.
  */
 @Entity
+@Table(name = "ticket")
 public class Ticket {
     @Id
     @Column(name = "id")
@@ -44,10 +45,6 @@ public class Ticket {
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
     }
-
-
-
-
 
     @Override
     public boolean equals(Object o) {

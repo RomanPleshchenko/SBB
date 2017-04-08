@@ -7,6 +7,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <jsp:include page="header.jsp" flush="true" >
@@ -28,6 +29,7 @@
             <th>destination time</th>
             <th>departure station</th>
             <th>destination station</th>
+            <th>sold tickets</th>
         </tr>
         </thead>
         <tbody>
@@ -39,6 +41,7 @@
                 <td>${dir.destinationTime}</td>
                 <td>${dir.route.departureStation.name}</td>
                 <td>${dir.route.destinationStation.name}</td>
+                <td>${fn:length(dir.tickets)}</td>
             </tr>
         </c:forEach>
         </tbody>

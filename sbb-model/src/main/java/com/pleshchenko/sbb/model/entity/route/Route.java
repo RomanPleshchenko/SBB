@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Created by РОМАН on 31.03.2017.
  */
 @Entity
+@Table(name = "Route")
 public class Route {
 
     @Id
