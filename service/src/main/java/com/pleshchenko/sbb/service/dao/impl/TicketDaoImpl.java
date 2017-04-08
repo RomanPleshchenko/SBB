@@ -14,9 +14,9 @@ import java.util.List;
 public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements TicketDao {
     @Override
     public List<Ticket> findAll() {
-        List<Ticket> ticket = getEntityManager()
+        List<Ticket> tickets = getEntityManager()
                 .createQuery("SELECT t FROM Ticket t")
                 .getResultList();
-        return ticket;
+        return tickets;
     }
 }

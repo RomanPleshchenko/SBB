@@ -24,7 +24,7 @@ public class TrainsListController {
     TrainService trainService;
 
     @RequestMapping(value = "/trains",method = RequestMethod.GET)
-    public String goHome(ModelMap model){
+    public String goTrainslist(ModelMap model){
 
         List<Train> trains  = trainService.findAll();
         model.addAttribute("trains", trains);

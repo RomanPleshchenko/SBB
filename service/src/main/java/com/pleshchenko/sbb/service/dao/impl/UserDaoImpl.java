@@ -16,7 +16,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	public User findById(int id) {
 		User user = getByKey(id);
 		if(user!=null){
-			initializeCollection(user.getUserRoles());
+//			initializeCollection(user.getUserRoles());
 		}
 		return user;
 	}
@@ -29,7 +29,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 					.getSingleResult();
 			
 			if(user!=null){
-				initializeCollection(user.getUserRoles());
+//				initializeCollection(user.getUserRoles());
 			}
 			return user; 
 		}catch(NoResultException ex){

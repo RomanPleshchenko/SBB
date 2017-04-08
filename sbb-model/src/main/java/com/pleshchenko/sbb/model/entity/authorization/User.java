@@ -22,12 +22,12 @@ public class User {
     @Column(name="name", nullable=false)
     private String name;
 
-    @NotEmpty
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "userRole",
-            joinColumns = { @JoinColumn(name = "userId") },
-            inverseJoinColumns = { @JoinColumn(name = "rolesId") })
-    private Set<Role> roles = new HashSet<Role>();
+//    @NotEmpty
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "userRole",
+//            joinColumns = { @JoinColumn(name = "userId") },
+//            inverseJoinColumns = { @JoinColumn(name = "rolesId") })
+//    private Set<Role> roles = new HashSet<Role>();
 
     public Integer getId() {
         return id;
@@ -51,14 +51,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<Role> getUserRoles() {
-        return roles;
-    }
-
-    public void setUserRoles(Set<Role> userRoles) {
-        this.roles = userRoles;
     }
 
     @Override

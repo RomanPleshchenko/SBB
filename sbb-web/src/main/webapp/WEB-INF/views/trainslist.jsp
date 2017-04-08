@@ -14,42 +14,36 @@
         <jsp:param name="title" value="Train list"/>
     </jsp:include>
 </head>
+
 <body>
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
-<div class="generic-container">
-    <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading"><span class="lead">List of trains </span></div>
-        <table class="table table-hover">
-            <thead>
+<div class="container">
+    <h2>List of trains</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>number</th>
+            <th>capacity</th>
+            <th>action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${trains}" var="train">
             <tr>
-                <th>Name</th>
-                <th width="100"></th>
-                <th width="100"></th>
+                <td>${train.number}  </td>
+                <td>${train.capacity}  </td>
+                <td><a href="<c:url value='/delete-train-${train.number}' />" class="btn btn-success custom-width">delete</a></td>
             </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${trains}" var="train">
-                <tr>
-                    <td>${train.number}  </td>
-                    <td>${train.capacity}  </td>
-                    <td><a href="<c:url value='/delete-train-${train.number}' />" class="btn btn-success custom-width">delete</a></td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </div>
-    <div class="well">
-        <a href="<c:url value='/newTrain' />">Add new train</a>
-    </div>
-
+        </c:forEach>
+        </tbody>
+    </table>
 </div>
-</body>
 
-
-
+<br>
+<br>
+<br>
 <jsp:include page="footer.jsp"/>
 </body>
 </html>
