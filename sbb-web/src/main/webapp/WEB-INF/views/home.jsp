@@ -23,7 +23,7 @@
 <div class="container">
     <h2>Find a train</h2>
 
-      <form:form method="get" commandName="parametersForSearch" action="findTrainByParameter" class="box login">
+      <form:form method="get" commandName="parametersForSearch" action="scheduleByParameters" class="box login">
         <fieldset class="boxBody">
 
             <label>Select station</label>

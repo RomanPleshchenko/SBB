@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.model.entity.route.Station;
-import com.pleshchenko.sbb.service.dto.impl.ParametersForSearch;
+import com.pleshchenko.sbb.service.dto.other.ParametersForSearch;
 import com.pleshchenko.sbb.service.dto.interfaces.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

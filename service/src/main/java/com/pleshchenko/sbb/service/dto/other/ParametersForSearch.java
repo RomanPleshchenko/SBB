@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.service.dto.impl;
+package com.pleshchenko.sbb.service.dto.other;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 

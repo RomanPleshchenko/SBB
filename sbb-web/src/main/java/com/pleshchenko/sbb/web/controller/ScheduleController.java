@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.model.entity.route.Schedule;
-import com.pleshchenko.sbb.service.dto.impl.ParametersForSearch;
+import com.pleshchenko.sbb.service.dto.other.ParametersForSearch;
 import com.pleshchenko.sbb.service.dto.interfaces.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,15 +31,14 @@ public class ScheduleController {
         return "schedule";
     }
 
-    @RequestMapping(value = "/findTrainByParameter",method = RequestMethod.GET)
-    public String findTrainByParameter(@Valid ParametersForSearch parametersForSearch, BindingResult result,
+    @RequestMapping(value = "/scheduleByParameters",method = RequestMethod.GET)
+    public String scheduleByParameters(@Valid ParametersForSearch param, BindingResult result,
                                        ModelMap model){
 
-        System.out.println(parametersForSearch.getStation1());
-        System.out.println(parametersForSearch.getStation2());
+        List<Schedule> schedule = scheduleService.findByParameters(param);
+        model.addAttribute("schedule",schedule);
 
-        model.addAttribute("parametersForSearch",parametersForSearch);
-        return "trainByParameter";
+        return "scheduleByParameters";
     }
 
 }

@@ -3,6 +3,7 @@ package com.pleshchenko.sbb.service.dao.impl;
 import com.pleshchenko.sbb.model.entity.route.Schedule;
 import com.pleshchenko.sbb.service.dao.interfaces.AbstractDao;
 import com.pleshchenko.sbb.service.dao.interfaces.ScheduleDao;
+import com.pleshchenko.sbb.service.dto.other.ParametersForSearch;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,6 +18,18 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
 
         List<Schedule> schedule = getEntityManager()
                 .createQuery("SELECT s FROM Schedule s ORDER BY s.departureTime")
+                .getResultList();
+        return schedule;
+
+    }
+
+    @Override
+    public List<Schedule> findByParameters(ParametersForSearch param) {
+
+        //????? задать параметры нормально
+        List<Schedule> schedule = getEntityManager()
+                .createQuery("SELECT s FROM Schedule s " +
+                        "WHERE s.route.departureStation.id = " + param.getStation1() + " AND s.route.destinationStation.id = " + param.getStation2() + "  ORDER BY s.departureTime")
                 .getResultList();
         return schedule;
 
