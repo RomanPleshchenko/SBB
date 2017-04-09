@@ -34,7 +34,6 @@ public class TrainsController {
     @RequestMapping(value = { "/delete-train-{number}" }, method = RequestMethod.GET)
     public String deleteTrain(@PathVariable String number) {
         trainService.deleteByNumber(number);
-//        return "trainslist";
         return "redirect:/trainslist";//????? не возвращает обратно
     }
 
@@ -45,9 +44,6 @@ public class TrainsController {
 
     @RequestMapping(value = {"/addNewTrainByParameters"}, method = RequestMethod.POST)
     public String addNewTrainByParameters(@ModelAttribute("train") Train train) {
-        System.out.println(train.getCapacity());
-        System.out.println(train.getNumber());
-        System.out.println("it work");
         //???? добавить проверки на то что что такого поезда нет
         //тоже не возвращает обратно
         trainService.saveTrain(train);

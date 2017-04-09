@@ -19,4 +19,21 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
                 .getResultList();
         return tickets;
     }
+
+    @Override
+    public void save(Ticket ticket) {
+        persist(ticket);
+    }
+
+    @Override
+    public Ticket findById(Integer idSchedule, Integer idPassenger) {
+        List<Ticket> tickets = getEntityManager()
+                .createQuery("SELECT t FROM Ticket t WHERE t.passenger.id = "
+                        + idPassenger + " AND t.schedule.id = " + idSchedule)
+                .getResultList();
+        if (tickets.size()==0)
+            return null;
+        else
+            return tickets.get(0);
+    }
 }

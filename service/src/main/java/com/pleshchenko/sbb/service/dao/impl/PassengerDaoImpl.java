@@ -13,6 +13,11 @@ import java.util.List;
 @Repository("passengerDao")
 public class PassengerDaoImpl extends AbstractDao<Integer,Passenger> implements PassengerDao {
     @Override
+    public Passenger findById(Integer id) {
+        return getByKey(id);
+    }
+
+    @Override
     public List<Passenger> findAll() {
         List<Passenger> stations = getEntityManager()
                 .createQuery("SELECT p FROM Passenger p ORDER BY p.name ASC")

@@ -14,6 +14,8 @@ import java.util.List;
 @Transactional
 public interface ScheduleService {
 
+    Schedule findById(Integer id);
+
     List<Schedule> findAll();
 
     List<Schedule> findByParameters(ParametersForSearch param);

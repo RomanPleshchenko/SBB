@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface ScheduleDao {
 
+    Schedule findById(Integer id);
+
     List<Schedule> findAll();
 
     List<Schedule> findByParameters(ParametersForSearch param);

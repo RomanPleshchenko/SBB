@@ -89,6 +89,10 @@ public class Schedule {
         this.tickets = tickets;
     }
 
+    public String getShowing(){
+        return getTrain().getNumber() + "(" + id + ")" + " [" + departureTime + " - " + getDestinationTime() + "]";
+    }
+
 //    public List<Ticket> getTickets() {
 //        return tickets;
 //    }

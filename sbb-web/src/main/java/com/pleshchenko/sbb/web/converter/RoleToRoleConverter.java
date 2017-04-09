@@ -16,7 +16,6 @@ public class RoleToRoleConverter implements Converter<Object, Role> {
     public Role convert(Object element) {
         Integer id = Integer.parseInt((String)element);
         Role profile = roleService.findById(id);
-        System.out.println("Profile : "+profile);
         return profile;
     }
 }

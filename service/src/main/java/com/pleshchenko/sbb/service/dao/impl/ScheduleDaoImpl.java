@@ -14,6 +14,11 @@ import java.util.List;
 @Repository("scheduleDaoImpl")
 public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements ScheduleDao{
     @Override
+    public Schedule findById(Integer id) {
+        return getByKey(id);
+    }
+
+    @Override
     public List<Schedule> findAll() {
 
         List<Schedule> schedule = getEntityManager()

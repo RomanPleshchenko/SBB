@@ -12,5 +12,10 @@ import java.util.List;
 @Service("ticketService")
 @Transactional
 public interface TicketService {
-    List<Ticket> findAll() ;
+
+    void save(Ticket ticket);
+
+    List<Ticket> findAll();
+
+    Ticket findById(Integer idSchedule,Integer idPassenger);
 }

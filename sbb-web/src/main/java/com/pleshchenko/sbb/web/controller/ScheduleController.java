@@ -45,14 +45,9 @@ public class ScheduleController {
                                              ModelMap model){
 
         List<Schedule> schedule = scheduleService.findByParameters(param);
-        List<Passenger> passengers = passengerService.findAll();
-
         model.addAttribute("schedule",schedule);
-        model.addAttribute("passengers",passengers);
-
-        SetId set =new SetId();
-
-        return new ModelAndView("scheduleByParameters","set",new SetId());
+//        return new ModelAndView("scheduleByParameters","set",set);
+        return new ModelAndView("scheduleByParameters");
 
     }
 

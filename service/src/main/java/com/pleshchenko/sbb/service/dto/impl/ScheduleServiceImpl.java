@@ -17,6 +17,10 @@ import java.util.List;
 @Transactional
 public class ScheduleServiceImpl implements ScheduleService {
 
+    public Schedule findById(Integer id){
+        return dao.findById(id);
+    }
+
     @Autowired
     private ScheduleDao dao;
 
@@ -31,4 +35,5 @@ public class ScheduleServiceImpl implements ScheduleService {
         List<Schedule> schedule = dao.findByParameters(param);
         return schedule;
     }
+
 }

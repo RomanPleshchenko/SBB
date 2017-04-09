@@ -20,8 +20,19 @@ public class TicketServiceImpl implements TicketService {
     private TicketDao dao;
 
     @Override
+    public void save(Ticket ticket) {
+        dao.save(ticket);
+    }
+
+    @Override
     public List<Ticket> findAll() {
         List<Ticket> tickets = dao.findAll();
         return tickets;
+    }
+
+    @Override
+    public Ticket findById(Integer idSchedule, Integer idPassenger) {
+        Ticket  ticket = dao.findById(idSchedule,idPassenger);
+        return ticket;
     }
 }

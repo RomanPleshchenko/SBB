@@ -10,4 +10,8 @@ import java.util.List;
 public interface TicketDao {
 
     List<Ticket> findAll();
+
+    void save(Ticket ticket);
+
+    Ticket findById(Integer idSchedule,Integer idPassenger);
 }

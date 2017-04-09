@@ -20,6 +20,11 @@ public class PassengerServiceImpl implements PassengerService {
     private PassengerDao dao;
 
     @Override
+    public Passenger findById(Integer id) {
+        return dao.findById(id);
+    }
+
+    @Override
     public List<Passenger> findAll() {
         List<Passenger> passenger =  dao.findAll();
         return passenger;

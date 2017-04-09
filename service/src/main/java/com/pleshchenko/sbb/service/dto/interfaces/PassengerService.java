@@ -12,5 +12,8 @@ import java.util.List;
 @Service("passengerService")
 @Transactional
 public interface PassengerService {
+
+    Passenger findById(Integer id);
+    
     List<Passenger> findAll();
 }
