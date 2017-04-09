@@ -75,6 +75,10 @@ public class Passenger {
         this.birthDate = birthDate;
     }
 
+    public String getFullName() {
+        return name + " " + surname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

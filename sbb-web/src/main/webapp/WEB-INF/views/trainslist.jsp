@@ -39,6 +39,9 @@
         </c:forEach>
         </tbody>
     </table>
+    <div class="well">
+        <a href="<c:url value='/newTrain' />">Add new train</a>
+    </div>
 </div>
 
 <br>

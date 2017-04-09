@@ -19,7 +19,6 @@
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
-
 <form:form method="POST" commandName="train" action="addNewTrainByParameters" class="box login">
     <fieldset class="boxBody">
 

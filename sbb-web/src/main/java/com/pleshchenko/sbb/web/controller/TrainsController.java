@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/")
-public class TrainsListController {
+public class TrainsController {
 
     @Autowired
     TrainService trainService;

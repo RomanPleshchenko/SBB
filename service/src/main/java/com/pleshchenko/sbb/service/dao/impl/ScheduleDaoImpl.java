@@ -26,10 +26,11 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
     @Override
     public List<Schedule> findByParameters(ParametersForSearch param) {
 
-        //????? задать параметры нормально
+        //????? задать параметры даты
         List<Schedule> schedule = getEntityManager()
                 .createQuery("SELECT s FROM Schedule s " +
-                        "WHERE s.route.departureStation.id = " + param.getStation1() + " AND s.route.destinationStation.id = " + param.getStation2() + "  ORDER BY s.departureTime")
+                        "WHERE s.route.departureStation.id = " + param.getStation1()
+                            + " AND s.route.destinationStation.id = " + param.getStation2() + " ORDER BY s.departureTime")
                 .getResultList();
         return schedule;
 
