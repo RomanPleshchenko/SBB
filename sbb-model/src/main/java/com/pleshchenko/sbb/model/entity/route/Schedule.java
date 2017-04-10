@@ -2,11 +2,10 @@ package com.pleshchenko.sbb.model.entity.route;
 
 import com.pleshchenko.sbb.model.entity.Ticket;
 import com.pleshchenko.sbb.model.entity.Train;
-import com.pleshchenko.sbb.model.converter.InstantAttributeConverter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -17,18 +16,12 @@ public class Schedule {
     private int id;
 
     @Column(name = "departureTime")
+    @NotNull
     private Timestamp departureTime;
 
     @Column(name = "destinationTime")
+    @NotNull
     private Timestamp destinationTime;
-
-//    @Column(name = "departureTime")
-////    @Convert(converter = InstantAttributeConverter.class)
-//    private Instant departureTime;
-//
-//    @Column(name = "destinationTime")
-////    @Convert(converter = InstantAttributeConverter.class)
-//    private Instant destinationTime;
 
     @ManyToOne
     @JoinColumn(name = "trainId")
@@ -92,14 +85,6 @@ public class Schedule {
     public String getShowing(){
         return getTrain().getNumber() + "(" + id + ")" + " [" + departureTime + " - " + getDestinationTime() + "]";
     }
-
-//    public List<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void setTickets(List<Ticket> tickets) {
-//        this.tickets = tickets;
-//    }
 
     @Override
     public boolean equals(Object o) {

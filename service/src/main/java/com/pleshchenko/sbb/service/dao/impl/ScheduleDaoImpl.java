@@ -39,5 +39,12 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
                 .getResultList();
         return schedule;
 
+//        List<Schedule> schedule = getEntityManager()
+//                .createQuery("SELECT s FROM Schedule s " +
+//                        "WHERE s.route.departureStation.id = " + param.getStation1()
+//                        + " AND s.route.destinationStation.id = " + param.getStation2()  + " AND s.departureTime >= " + param.getData1()  + " ORDER BY s.departureTime")
+//                .getResultList();
+//        return schedule;
+
     }
 }

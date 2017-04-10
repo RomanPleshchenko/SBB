@@ -24,7 +24,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Autowired
     RoleToRoleConverter roleToRoleConverter;
 
-
     /**
      * Configure ViewResolvers to deliver preferred views.
      */
