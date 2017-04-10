@@ -6,6 +6,7 @@ import com.pleshchenko.sbb.model.entity.Train;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -17,11 +18,11 @@ public class Schedule {
 
     @Column(name = "departureTime")
     @NotNull
-    private Timestamp departureTime;
+    private Instant departureTime;
 
     @Column(name = "destinationTime")
     @NotNull
-    private Timestamp destinationTime;
+    private Instant destinationTime;
 
     @ManyToOne
     @JoinColumn(name = "trainId")
@@ -42,19 +43,19 @@ public class Schedule {
         this.id = id;
     }
 
-    public Timestamp getDepartureTime() {
+    public Instant getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Timestamp departureTime) {
+    public void setDepartureTime(Instant departureTime) {
         this.departureTime = departureTime;
     }
 
-    public Timestamp getDestinationTime() {
+    public Instant getDestinationTime() {
         return destinationTime;
     }
 
-    public void setDestinationTime(Timestamp destinationTime) {
+    public void setDestinationTime(Instant destinationTime) {
         this.destinationTime = destinationTime;
     }
 
