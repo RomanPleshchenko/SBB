@@ -98,6 +98,13 @@
             <version>${jstl.version}</version>
         </dependency>
 
+        <!--log4j-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
         <!--sbb-->
         <dependency>
             <groupId>com.pleshchenko.sbb</groupId>

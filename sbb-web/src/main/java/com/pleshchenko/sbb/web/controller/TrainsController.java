@@ -2,6 +2,7 @@ package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.model.entity.Train;
 import com.pleshchenko.sbb.service.dto.interfaces.TrainService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +20,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class TrainsController {
+
+    final static Logger logger = Logger.getLogger(TrainsController.class);
 
     @Autowired
     TrainService trainService;
@@ -38,6 +41,7 @@ public class TrainsController {
             trainService.deleteByNumber(number);
             return RequestType.REDIRECT + "trains";
         }catch (Exception e){
+            logger.error("Unsuccessful attempt to delete a train:" + number);
             model.addAttribute("message","You cannot delete this train!!!");
             return "notification";
         }
