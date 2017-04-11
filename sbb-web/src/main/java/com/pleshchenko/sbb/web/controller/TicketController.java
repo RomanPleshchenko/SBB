@@ -42,7 +42,7 @@ public class TicketController {
     }
 
     @RequestMapping(value = {"/saveTicket-{idShedule}"}, method = RequestMethod.GET)
-    public ModelAndView saveTicket(ModelMap model,@ModelAttribute("set") SetId set,@PathVariable String idShedule) {
+    public String saveTicket(ModelMap model,@ModelAttribute("set") SetId set,@PathVariable String idShedule) {
 
         Ticket ticket;
 
@@ -57,10 +57,10 @@ public class TicketController {
             ticket.setSchedule(schedule);
             ticket.setPassenger(passenger);
             ticketService.save(ticket);
-            return new ModelAndView("ticketslist");
+            return RequestType.REDIRECT + "tickets";
         }else{
             model.addAttribute("message","You can not buy two tickets for one trip");
-            return new ModelAndView("notification");
+            return "notification";
         }
     }
 

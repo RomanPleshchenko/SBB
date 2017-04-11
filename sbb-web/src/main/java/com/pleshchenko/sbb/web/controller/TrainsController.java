@@ -32,9 +32,15 @@ public class TrainsController {
     }
 
     @RequestMapping(value = { "/delete-train-{number}" }, method = RequestMethod.GET)
-    public String deleteTrain(@PathVariable String number) {
-        trainService.deleteByNumber(number);
-        return RequestType.REDIRECT + "trains";
+    public String deleteTrain(@PathVariable String number,ModelMap model) {
+
+        try {
+            trainService.deleteByNumber(number);
+            return RequestType.REDIRECT + "trains";
+        }catch (Exception e){
+            model.addAttribute("message","You cannot delete this train!!!");
+            return "notification";
+        }
     }
 
     @RequestMapping(value = {"/addNewTrainByParameters"}, method = RequestMethod.GET)
