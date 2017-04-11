@@ -52,8 +52,7 @@ public class StationController {
     @RequestMapping(value = {"/addNewStationByParameters"}, method = RequestMethod.GET)
     public String addNewTrainByParameters(@ModelAttribute("station") Station station) {
         //???? добавить проверки на то что что такого поезда нет
-        //тоже не возвращает обратно
         stationService.saveStation(station);
-        return "stationsList";
+        return RequestType.REDIRECT + "stationsList";
     }
 }

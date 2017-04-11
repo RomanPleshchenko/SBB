@@ -46,7 +46,6 @@ public class ScheduleController {
 
         List<Schedule> schedule = scheduleService.findByParameters(param);
         model.addAttribute("schedule",schedule);
-//        return new ModelAndView("scheduleByParameters","set",set);
         return new ModelAndView("scheduleByParameters");
 
     }
