@@ -19,7 +19,7 @@
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
-<form:form method="GET" commandName="station" action="addNewTrainByParameters" class="box login">
+<form:form method="GET" commandName="train" action="addNewTrainByParameters" class="box login">
     <fieldset class="boxBody">
 
         <form:label path="number">Number:</form:label>

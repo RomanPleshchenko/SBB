@@ -43,11 +43,12 @@ public class TrainsController {
     }
 
     @RequestMapping(value = {"/addNewTrainByParameters"}, method = RequestMethod.GET)
-    public String addNewTrainByParameters(@ModelAttribute("train") Train train) {
+    public ModelAndView addNewTrainByParameters(@ModelAttribute("train") Train train) {
         //???? добавить проверки на то что что такого поезда нет
         //тоже не возвращает обратно
         trainService.saveTrain(train);
-        return "trainslist";
+//        return "trainslist";//???????
+        return new ModelAndView("trainslist");
     }
 
 }
