@@ -2,7 +2,7 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
 <log4j:configuration>
 
-    <!--Target-->
+    <!--target-->
     <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
         <param name="Target" value="System.out" />
         <layout class="org.apache.log4j.PatternLayout">
@@ -26,7 +26,7 @@
     </appender>
 
     <!--files-->
-    <appender name="WEB-LOG-ERROR-FILE-APPENDER" class="org.apache.log4j.FileAppender">
+    <appender name="VIEW-LOG-ERROR-FILE-APPENDER" class="org.apache.log4j.FileAppender">
         <param name="file" value="${rootPath}WEB-INF/logs/web/error.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} [%5p] %m at %l%n"/>
@@ -37,9 +37,20 @@
         </filter>
     </appender>
 
+    <appender name="VIEW-LOG-INFO-FILE-APPENDER" class="org.apache.log4j.FileAppender">
+        <param name="file" value="${rootPath}WEB-INF/logs/web/info.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} [%5p] %m at %l%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="WARN"/>
+            <param name="LevelMax" value="FATAL"/>
+        </filter>
+    </appender>
+
     <!--level-->
-    <logger name="com.tsystems.javaschool.timber.logiweb.view" additivity="false">
-        <level value="DEBUG" />
+    <logger name="com.pleshchenko.sbb.web.controller" additivity="false">
+        <level value="ERROR" />
         <appender-ref ref="VIEW-LOG-ERROR-FILE-APPENDER" />
         <appender-ref ref="VIEW-LOG-INFO-FILE-APPENDER" />
     </logger>
