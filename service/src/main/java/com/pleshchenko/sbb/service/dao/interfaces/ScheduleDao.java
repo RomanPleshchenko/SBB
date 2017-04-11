@@ -14,5 +14,8 @@ public interface ScheduleDao {
 
     List<Schedule> findAll();
 
+    List<Schedule> findByStation(String stationName);
+
     List<Schedule> findByParameters(ParametersForSearch param);
+
 }

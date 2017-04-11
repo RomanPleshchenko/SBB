@@ -19,4 +19,17 @@ public class StationDaoImpl extends AbstractDao<Integer,Station> implements Stat
                 .getResultList();
         return stations;
     }
+
+    @Override
+    public void saveStation(Station station) {
+        persist(station);
+    }
+
+//    @Override
+//    public List<Station> findByStation(String stationName) {
+//        List<Station> trains = getEntityManager()
+//                .createQuery("SELECT s FROM Station s ORDER BY s.name WHERE s.name = " + stationName +" ASC")
+//                .getResultList();
+//        return trains;
+//    }
 }

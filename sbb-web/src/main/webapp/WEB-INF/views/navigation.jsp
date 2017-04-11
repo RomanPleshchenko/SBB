@@ -20,6 +20,7 @@
             <li><a href="/trains">trains</a></li>
             <li><a href="/tickets">tickets</a></li>
             <li><a href="/schedule">schedule</a></li>
+            <li><a href="/stations">stations</a></li>
         </ul>
         <%--<form class="navbar-form navbar-left">--%>
             <%--<div class="form-group">--%>

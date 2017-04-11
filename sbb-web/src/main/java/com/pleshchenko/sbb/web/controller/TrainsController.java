@@ -34,7 +34,7 @@ public class TrainsController {
     @RequestMapping(value = { "/delete-train-{number}" }, method = RequestMethod.GET)
     public String deleteTrain(@PathVariable String number) {
         trainService.deleteByNumber(number);
-        return "redirect:/trainslist";//????? не возвращает обратно
+        return "trainslist";//????? не возвращает обратно
     }
 
     @RequestMapping(value = {"/newTrain"}, method = RequestMethod.GET)
@@ -42,7 +42,7 @@ public class TrainsController {
         return new ModelAndView("newTrain","train",new Train());
     }
 
-    @RequestMapping(value = {"/addNewTrainByParameters"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/addNewTrainByParameters"}, method = RequestMethod.GET)
     public String addNewTrainByParameters(@ModelAttribute("train") Train train) {
         //???? добавить проверки на то что что такого поезда нет
         //тоже не возвращает обратно

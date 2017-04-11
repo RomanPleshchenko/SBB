@@ -31,6 +31,16 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
     }
 
     @Override
+    public List<Schedule> findByStation(String stationName) {
+
+
+        List<Schedule> schedule = getEntityManager()
+                .createQuery("SELECT s FROM Schedule s WHERE s.route.departureStation.name LIKE '" + stationName + "'")
+                .getResultList();
+        return schedule;
+    }
+
+    @Override
     public List<Schedule> findByParameters(ParametersForSearch param) {
 
         Query query = getEntityManager()

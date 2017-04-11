@@ -31,6 +31,12 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public List<Schedule> findByStation(String stationName) {
+        List<Schedule> schedule = dao.findByStation(stationName);
+        return schedule;
+    }
+
+    @Override
     public List<Schedule> findByParameters(ParametersForSearch param) {
         List<Schedule> schedule = dao.findByParameters(param);
         return schedule;

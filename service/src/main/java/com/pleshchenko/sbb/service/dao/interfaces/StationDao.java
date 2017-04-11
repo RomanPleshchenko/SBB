@@ -9,4 +9,8 @@ import java.util.List;
  */
 public interface StationDao {
     List<Station> findAll();
+
+    void saveStation(Station station);
+
+//    List<Station> findByStation(String stationName);
 }

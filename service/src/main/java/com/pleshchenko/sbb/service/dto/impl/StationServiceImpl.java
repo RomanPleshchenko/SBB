@@ -24,4 +24,15 @@ public class StationServiceImpl implements StationService {
         List<Station> station = dao.findAll();
         return station;
     }
+
+    @Override
+    public void saveStation(Station station) {
+        dao.saveStation(station);
+    }
+
+//    @Override
+//    public List<Station> findByStation(String stationName) {
+//        List<Station> stations = dao.findByStation(stationName);
+//        return stations;
+//    }
 }

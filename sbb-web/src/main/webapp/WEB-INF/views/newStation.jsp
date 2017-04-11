@@ -12,21 +12,18 @@
 <html>
 <head>
     <jsp:include page="header.jsp" flush="true" >
-        <jsp:param name="title" value="New train"/>
+        <jsp:param name="title" value="New station"/>
     </jsp:include>
 </head>
 <body>
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
-<form:form method="GET" commandName="station" action="addNewTrainByParameters" class="box login">
+<form:form method="GET" commandName="station" action="addNewStationByParameters" class="box login">
     <fieldset class="boxBody">
 
-        <form:label path="number">Number:</form:label>
-        <form:input path="number" />
-
-        <form:label path="capacity">Capacity:</form:label>
-        <form:input path="capacity"/>
+        <form:label path="name">Name:</form:label>
+        <form:input path="name" />
 
     </fieldset>
 
