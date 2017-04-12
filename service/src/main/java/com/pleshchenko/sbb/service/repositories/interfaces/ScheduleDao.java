@@ -2,6 +2,7 @@ package com.pleshchenko.sbb.service.repositories.interfaces;
 
 import com.pleshchenko.sbb.model.entity.route.Schedule;
 import com.pleshchenko.sbb.service.dto.other.ParametersForSearch;
+import com.pleshchenko.sbb.service.repositories.exceptions.NotEnoughParamsException;
 
 import java.util.List;
 
@@ -17,5 +18,7 @@ public interface ScheduleDao {
     List<Schedule> findByStation(String stationName);
 
     List<Schedule> findByParameters(ParametersForSearch param);
+
+    Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException;
 
 }

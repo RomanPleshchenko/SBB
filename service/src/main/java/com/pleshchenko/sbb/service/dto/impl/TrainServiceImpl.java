@@ -40,4 +40,10 @@ public class TrainServiceImpl implements TrainService {
         Train train = dao.findByNumber(number);
         return train;
     }
+
+    @Override
+    public Train findById(Integer id) {
+        Train train = dao.findById(id);
+        return train;
+    }
 }

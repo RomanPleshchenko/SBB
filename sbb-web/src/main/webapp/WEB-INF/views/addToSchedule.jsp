@@ -12,7 +12,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp" flush="true" >
-        <jsp:param name="title" value="Search ticket"/>
+        <jsp:param name="title" value="Edit schedule"/>
     </jsp:include>
 </head>
 <body>
@@ -23,8 +23,9 @@
 <div class="container">
     <h2>Find a train</h2>
 
-    <form:form method="post" commandName="parametersForSearch" action="scheduleByParameters" class="box login">
+    <form:form method="POST" commandName="parametersForSearch" action="addToSchedule" class="box login">
         <fieldset class="boxBody">
+            <td>${error} <br></td>
 
             <label>Select station</label>
             <form:select path="station1">
@@ -36,6 +37,11 @@
                 <form:option value="NONE" label="-- Please choose a destination  station --"/>
                 <form:options items="${stations}" itemValue="id" itemLabel="name"/>
             </form:select>
+            -
+            <form:select path="train">
+                <form:option value="NONE" label="-- Please choose a train--"/>
+                <form:options items="${trains}" itemValue="id" itemLabel="number"/>
+            </form:select>
 
             <br>
 
@@ -44,7 +50,7 @@
             <form:input path="data1" type = "date" /> - <form:input path="data2" type = "date"/>
 
             <footer>
-                <input type="submit" class="btn btn-success" value="to find" tabindex="4">
+                <input type="submit" class="btn btn-success" value="add to schedule" tabindex="4">
             </footer>
 
         </fieldset>

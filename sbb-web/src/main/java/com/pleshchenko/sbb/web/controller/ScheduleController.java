@@ -4,10 +4,14 @@ import com.pleshchenko.sbb.model.entity.Passenger;
 import com.pleshchenko.sbb.model.entity.Ticket;
 import com.pleshchenko.sbb.model.entity.Train;
 import com.pleshchenko.sbb.model.entity.route.Schedule;
+import com.pleshchenko.sbb.model.entity.route.Station;
 import com.pleshchenko.sbb.service.dto.interfaces.PassengerService;
+import com.pleshchenko.sbb.service.dto.interfaces.StationService;
+import com.pleshchenko.sbb.service.dto.interfaces.TrainService;
 import com.pleshchenko.sbb.service.dto.other.ParametersForSearch;
 import com.pleshchenko.sbb.service.dto.interfaces.ScheduleService;
 import com.pleshchenko.sbb.service.dto.other.SetId;
+import com.pleshchenko.sbb.service.repositories.exceptions.NotEnoughParamsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,6 +36,12 @@ public class ScheduleController {
     @Autowired
     PassengerService passengerService;
 
+    @Autowired
+    TrainService trainService;
+
+    @Autowired
+    StationService stationService;
+
     @RequestMapping(value = "/schedule",method = RequestMethod.GET)
     public String getSchedule(ModelMap model){
 
@@ -40,7 +50,7 @@ public class ScheduleController {
         return "schedule";
     }
 
-    @RequestMapping(value = "/scheduleByParameters",method = RequestMethod.GET)
+    @RequestMapping(value = "/scheduleByParameters",method = RequestMethod.POST)
     public ModelAndView scheduleByParameters(@Valid ParametersForSearch param, BindingResult result,
                                              ModelMap model){
 
@@ -50,4 +60,36 @@ public class ScheduleController {
 
     }
 
+    @RequestMapping(value = "/addToSchedule",method = RequestMethod.GET)
+    public String addToSchedule(ModelMap model){
+
+        List<Station> stations  = stationService.findAll();
+        List<Train> trains = trainService.findAll();
+        ParametersForSearch parametersForSearch = new ParametersForSearch();
+        model.addAttribute("parametersForSearch",parametersForSearch);
+        model.addAttribute("stations", stationService.findAll());
+        model.addAttribute("trains",trains);
+
+        return "addToSchedule";
+    }
+
+
+    @RequestMapping(value = "/addToSchedule",method = RequestMethod.POST)
+    public String addToSchedule(@Valid ParametersForSearch param, BindingResult result,
+                                      ModelMap model){
+
+        try {
+            Schedule schedule = scheduleService.addByParameters(param);
+            return RequestType.REDIRECT + "schedule";
+        } catch (NotEnoughParamsException e) {
+            model.addAttribute("error",e.getMessage());
+            return "addToSchedule";
+        }
+
+    }
+
 }
+
+
+
+

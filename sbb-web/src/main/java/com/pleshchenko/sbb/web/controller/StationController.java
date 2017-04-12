@@ -7,12 +7,14 @@ import com.pleshchenko.sbb.service.dto.interfaces.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -49,10 +51,20 @@ public class StationController {
         return new ModelAndView("newStation","station",new Station());
     }
 
-    @RequestMapping(value = {"/addNewStationByParameters"}, method = RequestMethod.GET)
-    public String addNewTrainByParameters(@ModelAttribute("station") Station station) {
-        //???? добавить проверки на то что что такого поезда нет
+    @RequestMapping(value = {"/newStation"}, method = RequestMethod.POST)
+    public String addNewTrainByParameters(@Valid @ModelAttribute("station") Station station,BindingResult bindingResult,ModelMap model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("error","You must fill in all the fields");
+            return "newStation";
+        }
+
+        if (stationService.findByName(station.getName())!=null){
+            model.addAttribute("error","station " + station.getName() + " already exists");
+            return "newStation";
+        }
+
         stationService.saveStation(station);
-        return RequestType.REDIRECT + "stationsList";
+        return RequestType.REDIRECT + "stations";
     }
 }

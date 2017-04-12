@@ -5,6 +5,7 @@ import com.pleshchenko.sbb.service.repositories.interfaces.AbstractDao;
 import com.pleshchenko.sbb.service.repositories.interfaces.StationDao;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -25,11 +26,26 @@ public class StationDaoImpl extends AbstractDao<Integer,Station> implements Stat
         persist(station);
     }
 
-//    @Override
-//    public List<Station> findByStation(String stationName) {
-//        List<Station> trains = getEntityManager()
-//                .createQuery("SELECT s FROM Station s ORDER BY s.name WHERE s.name = " + stationName +" ASC")
-//                .getResultList();
-//        return trains;
-//    }
+    @Override
+    public Station findByName(String name) {
+
+        Query query = getEntityManager()
+                .createQuery("SELECT s FROM Station s " +
+                        "WHERE s.name = :name ");
+        query.setParameter("name",name);
+
+        List<Station> stations = query.getResultList();
+        if (stations.size()==0){
+            return null;
+        }else {
+            return stations.get(0);
+        }
+
+    }
+
+    @Override
+    public Station findById(Integer id) {
+        Station station = getByKey(id);
+        return station;
+    }
 }

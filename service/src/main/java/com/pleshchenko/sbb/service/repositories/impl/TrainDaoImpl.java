@@ -50,4 +50,11 @@ public class TrainDaoImpl extends AbstractDao<Integer,Train> implements TrainDao
             return trains.get(0);
         }
     }
+
+    @Override
+    public Train findById(Integer id) {
+
+        Train train = getByKey(id);
+        return train;
+    }
 }

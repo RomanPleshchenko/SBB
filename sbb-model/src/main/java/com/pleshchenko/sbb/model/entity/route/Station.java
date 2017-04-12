@@ -1,6 +1,9 @@
 package com.pleshchenko.sbb.model.entity.route;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by РОМАН on 31.03.2017.
@@ -12,8 +15,9 @@ public class Station {
     @Column(name = "id")
     private int id;
 
-    @Basic
     @Column(name = "name")
+    @NotNull
+    @NotEmpty
     private String name;
 
     public int getId() {

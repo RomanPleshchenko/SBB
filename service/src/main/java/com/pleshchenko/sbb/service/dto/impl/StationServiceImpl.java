@@ -30,9 +30,16 @@ public class StationServiceImpl implements StationService {
         dao.saveStation(station);
     }
 
-//    @Override
-//    public List<Station> findByStation(String stationName) {
-//        List<Station> stations = repositories.findByStation(stationName);
-//        return stations;
-//    }
+    @Override
+    public Station findByName(String name) {
+        Station station = dao.findByName(name);
+        return station;
+    }
+
+    @Override
+    public Station findById(Integer id) {
+        Station station = dao.findId(id);
+        return station;
+    }
+
 }

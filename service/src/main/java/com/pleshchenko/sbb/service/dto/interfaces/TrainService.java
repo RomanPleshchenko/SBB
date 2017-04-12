@@ -20,4 +20,6 @@ public interface TrainService {
     void saveTrain(Train train);
 
     Train findByNumber(String number);
+
+    Train findById(Integer id);
 }

@@ -17,6 +17,8 @@ public interface StationService {
 
     void saveStation(Station station);
 
-//    public List<Station> findByStation(String stationName);
+    Station findByName(String name);
+
+    public Station findById(Integer id);
 
 }

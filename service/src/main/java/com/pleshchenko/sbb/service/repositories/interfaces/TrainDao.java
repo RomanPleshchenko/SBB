@@ -17,4 +17,6 @@ public interface TrainDao {
 
     Train findByNumber(String name);
 
+    Train findById(Integer id);
+
 }

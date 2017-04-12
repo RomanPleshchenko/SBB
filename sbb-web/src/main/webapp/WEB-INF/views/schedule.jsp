@@ -46,6 +46,9 @@
         </c:forEach>
         </tbody>
     </table>
+    <div class="well">
+        <a href="<c:url value='/addToSchedule' />">Add to schedule</a>
+    </div>
 </div>
 
 <br>

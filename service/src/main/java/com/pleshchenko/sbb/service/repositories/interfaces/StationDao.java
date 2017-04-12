@@ -12,5 +12,7 @@ public interface StationDao {
 
     void saveStation(Station station);
 
-//    List<Station> findByStation(String stationName);
+    Station findByName(String name);
+
+    public Station findById(Integer id);
 }

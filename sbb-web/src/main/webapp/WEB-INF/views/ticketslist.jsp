@@ -18,7 +18,7 @@
 <jsp:include page="navigation.jsp"></jsp:include>
 
 <div class="container">
-    <h2>List of ticket</h2>
+    <h2>List of tickets</h2>
     <p>List of all sold tickets</p>
     <table class="table">
         <thead>

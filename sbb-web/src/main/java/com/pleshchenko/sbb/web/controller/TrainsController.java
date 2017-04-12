@@ -47,6 +47,8 @@ public class TrainsController {
         }catch (Exception e){
 
             userLogger.error("Unsuccessful attempt to delete a train:" + number);
+            userLogger.error(e.getMessage());
+
             model.addAttribute("message","You cannot delete this train!!!");
             return "notification";
         }
@@ -60,7 +62,11 @@ public class TrainsController {
             return "newTrain";
         }
 
-//        trainService.
+        if (trainService.findByNumber(train.getNumber())!=null){
+            model.addAttribute("error","Train number " + train.getNumber() + " already exists");
+            return "newTrain";
+        }
+
         trainService.saveTrain(train);
         return RequestType.REDIRECT + "trains";
     }

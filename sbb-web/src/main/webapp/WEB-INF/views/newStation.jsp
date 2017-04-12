@@ -19,8 +19,10 @@
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
-<form:form method="GET" commandName="station" action="addNewStationByParameters" class="box login">
+<form:form method="POST" commandName="station" action="newStation" class="box login">
     <fieldset class="boxBody">
+
+        <td>${error} <br></td>
 
         <form:label path="name">Name:</form:label>
         <form:input path="name" />

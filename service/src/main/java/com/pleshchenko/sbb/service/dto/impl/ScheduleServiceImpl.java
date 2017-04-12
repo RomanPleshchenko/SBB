@@ -1,6 +1,7 @@
 package com.pleshchenko.sbb.service.dto.impl;
 
 import com.pleshchenko.sbb.model.entity.route.Schedule;
+import com.pleshchenko.sbb.service.repositories.exceptions.NotEnoughParamsException;
 import com.pleshchenko.sbb.service.repositories.interfaces.ScheduleDao;
 import com.pleshchenko.sbb.service.dto.interfaces.ScheduleService;
 import com.pleshchenko.sbb.service.dto.other.ParametersForSearch;
@@ -39,6 +40,12 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<Schedule> findByParameters(ParametersForSearch param) {
         List<Schedule> schedule = dao.findByParameters(param);
+        return schedule;
+    }
+
+    @Override
+    public Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException {
+        Schedule schedule = dao.addByParameters(param);
         return schedule;
     }
 

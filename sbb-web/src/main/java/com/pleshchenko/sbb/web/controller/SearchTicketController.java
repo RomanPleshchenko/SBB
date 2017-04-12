@@ -21,7 +21,7 @@ public class SearchTicketController {
     StationService stationService;
 
     @RequestMapping("/searchTicket")
-    public String goHome(ModelMap model){
+    public String goSearchTicket(ModelMap model){
 
         List<Station> stations  = stationService.findAll();
         ParametersForSearch parametersForSearch = new ParametersForSearch();

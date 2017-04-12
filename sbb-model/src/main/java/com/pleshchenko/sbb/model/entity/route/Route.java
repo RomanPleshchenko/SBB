@@ -13,6 +13,11 @@ public class Route {
     @Column(name = "id")
     private int id;
 
+    public Route(Station departureStation, Station destinationStation) {
+        this.departureStation = departureStation;
+        this.destinationStation = destinationStation;
+    }
+
     public int getId() {
         return id;
     }
