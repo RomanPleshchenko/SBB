@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.service.dao.interfaces;
+package com.pleshchenko.sbb.service.repositories.interfaces;
 
 import com.pleshchenko.sbb.model.entity.route.Station;
 

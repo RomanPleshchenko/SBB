@@ -18,4 +18,6 @@ public interface TrainService {
     void deleteByNumber(String number);
 
     void saveTrain(Train train);
+
+    Train findByNumber(String number);
 }

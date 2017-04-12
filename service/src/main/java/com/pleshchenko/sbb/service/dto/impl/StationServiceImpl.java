@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.service.dto.impl;
 
 import com.pleshchenko.sbb.model.entity.route.Station;
-import com.pleshchenko.sbb.service.dao.interfaces.StationDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.StationDao;
 import com.pleshchenko.sbb.service.dto.interfaces.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class StationServiceImpl implements StationService {
 
 //    @Override
 //    public List<Station> findByStation(String stationName) {
-//        List<Station> stations = dao.findByStation(stationName);
+//        List<Station> stations = repositories.findByStation(stationName);
 //        return stations;
 //    }
 }

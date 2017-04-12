@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.service.dao.interfaces;
+package com.pleshchenko.sbb.service.repositories.interfaces;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

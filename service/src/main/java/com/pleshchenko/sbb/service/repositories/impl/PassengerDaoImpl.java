@@ -1,8 +1,8 @@
-package com.pleshchenko.sbb.service.dao.impl;
+package com.pleshchenko.sbb.service.repositories.impl;
 
 import com.pleshchenko.sbb.model.entity.Passenger;
-import com.pleshchenko.sbb.service.dao.interfaces.AbstractDao;
-import com.pleshchenko.sbb.service.dao.interfaces.PassengerDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.AbstractDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.PassengerDao;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.service.dao.interfaces;
+package com.pleshchenko.sbb.service.repositories.interfaces;
 
 import com.pleshchenko.sbb.model.entity.Train;
 
@@ -14,5 +14,7 @@ public interface TrainDao {
     void deleteByNumber(String number);
 
     void saveTrain(Train train);
+
+    Train findByNumber(String name);
 
 }

@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 <head>
@@ -19,8 +20,10 @@
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
-<form:form method="GET" commandName="train" action="addNewTrainByParameters" class="box login">
+<form:form method="POST" commandName="train" action="newTrain" class="box login">
     <fieldset class="boxBody">
+
+        <td>${error} <br></td>
 
         <form:label path="number">Number:</form:label>
         <form:input path="number" />

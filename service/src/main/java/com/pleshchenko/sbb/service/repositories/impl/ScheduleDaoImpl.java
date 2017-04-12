@@ -1,8 +1,8 @@
-package com.pleshchenko.sbb.service.dao.impl;
+package com.pleshchenko.sbb.service.repositories.impl;
 
 import com.pleshchenko.sbb.model.entity.route.Schedule;
-import com.pleshchenko.sbb.service.dao.interfaces.AbstractDao;
-import com.pleshchenko.sbb.service.dao.interfaces.ScheduleDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.AbstractDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.ScheduleDao;
 import com.pleshchenko.sbb.service.dto.other.ParametersForSearch;
 import org.springframework.stereotype.Repository;
 import java.time.Instant;

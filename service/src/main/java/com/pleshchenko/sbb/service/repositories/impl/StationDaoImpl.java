@@ -1,8 +1,8 @@
-package com.pleshchenko.sbb.service.dao.impl;
+package com.pleshchenko.sbb.service.repositories.impl;
 
 import com.pleshchenko.sbb.model.entity.route.Station;
-import com.pleshchenko.sbb.service.dao.interfaces.AbstractDao;
-import com.pleshchenko.sbb.service.dao.interfaces.StationDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.AbstractDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.StationDao;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

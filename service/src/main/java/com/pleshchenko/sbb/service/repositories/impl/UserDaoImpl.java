@@ -1,8 +1,8 @@
-package com.pleshchenko.sbb.service.dao.impl;
+package com.pleshchenko.sbb.service.repositories.impl;
 
 import com.pleshchenko.sbb.model.entity.authorization.User;
-import com.pleshchenko.sbb.service.dao.interfaces.AbstractDao;
-import com.pleshchenko.sbb.service.dao.interfaces.UserDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.AbstractDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.UserDao;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;

@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.service.dto.impl;
 
 import com.pleshchenko.sbb.model.entity.Train;
-import com.pleshchenko.sbb.service.dao.interfaces.TrainDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.TrainDao;
 import com.pleshchenko.sbb.service.dto.interfaces.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +33,11 @@ public class TrainServiceImpl implements TrainService {
     @Override
     public void saveTrain(Train train) {
         dao.saveTrain(train);
+    }
+
+    @Override
+    public Train findByNumber(String number) {
+        Train train = dao.findByNumber(number);
+        return train;
     }
 }

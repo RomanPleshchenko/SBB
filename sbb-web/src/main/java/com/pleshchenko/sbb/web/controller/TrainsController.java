@@ -7,12 +7,14 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -45,22 +47,26 @@ public class TrainsController {
         }catch (Exception e){
 
             userLogger.error("Unsuccessful attempt to delete a train:" + number);
-
-
             model.addAttribute("message","You cannot delete this train!!!");
             return "notification";
         }
     }
 
-    @RequestMapping(value = {"/addNewTrainByParameters"}, method = RequestMethod.GET)
-    public String addNewTrainByParameters(@ModelAttribute("train") Train train) {
+    @RequestMapping(value = {"/newTrain"}, method = RequestMethod.POST)
+    public String addNewTrainByParameters(@Valid @ModelAttribute("train") Train train,BindingResult bindingResult,ModelMap model) {
 
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("error","You must fill in all the fields");
+            return "newTrain";
+        }
+
+//        trainService.
         trainService.saveTrain(train);
         return RequestType.REDIRECT + "trains";
     }
 
     @RequestMapping(value = {"/newTrain"}, method = RequestMethod.GET)
-    public ModelAndView addNewTrain() {
+    public ModelAndView addNewTrain(ModelMap model) {
         return new ModelAndView("newTrain","train",new Train());
     }
 

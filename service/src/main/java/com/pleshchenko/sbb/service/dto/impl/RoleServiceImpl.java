@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.service.dto.impl;
 
-import com.pleshchenko.sbb.service.dao.interfaces.RoleDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.RoleDao;
 import com.pleshchenko.sbb.service.dto.interfaces.RoleService;
 import com.pleshchenko.sbb.model.entity.authorization.Role;
 import org.springframework.beans.factory.annotation.Autowired;

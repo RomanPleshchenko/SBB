@@ -1,6 +1,10 @@
 package com.pleshchenko.sbb.model.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by РОМАН on 31.03.2017.
@@ -13,11 +17,13 @@ public class Train {
     @Column(name = "id")
     private int id;
 
-    @Basic
+    @NotNull
+    @NotEmpty
     @Column(name = "number")
     private String number;
 
-    @Basic
+    @NotNull
+    @Min(1)
     @Column(name = "capacity")
     private int capacity;
 

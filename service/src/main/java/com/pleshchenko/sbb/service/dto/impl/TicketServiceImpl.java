@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.service.dto.impl;
 
 import com.pleshchenko.sbb.model.entity.Ticket;
-import com.pleshchenko.sbb.service.dao.interfaces.TicketDao;
+import com.pleshchenko.sbb.service.repositories.interfaces.TicketDao;
 import com.pleshchenko.sbb.service.dto.interfaces.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
