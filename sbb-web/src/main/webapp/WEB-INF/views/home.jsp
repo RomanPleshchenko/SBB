@@ -19,9 +19,10 @@
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
-<img src="../resources/train.jpg">
-<%--<p><img src="https://1001freedownloads.s3.amazonaws.com/vector/thumb/319927/52c052487cc5383f69cd62b57f972994-locomotive-vector.jpg"  width="1000" height="500"><p>--%>
-
+<%--так не работает--%>
+<%--<img src="../resources/train.jpg">--%>
+<%--пока будет ссылка--%>
+<p><img src="https://1001freedownloads.s3.amazonaws.com/vector/thumb/319927/52c052487cc5383f69cd62b57f972994-locomotive-vector.jpg"  width="1000" height="500"><p>
 
 <jsp:include page="footer.jsp"/>
 </body>

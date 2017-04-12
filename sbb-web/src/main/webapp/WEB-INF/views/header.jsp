@@ -11,6 +11,5 @@
 <title>${param.title}</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Users List</title>
 <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
 
