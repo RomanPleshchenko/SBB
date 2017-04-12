@@ -19,59 +19,9 @@
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
+<img src="../resources/train.jpg">
+<%--<p><img src="https://1001freedownloads.s3.amazonaws.com/vector/thumb/319927/52c052487cc5383f69cd62b57f972994-locomotive-vector.jpg"  width="1000" height="500"><p>--%>
 
-<div class="container">
-    <h2>Find a train</h2>
-
-      <form:form method="get" commandName="parametersForSearch" action="scheduleByParameters" class="box login">
-        <fieldset class="boxBody">
-
-            <label>Select station</label>
-            <form:select path="station1">
-                <form:option value="NONE" label="-- Please choose a departure station --"/>
-                <form:options items="${stations}" itemValue="id" itemLabel="name"/>
-            </form:select>
-            -
-            <form:select path="station2">
-                <form:option value="NONE" label="-- Please choose a destination  station --"/>
-                <form:options items="${stations}" itemValue="id" itemLabel="name"/>
-            </form:select>
-
-            <br>
-
-            <label><label>Select date</label></label>
-
-            <form:input path="data1" type = "date" /> - <form:input path="data2" type = "date"/>
-
-            <footer>
-                <input type="submit" class="btn btn-success" value="to find" tabindex="4">
-            </footer>
-
-        </fieldset>
-        
-    </form:form>
-
-    <%--<form method="GET" action="findTrainByParameter" modelAttribute="parametersForSearch">--%>
-
-        <%--<form:label path="station1">station1:</form:label>--%>
-        <%--<form:input path="station1"/>--%>
-
-        <%--<form:label path="station2">station2:</form:label>--%>
-        <%--<form:input path="station2"/>--%>
-
-        <%--<form:label path="data1">data1:</form:label>--%>
-        <%--<form:input path="data1"/>--%>
-
-        <%--<form:label path="data2">data2:</form:label>--%>
-        <%--<form:input path="data2"/>--%>
-
-
-        <%--<footer>--%>
-            <%--<input type="submit" class="btnLogin" value="to find" tabindex="4">--%>
-        <%--</footer>--%>
-    <%--</form>--%>
-
-</div>
 
 <jsp:include page="footer.jsp"/>
 </body>

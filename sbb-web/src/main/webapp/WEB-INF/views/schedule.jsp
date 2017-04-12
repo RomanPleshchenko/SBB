@@ -36,8 +36,8 @@
         <c:forEach items="${schedule}" var="dir">
             <tr>
                 <td>${dir.train.number}</td>
-                <td>${dir.departureTime}</td>
-                <td>${dir.destinationTime}</td>
+                <td>${dir.departureTimeInFormat}</td>
+                <td>${dir.destinationTimeInFormat}</td>
                 <td>${dir.route.departureStation.name}</td>
                 <td>${dir.route.destinationStation.name}</td>
                 <td>${dir.train.capacity}</td>

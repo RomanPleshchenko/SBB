@@ -7,7 +7,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
+import java.util.Locale;
 
 @Entity
 @Table(name = "schedule")
@@ -44,6 +48,7 @@ public class Schedule {
     }
 
     public Instant getDepartureTime() {
+
         return departureTime;
     }
 
@@ -85,6 +90,20 @@ public class Schedule {
 
     public String getShowing(){
         return getTrain().getNumber() + "(" + id + ")" + " [" + departureTime + " - " + getDestinationTime() + "]";
+    }
+
+    public String  getDepartureTimeInFormat() {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.GERMAN).withZone(ZoneOffset.UTC);
+        String date = formatter.format(departureTime);
+        return date;
+    }
+
+    public String  getDestinationTimeInFormat() {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.GERMAN).withZone(ZoneOffset.UTC);
+        String date = formatter.format(destinationTime);
+        return date;
     }
 
     @Override

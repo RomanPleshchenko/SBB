@@ -18,16 +18,16 @@ import java.util.List;
 @RequestMapping("/")
 public class HomeController {
 
-    @Autowired
-    StationService stationService;
+//    @Autowired
+//    StationService stationService;
 
     @RequestMapping("/")
     public String goHome(ModelMap model){
 
-        List<Station> stations  = stationService.findAll();
-        ParametersForSearch parametersForSearch = new ParametersForSearch();
-        model.addAttribute("parametersForSearch",parametersForSearch);
-        model.addAttribute("stations", stationService.findAll());
+//        List<Station> stations  = stationService.findAll();
+//        ParametersForSearch parametersForSearch = new ParametersForSearch();
+//        model.addAttribute("parametersForSearch",parametersForSearch);
+//        model.addAttribute("stations", stationService.findAll());
         return "home";
     }
 

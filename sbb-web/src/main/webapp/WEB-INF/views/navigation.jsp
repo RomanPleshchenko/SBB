@@ -21,6 +21,7 @@
             <li><a href="/tickets">tickets</a></li>
             <li><a href="/schedule">schedule</a></li>
             <li><a href="/stations">stations</a></li>
+            <li><a href="/searchTicket">search ticket</a></li>
         </ul>
         <%--<form class="navbar-form navbar-left">--%>
             <%--<div class="form-group">--%>
