@@ -15,6 +15,7 @@ import com.pleshchenko.sbb.service.dto.other.ParametersForSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.sql.Date;
 
 import javax.persistence.Query;
@@ -69,13 +70,13 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
                         "WHERE s.route.departureStation.id = :departureStationid " +
                         "AND s.route.destinationStation.id = :destinationStationid " +
                         "AND s.departureTime >= :data1 " +
-                        "AND s.departureTime <= :data2 " +
+                        "AND s.departureTime < :data2 " +
                         "ORDER BY s.departureTime");
 
         query.setParameter("departureStationid",param.getStation1());
         query.setParameter("destinationStationid",param.getStation2());
         query.setParameter("data1",dateToInstant(param.getData1()));
-        query.setParameter("data2",dateToInstant(param.getData2()));
+        query.setParameter("data2",dateToInstant(param.getData2()).plus(24,ChronoUnit.HOURS));
 
         List<Schedule> schedule = query.getResultList();
 
