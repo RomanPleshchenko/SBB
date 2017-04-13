@@ -5,10 +5,14 @@ import com.pleshchenko.sbb.model.entity.route.Station;
 import com.pleshchenko.sbb.service.dto.interfaces.RouteService;
 import com.pleshchenko.sbb.service.repositories.interfaces.RouteDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by РОМАН on 13.04.2017.
  */
+@Service("routeService")
+@Transactional
 public class RouteServiceImpl implements RouteService {
 
     @Autowired

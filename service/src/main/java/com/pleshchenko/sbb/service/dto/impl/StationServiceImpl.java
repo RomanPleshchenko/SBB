@@ -38,7 +38,7 @@ public class StationServiceImpl implements StationService {
 
     @Override
     public Station findById(Integer id) {
-        Station station = dao.findId(id);
+        Station station = dao.findById(id);
         return station;
     }
 

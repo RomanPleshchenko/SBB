@@ -1,5 +1,6 @@
 package com.pleshchenko.sbb.service.repositories.impl;
 
+import com.pleshchenko.sbb.model.entity.Ticket;
 import com.pleshchenko.sbb.model.entity.Train;
 import com.pleshchenko.sbb.model.entity.route.Route;
 import com.pleshchenko.sbb.model.entity.route.Schedule;
@@ -14,8 +15,10 @@ import com.pleshchenko.sbb.service.dto.other.ParametersForSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.time.Instant;
+import java.sql.Date;
 
 import javax.persistence.Query;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -71,8 +74,8 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
 
         query.setParameter("departureStationid",param.getStation1());
         query.setParameter("destinationStationid",param.getStation2());
-        query.setParameter("data1",Instant.ofEpochMilli(param.getData1().getTime()));
-        query.setParameter("data2",Instant.ofEpochMilli(param.getData2().getTime()));
+        query.setParameter("data1",dateToInstant(param.getData1()));
+        query.setParameter("data2",dateToInstant(param.getData2()));
 
         List<Schedule> schedule = query.getResultList();
 
@@ -83,22 +86,32 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
     public Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException {
 
         if (param.getData1()==null|param.getData2()==null|param.getStation1()==null|param.getStation2()==null|param.getTrain()==null){
-            throw new NotEnoughParamsException("        You must fill in all the fields!!!!!");
+            throw new NotEnoughParamsException("            You must fill in all the fields!!!!!");
         }
 
         Train train = trainService.findByNumber(param.getTrain());
         Station station1 = stationService.findById(param.getStation1());
-        Station station2 = stationService.findById(param.getStation1());
+        Station station2 = stationService.findById(param.getStation2());
 
         Route route = routeService.findByStation(station1,station2,true);
 
         Schedule schedule = new Schedule();
-        schedule.setDepartureTime(param.getData1().toInstant());
-        schedule.setDestinationTime(param.getData2().toInstant());
+        schedule.setDepartureTime(dateToInstant(param.getData1()));
+        schedule.setDestinationTime(dateToInstant(param.getData2()));
         schedule.setTrain(train);
         schedule.setRoute(route);
 
+        List<Ticket> tickets = Collections.emptyList();
+        schedule.setTickets(tickets);
+
         persist(schedule);
         return schedule;
+    }
+
+
+
+    private Instant dateToInstant(Date date){
+        Instant instant = Instant.ofEpochMilli(date.getTime());
+        return instant;
     }
 }

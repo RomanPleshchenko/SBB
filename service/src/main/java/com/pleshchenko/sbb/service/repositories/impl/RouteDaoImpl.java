@@ -4,6 +4,8 @@ import com.pleshchenko.sbb.model.entity.route.Route;
 import com.pleshchenko.sbb.model.entity.route.Station;
 import com.pleshchenko.sbb.service.repositories.interfaces.AbstractDao;
 import com.pleshchenko.sbb.service.repositories.interfaces.RouteDao;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.List;
 /**
  * Created by РОМАН on 13.04.2017.
  */
+@Service("routeDao")
+@Transactional
 public class RouteDaoImpl extends AbstractDao<Integer,Route> implements RouteDao {
     @Override
     public Route findByStation(Station departureStation, Station destinationStation, boolean createNew) {
@@ -26,6 +30,7 @@ public class RouteDaoImpl extends AbstractDao<Integer,Route> implements RouteDao
             if (createNew){
                 Route route = new Route(departureStation,destinationStation);
                 persist(route);
+                getEntityManager().flush();
                 return route;
             }
 

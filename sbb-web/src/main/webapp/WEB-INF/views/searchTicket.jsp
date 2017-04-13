@@ -25,6 +25,7 @@
 
     <form:form method="post" commandName="parametersForSearch" action="scheduleByParameters" class="box login">
         <fieldset class="boxBody">
+            <td>${error} <br></td>
 
             <label>Select station</label>
             <form:select path="station1">

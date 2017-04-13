@@ -40,7 +40,7 @@
             -
             <form:select path="train">
                 <form:option value="NONE" label="-- Please choose a train--"/>
-                <form:options items="${trains}" itemValue="id" itemLabel="number"/>
+                <form:options items="${trains}" itemValue="number" itemLabel="number"/>
             </form:select>
 
             <br>

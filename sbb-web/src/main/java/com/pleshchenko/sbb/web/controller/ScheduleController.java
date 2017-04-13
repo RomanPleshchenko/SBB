@@ -51,25 +51,30 @@ public class ScheduleController {
     }
 
     @RequestMapping(value = "/scheduleByParameters",method = RequestMethod.POST)
-    public ModelAndView scheduleByParameters(@Valid ParametersForSearch param, BindingResult result,
+    public String scheduleByParameters(@Valid ParametersForSearch param, BindingResult result,
                                              ModelMap model){
+
+
+        if (param.getData1()==null|param.getData2()==null|param.getStation1()==null|param.getStation2()==null){
+
+            List<Station> stations  = stationService.findAll();
+            ParametersForSearch parametersForSearch = new ParametersForSearch();
+            model.addAttribute("parametersForSearch",parametersForSearch);
+            model.addAttribute("stations", stationService.findAll());
+            model.addAttribute("error","            You must fill in all the fields!!!!!");
+            return "searchTicket";
+        }
 
         List<Schedule> schedule = scheduleService.findByParameters(param);
         model.addAttribute("schedule",schedule);
-        return new ModelAndView("scheduleByParameters");
+        return "scheduleByParameters";
 
     }
 
     @RequestMapping(value = "/addToSchedule",method = RequestMethod.GET)
     public String addToSchedule(ModelMap model){
 
-        List<Station> stations  = stationService.findAll();
-        List<Train> trains = trainService.findAll();
-        ParametersForSearch parametersForSearch = new ParametersForSearch();
-        model.addAttribute("parametersForSearch",parametersForSearch);
-        model.addAttribute("stations", stationService.findAll());
-        model.addAttribute("trains",trains);
-
+        fillModel(model);
         return "addToSchedule";
     }
 
@@ -82,10 +87,22 @@ public class ScheduleController {
             Schedule schedule = scheduleService.addByParameters(param);
             return RequestType.REDIRECT + "schedule";
         } catch (NotEnoughParamsException e) {
+
+            fillModel(model);
             model.addAttribute("error",e.getMessage());
             return "addToSchedule";
         }
 
+    }
+
+    private void fillModel(ModelMap model){
+
+        List<Station> stations  = stationService.findAll();
+        List<Train> trains = trainService.findAll();
+        ParametersForSearch parametersForSearch = new ParametersForSearch();
+        model.addAttribute("parametersForSearch",parametersForSearch);
+        model.addAttribute("stations", stationService.findAll());
+        model.addAttribute("trains",trains);
     }
 
 }
