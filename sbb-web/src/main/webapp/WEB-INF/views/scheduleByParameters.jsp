@@ -36,47 +36,49 @@
         </thead>
         <tbody>
         <c:forEach items="${schedule}" var="dir">
-            <tr>
-                <td>${dir.id}</td>
-                <td>${dir.train.number}</td>
-                <td>${dir.departureTimeInFormat}</td>
-                <td>${dir.destinationTimeInFormat}</td>
-                <td>${dir.route.departureStation.name}</td>
-                <td>${dir.route.destinationStation.name}</td>
-                <td>${dir.train.capacity}</td>
-                <td>${fn:length(dir.tickets)}</td>
-                <td><a href="<c:url value='/buy-ticket-${dir.id}'/>" class="btn btn-success custom-width">buy</a></td>
-            </tr>
+            <c:if test="${dir.train.capacity > fn:length(dir.tickets)}">
+                <tr>
+                    <td>${dir.id}</td>
+                    <td>${dir.train.number}</td>
+                    <td>${dir.departureTimeInFormat}</td>
+                    <td>${dir.destinationTimeInFormat}</td>
+                    <td>${dir.route.departureStation.name}</td>
+                    <td>${dir.route.destinationStation.name}</td>
+                    <td>${dir.train.capacity}</td>
+                    <td>${fn:length(dir.tickets)}</td>
+                    <td><a href="<c:url value='/buy-ticket-${dir.id}'/>" class="btn btn-success custom-width">buy</a></td>
+                </tr>
+            </c:if>
         </c:forEach>
         </tbody>
     </table>
 </div>
 
 <%--<div class="container">--%>
-    <%--<h2>Please select a train and passenger</h2>--%>
+<%--<h2>Please select a train and passenger</h2>--%>
 
-    <%--<form:form method="GET" commandName="set" action="saveTicket" class="box login">--%>
-        <%--<fieldset class="boxBody">--%>
+<%--<form:form method="GET" commandName="set" action="saveTicket" class="box login">--%>
+<%--<fieldset class="boxBody">--%>
 
-            <%--<label>Select passenger</label>--%>
-            <%--<form:select path="id1">--%>
-                <%--<form:option value="NONE" label="-- Please choose a passenger --"/>--%>
-                <%--<form:options items="${passengers}" itemValue="id" itemLabel="fullName"/>--%>
-            <%--</form:select>--%>
+<%--<label>Select passenger</label>--%>
+<%--<form:select path="id1">--%>
+<%--<form:option value="NONE" label="-- Please choose a passenger --"/>--%>
+<%--<form:options items="${passengers}" itemValue="id" itemLabel="fullName"/>--%>
+<%--</form:select>--%>
 
-            <%--<label>Select train</label>--%>
-            <%--<form:select path="id2">--%>
-                <%--<form:option value="NONE" label="-- Please choose a train --"/>--%>
-                <%--<form:options items="${schedule}" itemValue="id" itemLabel="showing"/>--%>
-            <%--</form:select>--%>
+<%--<label>Select train</label>--%>
+<%--<form:select path="id2">--%>
+<%--<form:option value="NONE" label="-- Please choose a train --"/>--%>
+<%--<form:options items="${schedule}" itemValue="id" itemLabel="showing"/>--%>
+<%--</form:select>--%>
 
-            <%--<footer>--%>
-                <%--<input type="submit" class="btn btn-success" value="buy" tabindex="4">--%>
-            <%--</footer>--%>
+<%--<footer>--%>
+<%--<input type="submit" class="btn btn-success" value="buy" tabindex="4">--%>
+<%--</footer>--%>
 
-        <%--</fieldset>--%>
+<%--</fieldset>--%>
 
-    <%--</form:form>--%>
+<%--</form:form>--%>
 
 <%--</div>--%>
 

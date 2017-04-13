@@ -34,15 +34,21 @@
         </thead>
         <tbody>
         <c:forEach items="${schedule}" var="dir">
-            <tr>
-                <td>${dir.train.number}</td>
-                <td>${dir.departureTimeInFormat}</td>
-                <td>${dir.destinationTimeInFormat}</td>
-                <td>${dir.route.departureStation.name}</td>
-                <td>${dir.route.destinationStation.name}</td>
-                <td>${dir.train.capacity}</td>
-                <td>${fn:length(dir.tickets)}</td>
-            </tr>
+
+            <c:if test="${dir.train.capacity > fn:length(dir.tickets)}">
+                <tr>
+                    <td>${dir.train.number}</td>
+                    <td>${dir.departureTimeInFormat}</td>
+                    <td>${dir.destinationTimeInFormat}</td>
+                    <td>${dir.route.departureStation.name}</td>
+                    <td>${dir.route.destinationStation.name}</td>
+                    <td>${dir.train.capacity}</td>
+                    <td>${fn:length(dir.tickets)}</td>
+                </tr>
+
+            </c:if>
+
+
         </c:forEach>
         </tbody>
     </table>
