@@ -2,8 +2,12 @@ package com.pleshchenko.sbb.model.entity.route;
 
 import com.pleshchenko.sbb.model.entity.Ticket;
 import com.pleshchenko.sbb.model.entity.Train;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -32,11 +36,11 @@ public class Schedule {
     @JoinColumn(name = "trainId")
     private Train train;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "routeId")
     private Route route;
 
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private List<Ticket> tickets;
 
     public int getId() {

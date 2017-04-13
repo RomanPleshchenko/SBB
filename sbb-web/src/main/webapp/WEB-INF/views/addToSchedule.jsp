@@ -21,7 +21,7 @@
 
 
 <div class="container">
-    <h2>Find a train</h2>
+    <h2>Edit schedule</h2>
 
     <form:form method="POST" commandName="parametersForSearch" action="addToSchedule" class="box login">
         <fieldset class="boxBody">

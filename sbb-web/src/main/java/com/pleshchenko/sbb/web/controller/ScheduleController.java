@@ -1,24 +1,20 @@
 package com.pleshchenko.sbb.web.controller;
 
-import com.pleshchenko.sbb.model.entity.Passenger;
-import com.pleshchenko.sbb.model.entity.Ticket;
 import com.pleshchenko.sbb.model.entity.Train;
 import com.pleshchenko.sbb.model.entity.route.Schedule;
 import com.pleshchenko.sbb.model.entity.route.Station;
-import com.pleshchenko.sbb.service.dto.interfaces.PassengerService;
-import com.pleshchenko.sbb.service.dto.interfaces.StationService;
-import com.pleshchenko.sbb.service.dto.interfaces.TrainService;
-import com.pleshchenko.sbb.service.dto.other.ParametersForSearch;
-import com.pleshchenko.sbb.service.dto.interfaces.ScheduleService;
-import com.pleshchenko.sbb.service.dto.other.SetId;
-import com.pleshchenko.sbb.service.repositories.exceptions.NotEnoughParamsException;
+import com.pleshchenko.sbb.service.interfaces.PassengerService;
+import com.pleshchenko.sbb.service.interfaces.StationService;
+import com.pleshchenko.sbb.service.interfaces.TrainService;
+import com.pleshchenko.sbb.service.other.ParametersForSearch;
+import com.pleshchenko.sbb.service.interfaces.ScheduleService;
+import com.pleshchenko.sbb.repositories.exceptions.NotEnoughParamsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;

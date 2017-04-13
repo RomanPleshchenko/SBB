@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.web.converter;
 
 import com.pleshchenko.sbb.model.entity.authorization.Role;
-import com.pleshchenko.sbb.service.dto.interfaces.RoleService;
+import com.pleshchenko.sbb.service.interfaces.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
