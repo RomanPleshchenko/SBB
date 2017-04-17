@@ -131,7 +131,7 @@
         <!--sbb-->
         <dependency>
             <groupId>com.pleshchenko.sbb</groupId>
-            <artifactId>sbb-model</artifactId>
+            <artifactId>sbb-business</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

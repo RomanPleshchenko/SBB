@@ -1,12 +1,12 @@
 package com.pleshchenko.sbb.web.controller;
 
-import com.pleshchenko.sbb.model.entity.Passenger;
-import com.pleshchenko.sbb.model.entity.Ticket;
-import com.pleshchenko.sbb.model.entity.route.Schedule;
-import com.pleshchenko.sbb.model.service.interfaces.PassengerService;
-import com.pleshchenko.sbb.model.service.interfaces.ScheduleService;
-import com.pleshchenko.sbb.model.service.interfaces.TicketService;
-import com.pleshchenko.sbb.model.service.other.SetId;
+import com.pleshchenko.sbb.app.entity.ticket.Passenger;
+import com.pleshchenko.sbb.app.entity.ticket.Ticket;
+import com.pleshchenko.sbb.app.entity.route.Schedule;
+import com.pleshchenko.sbb.app.service.interfaces.PassengerService;
+import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
+import com.pleshchenko.sbb.app.service.interfaces.TicketService;
+import com.pleshchenko.sbb.app.service.other.SetId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

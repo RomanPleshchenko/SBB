@@ -11,7 +11,7 @@
 
     <modules>
         <module>sbb-web</module>
-        <module>sbb-model</module>
+        <module>sbb-business</module>
         <!--<module>service</module>-->
     </modules>
 

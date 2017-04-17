@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sbb-model</artifactId>
+    <artifactId>sbb-business</artifactId>
 
     <dependencies>
 

@@ -1,9 +1,9 @@
 package com.pleshchenko.sbb.web.controller;
 
-import com.pleshchenko.sbb.model.entity.route.Schedule;
-import com.pleshchenko.sbb.model.entity.route.Station;
-import com.pleshchenko.sbb.model.service.interfaces.ScheduleService;
-import com.pleshchenko.sbb.model.service.interfaces.StationService;
+import com.pleshchenko.sbb.app.entity.route.Schedule;
+import com.pleshchenko.sbb.app.entity.route.Station;
+import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
+import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
