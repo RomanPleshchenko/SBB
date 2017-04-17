@@ -1,7 +1,5 @@
 package com.pleshchenko.sbb.model.entity.authorization;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,68 +8,77 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@Column(name = "id")
+	private int id;
 
-    @NotEmpty
-    @Column(name="password", nullable=false)
-    private String password;
+	@Column(name = "name")
+	private String name;
 
-    @NotEmpty
-    @Column(name="name", nullable=false)
-    private String name;
+	@Column(name = "password")
+	private String password;
 
-//    @NotEmpty
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "userRole",
-//            joinColumns = { @JoinColumn(name = "userId") },
-//            inverseJoinColumns = { @JoinColumn(name = "rolesId") })
-//    private Set<Role> roles = new HashSet<Role>();
+	@Column(name = "enabled")
+	private boolean enabled;
 
-    public Integer getId() {
-        return id;
-    }
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<UserRole> userRole = new HashSet<UserRole>(0);
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public User() {
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	public String getPassword() {
+		return password;
+	}
 
-        User user = (User) o;
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-        return id.equals(user.id);
-    }
+	public boolean isEnabled() {
+		return enabled;
+	}
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", name=" + name;
-    }
+	public Set<UserRole> getUserRole() {
+		return userRole;
+	}
 
+	public void setUserRole(Set<UserRole> userRole) {
+		this.userRole = userRole;
+	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		User user = (User) o;
+
+		return id == user.id;
+	}
+
+	@Override
+	public int hashCode() {
+		return id;
+	}
 }

@@ -12,19 +12,17 @@ import java.util.List;
 @Entity
 @Table(name = "passenger")
 public class Passenger {
+
     @Id
     @Column(name = "id")
     private int id;
 
-    @Basic
     @Column(name = "name")
     private String name;
 
-    @Basic
     @Column(name = "surname")
     private String surname;
 
-    @Basic
     @Column(name = "birthDate")
     private Date birthDate;
 

@@ -1,6 +1,5 @@
 package com.pleshchenko.sbb.web.config;
 
-import com.pleshchenko.sbb.web.converter.RoleToRoleConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -19,10 +18,6 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @ComponentScan(basePackages = "com.pleshchenko.sbb")
 public class AppConfig extends WebMvcConfigurerAdapter {
-
-
-    @Autowired
-    RoleToRoleConverter roleToRoleConverter;
 
     /**
      * Configure ViewResolvers to deliver preferred views.
@@ -51,7 +46,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(roleToRoleConverter);
+//        registry.addConverter(roleToRoleConverter);
     }
 
     /**
