@@ -1,7 +1,9 @@
 package com.pleshchenko.sbb.service.impl;
 
 import com.pleshchenko.sbb.model.entity.Train;
+import com.pleshchenko.sbb.model.entity.authorization.User;
 import com.pleshchenko.sbb.repositories.interfaces.TrainDao;
+import com.pleshchenko.sbb.repositories.interfaces.UserDao;
 import com.pleshchenko.sbb.service.interfaces.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     public List<Train> findAll() {
+
         List<Train> trains = dao.findAll();
         return trains;
     }

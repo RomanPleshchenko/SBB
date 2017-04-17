@@ -21,7 +21,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findByUserName(String name) {
-		User user = dao.findByUserName(name);
+		User user = dao.findByName(name);
 		return user;
+	}
+
+	@Override
+	public List<User> findAll() {
+		List<User> users = dao.findAll();
+		return users;
 	}
 }
