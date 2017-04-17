@@ -9,20 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/rrrrrrrrrrrrrr")
 public class HomeController {
 
-//    @Autowired
-//    StationService stationService;
 
-    @RequestMapping("/????")
-//    @RequestMapping("/")
+    @RequestMapping("/rrrrrrrrrrrrrr")
     public String goHome(ModelMap model){
 
-//        List<Station> stations  = stationService.findAll();
-//        ParametersForSearch parametersForSearch = new ParametersForSearch();
-//        model.addAttribute("parametersForSearch",parametersForSearch);
-//        model.addAttribute("stations", stationService.findAll());
         return "home";
     }
 
