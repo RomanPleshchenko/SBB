@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/sbb-web/target</output-path>
     <root id="archive" name="SBB.war">
       <element id="artifact" artifact-name="sbb-web:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="root-pom" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
