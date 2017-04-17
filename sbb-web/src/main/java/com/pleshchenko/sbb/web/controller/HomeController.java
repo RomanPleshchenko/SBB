@@ -15,7 +15,8 @@ public class HomeController {
 //    @Autowired
 //    StationService stationService;
 
-    @RequestMapping("/")
+    @RequestMapping("/????")
+//    @RequestMapping("/")
     public String goHome(ModelMap model){
 
 //        List<Station> stations  = stationService.findAll();

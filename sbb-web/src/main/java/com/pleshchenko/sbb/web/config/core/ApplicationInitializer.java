@@ -1,9 +1,11 @@
-package com.pleshchenko.sbb.web.config;
+package com.pleshchenko.sbb.web.config.core;
 
+import com.pleshchenko.sbb.web.config.AppConfig;
+import com.pleshchenko.sbb.web.config.SecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
-public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
