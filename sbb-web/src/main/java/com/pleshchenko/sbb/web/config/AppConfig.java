@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Import(JpaConfiguration.class)
 @EnableWebMvc
 @ComponentScan(basePackages = "com.pleshchenko.sbb")
+
 public class AppConfig extends WebMvcConfigurerAdapter {
 
     /**
