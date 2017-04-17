@@ -31,14 +31,39 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/admin/**")
-                .access("hasRole('ROLE_ADMIN')").and().formLogin()
-                .loginPage("/login").failureUrl("/login?error")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .and().logout().logoutSuccessUrl("/login?logout")
-                .and().csrf()
-                .and().exceptionHandling().accessDeniedPage("/403");
+//        http.authorizeRequests().antMatchers("/admin/**")
+//                .access("hasRole('ROLE_ADMIN')")
+//                .and()
+//                .formLogin().loginPage("/login").failureUrl("/login?error")
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .and().logout().logoutSuccessUrl("/login?logout")
+//                .and().csrf()
+//                .and().exceptionHandling().accessDeniedPage("/403");
+
+
+        http.authorizeRequests()
+                .antMatchers("/").permitAll()
+                //.antMatchers("/tickets/**", "/trains/**", "/stations/**").hasRole("USER")
+                .antMatchers("/tickets/**", "/trains/**").hasRole("USER")
+                .antMatchers("/schedule/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login").permitAll()
+                .usernameParameter("username").passwordParameter("password")
+                .and()
+                .logout().permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/errors/403")
+                .and()
+                .csrf();
+
+
+        http.sessionManagement()
+                .maximumSessions(1)
+                .expiredUrl("/login")
+                .and()
+                .invalidSessionUrl("/login");
 
     }
 
