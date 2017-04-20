@@ -1,46 +1,60 @@
 package com.pleshchenko.sbb.app.entity.authorization;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name="User")
+public class User implements Serializable {
 
-	@Id
-	@Column(name = "id")
-	private int id;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 
-	@Column(name = "name")
-	private String name;
+	@NotEmpty
+	@Column(name="sso_id", unique=true, nullable=false)
+	private String ssoId;
 
-	@Column(name = "password")
+	@NotEmpty
+	@Column(name="password", nullable=false)
 	private String password;
 
-	@Column(name = "enabled")
-	private boolean enabled;
+	@NotEmpty
+	@Column(name="first_name", nullable=false)
+	private String firstName;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+	@NotEmpty
+	@Column(name="last_name", nullable=false)
+	private String lastName;
 
-	public User() {
-	}
+	@NotEmpty
+	@Column(name="email", nullable=false)
+	private String email;
 
-	public int getId() {
+	@NotEmpty
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "userRole",
+			joinColumns = { @JoinColumn(name = "user_id") },
+			inverseJoinColumns = { @JoinColumn(name = "user_role_id") })
+	private Set<Role> roles = new HashSet<Role>();
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getSsoId() {
+		return ssoId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setSsoId(String ssoId) {
+		this.ssoId = ssoId;
 	}
 
 	public String getPassword() {
@@ -51,20 +65,36 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public Set<UserRole> getUserRole() {
-		return userRole;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setUserRole(Set<UserRole> userRole) {
-		this.userRole = userRole;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setUserProfiles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	@Override
@@ -74,11 +104,25 @@ public class User {
 
 		User user = (User) o;
 
-		return id == user.id;
+		return id.equals(user.id);
 	}
 
 	@Override
 	public int hashCode() {
-		return id;
+		return id.hashCode();
 	}
+
+	/*
+         * DO-NOT-INCLUDE passwords in toString function.
+         * It is done here just for convenience purpose.
+         */
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", ssoId=" + ssoId + ", password=" + password
+				+ ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", email=" + email + "]";
+	}
+
+
+
 }

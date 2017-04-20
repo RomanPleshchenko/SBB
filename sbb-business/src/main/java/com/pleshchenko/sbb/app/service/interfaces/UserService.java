@@ -1,16 +1,23 @@
 package com.pleshchenko.sbb.app.service.interfaces;
 
-
-
 import com.pleshchenko.sbb.app.entity.authorization.User;
-
 import java.util.List;
 
 
 public interface UserService {
 
-	User findByUserName(String name);
+	User findById(int id);
 
-	List<User> findAll();
+	User findBySSO(String sso);
+
+	void saveUser(User user);
+
+	void updateUser(User user);
+
+	void deleteUserBySSO(String sso);
+
+	List<User> findAllUsers();
+
+	boolean isUserSSOUnique(Integer id, String sso);
 
 }

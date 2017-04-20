@@ -1,7 +1,6 @@
-package com.pleshchenko.sbb.web.config.core;
+package com.pleshchenko.sbb.web.config;
 
 import com.pleshchenko.sbb.web.config.AppConfig;
-import com.pleshchenko.sbb.web.config.SecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
@@ -9,7 +8,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{AppConfig.class, SecurityConfig.class};
+        return new Class<?>[]{AppConfig.class};
     }
 
     @Override

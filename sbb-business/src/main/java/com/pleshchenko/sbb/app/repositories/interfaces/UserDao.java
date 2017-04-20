@@ -9,9 +9,15 @@ import java.util.List;
 
 public interface UserDao {
 
-	User findByName(String name);
+	User findById(int id);
 
-	List<User> findAll();
+	User findBySSO(String sso);
+
+	void save(User user);
+
+	void deleteBySSO(String sso);
+
+	List<User> findAllUsers();
 
 }
 
