@@ -7,14 +7,14 @@ public enum RoleType implements Serializable{
 	DBA("DBA"),
 	ADMIN("ADMIN");
 	
-	String userProfileType;
+	private String roleType;
 	
-	private RoleType(String userProfileType){
-		this.userProfileType = userProfileType;
+	private RoleType(String roleType){
+		this.roleType = roleType;
 	}
 	
-	public String getUserProfileType(){
-		return userProfileType;
+	public String getRoleType(){
+		return roleType;
 	}
 	
 }

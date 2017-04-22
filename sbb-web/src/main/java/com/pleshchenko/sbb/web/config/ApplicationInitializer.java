@@ -1,6 +1,5 @@
 package com.pleshchenko.sbb.web.config;
 
-import com.pleshchenko.sbb.web.config.AppConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 

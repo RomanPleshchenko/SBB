@@ -34,8 +34,8 @@ public class User implements Serializable {
 	@Column(name="email", nullable=false)
 	private String email;
 
-	@NotEmpty
-	@ManyToMany(fetch = FetchType.LAZY)
+//	@NotEmpty
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "userRole",
 			joinColumns = { @JoinColumn(name = "user_id") },
 			inverseJoinColumns = { @JoinColumn(name = "user_role_id") })
@@ -93,7 +93,7 @@ public class User implements Serializable {
 		return roles;
 	}
 
-	public void setUserProfiles(Set<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 
@@ -109,7 +109,11 @@ public class User implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return id.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((ssoId == null) ? 0 : ssoId.hashCode());
+		return result;
 	}
 
 	/*

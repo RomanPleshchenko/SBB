@@ -47,6 +47,9 @@
 							   class="btn btn-block btn-primary btn-default" value="Log in">
 					</div>
 				</form>
+				<div class="well">
+					<a href="<c:url value='/newuser' />">Check in</a>
+				</div>
 			</div>
 		</div>
 	</div>

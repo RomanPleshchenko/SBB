@@ -86,26 +86,30 @@
 					</div>
 				</div>
 			</div>
-	
-			<div class="row">
-				<div class="form-group col-md-12">
-					<label class="col-md-3 control-lable" for="roles">Roles</label>
-					<div class="col-md-7">
-						<form:select path="roles" items="${roles}" multiple="true" itemValue="id" itemLabel="type" class="form-control input-sm" />
-						<div class="has-error">
-							<form:errors path="userProfiles" class="help-inline"/>
+
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-3 control-lable" for="roles">Roles</label>
+						<div class="col-md-7">
+							<form:select path="roles" items="${roles}" multiple="true" itemValue="id" itemLabel="type" class="form-control input-sm" />
+							<div class="has-error">
+								<form:errors path="roles" class="help-inline"/>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</sec:authorize>
 	
 			<div class="row">
 				<div class="form-actions floatRight">
 					<c:choose>
 						<c:when test="${edit}">
+							<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
 							<input type="submit" value="Update" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/list' />">Cancel</a>
 						</c:when>
 						<c:otherwise>
+							<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
 							<input type="submit" value="Register" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/list' />">Cancel</a>
 						</c:otherwise>
 					</c:choose>

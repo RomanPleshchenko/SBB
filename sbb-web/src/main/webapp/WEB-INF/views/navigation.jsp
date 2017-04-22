@@ -22,17 +22,14 @@
             <li><a href="/trains">trains</a></li>
             <li><a href="/tickets">tickets</a></li>
             <li><a href="/stations">stations</a></li>
-            <%--<sec:authorize access="hasRole('ADMIN')">--%>
-                <%--<div class="well">--%>
-            <li><a href="/schedule">schedule</a></li>
-                <%--</div>--%>
-            <%--</sec:authorize>--%>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <li><a href="/schedule">schedule</a></li>
+                <li><a href="/userslist">users</a></li>
+            </sec:authorize>
             <li><a href="/searchTicket">search ticket</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-            <%--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>--%>
-            <%--<li><a href="admin"><span class="glyphicon glyphicon-user"></span> admin</a></li>--%>
             <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
             <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
         </ul>

@@ -26,9 +26,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
 
 	@Autowired
-    PersistentTokenRepository tokenRepository;
-
-	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService);
 		auth.authenticationProvider(authenticationProvider());
@@ -36,53 +33,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests()
-//				.antMatchers("/", "/list").access("hasRole('USER') or hasRole('ADMIN') or hasRole('DBA')")
-//				.antMatchers("/newuser/**", "/delete-user-*").access("hasRole('ADMIN')")
-//				.antMatchers("/edit-user-*").access("hasRole('ADMIN') or hasRole('DBA')").and().formLogin().loginPage("/login")
-//				.loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password").and()
-////				.rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository)
-////				.tokenValiditySeconds(86400).and()
-//				.csrf().and().exceptionHandling().accessDeniedPage("/Access_Denied");
-
-
-//		http.authorizeRequests()
-//				.antMatchers("/", "/list").permitAll()
-////				.antMatchers("/","/login/**","/home/**").permitAll()
-//				.antMatchers("/newuser/**").permitAll()
-//				.antMatchers("/tickets/**", "/trains/**", "/stations/**").hasRole("USER")
-//				.antMatchers("/edit-user-*").access("hasRole('ADMIN') or hasRole('DBA')")
-//				.antMatchers("/schedule/**").hasRole("ADMIN")
-//				.anyRequest().authenticated()
-//				.and()
-//				.formLogin().loginPage("/login").permitAll()
-//				.loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password")
-//				.and()
-//				.logout().permitAll()
-//				.and()
-//				.exceptionHandling().accessDeniedPage("/Access_Denied")
-//				.and()
-//				.csrf();
-//
-//		http.sessionManagement()
-//                .maximumSessions(1)
-//                .expiredUrl("/login")
-//                .and()
-//                .invalidSessionUrl("/login");
 
 		http.authorizeRequests()
-				.antMatchers("/", "/list","/login").permitAll()
+				.antMatchers("/","/login","/newuser/**").permitAll()
 				.antMatchers("/tickets/**", "/trains/**", "/stations/**","/schedule","/searchTicket").hasRole("USER")
-				.antMatchers("/newuser/**", "/delete-user-*","/edit-user-*").hasRole("ADMIN")
+				.antMatchers("/delete-user-*","/edit-user-*", "/userslist").hasRole("ADMIN")
 				.and().formLogin().loginPage("/login")
 				.loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password")
-
-				.and()
-				.rememberMe().rememberMeServices(getPersistentTokenBasedRememberMeServices()).key("remember-me").tokenValiditySeconds(86400).and().csrf().and().exceptionHandling().accessDeniedPage("/Access_Denied");
+				.and().csrf()
+				.and().rememberMe().tokenValiditySeconds(86400)
+				.and().exceptionHandling().accessDeniedPage("/Access_Denied");
 
 
 	}
-
 
 
 	@Bean
@@ -97,13 +60,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		authenticationProvider.setUserDetailsService(userDetailsService);
 		authenticationProvider.setPasswordEncoder(passwordEncoder());
 		return authenticationProvider;
-	}
-
-	@Bean
-	public PersistentTokenBasedRememberMeServices getPersistentTokenBasedRememberMeServices() {
-		PersistentTokenBasedRememberMeServices tokenBasedservice = new PersistentTokenBasedRememberMeServices(
-				"remember-me", userDetailsService, tokenRepository);
-		return tokenBasedservice;
 	}
 
 	@Bean
