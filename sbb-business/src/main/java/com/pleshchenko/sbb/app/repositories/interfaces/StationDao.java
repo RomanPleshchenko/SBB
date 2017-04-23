@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.app.repositories.interfaces;
 
-import com.pleshchenko.sbb.app.entity.route.Station;
+import com.pleshchenko.sbb.app.entity.segment.Station;
 
 import java.util.List;
 

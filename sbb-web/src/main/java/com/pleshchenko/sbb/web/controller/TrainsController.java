@@ -24,8 +24,7 @@ import java.util.List;
 @RequestMapping("/")
 public class TrainsController {
 
-    static final Logger rootLogger = LogManager.getRootLogger();
-    static final Logger userLogger = LogManager.getLogger(TrainsController.class);
+    static final Logger logger = LogManager.getLogger(TrainsController.class);
 
     @Autowired
     TrainService trainService;
@@ -46,8 +45,8 @@ public class TrainsController {
             return RequestType.REDIRECT + "trains";
         }catch (Exception e){
 
-            userLogger.error("Unsuccessful attempt to delete a train:" + number);
-            userLogger.error(e.getMessage());
+            logger.error("Unsuccessful attempt to delete a train:" + number);
+            logger.error(e.getMessage());
 
             model.addAttribute("message","You cannot delete this train!!!");
             return "notification";

@@ -1,9 +1,9 @@
 package com.pleshchenko.sbb.app.repositories.impl;
 
-import com.pleshchenko.sbb.app.entity.route.Route;
-import com.pleshchenko.sbb.app.entity.route.Station;
+import com.pleshchenko.sbb.app.entity.segment.Segment;
+import com.pleshchenko.sbb.app.entity.segment.Station;
 import com.pleshchenko.sbb.app.repositories.interfaces.AbstractDao;
-import com.pleshchenko.sbb.app.repositories.interfaces.RouteDao;
+import com.pleshchenko.sbb.app.repositories.interfaces.SegmentDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,33 +13,33 @@ import java.util.List;
 /**
  * Created by РОМАН on 13.04.2017.
  */
-@Service("routeDao")
+@Service("segmentDao")
 @Transactional
-public class RouteDaoImpl extends AbstractDao<Integer,Route> implements RouteDao {
+public class SegmentDaoImpl extends AbstractDao<Integer,Segment> implements SegmentDao {
 
     @Override
-    public Route findByStation(Station departureStation, Station destinationStation, boolean createNew) {
+    public Segment findByStation(Station departureStation, Station destinationStation, boolean createNew) {
         Query query = getEntityManager()
-                .createQuery("SELECT r FROM Route r " +
+                .createQuery("SELECT r FROM Segment r " +
                         "WHERE r.departureStation = :departureStation AND r.destinationStation = :destinationStation");
         query.setParameter("departureStation",departureStation);
         query.setParameter("destinationStation",destinationStation);
 
-        List<Route> routes = query.getResultList();
-        if (routes.size()==0){
+        List<Segment> segments = query.getResultList();
+        if (segments.size()==0){
 
             if (createNew){
 
-                Route route = new Route(departureStation,destinationStation);
-                getEntityManager().persist(route);
+                Segment segment = new Segment(departureStation,destinationStation);
+                getEntityManager().persist(segment);
                 getEntityManager().flush();
 
-                return route;
+                return segment;
             }
 
             return null;
         }else {
-            return routes.get(0);
+            return segments.get(0);
         }
     }
 }

@@ -37,8 +37,8 @@
                 <td>${ticket.schedule.train.number}</td>
                 <td>${ticket.schedule.departureTimeInFormat}</td>
                 <td>${ticket.schedule.destinationTimeInFormat}</td>
-                <td>${ticket.schedule.route.departureStation.name}</td>
-                <td>${ticket.schedule.route.destinationStation.name}</td>
+                <td>${ticket.schedule.segment.departureStation.name}</td>
+                <td>${ticket.schedule.segment.destinationStation.name}</td>
                 <td>${ticket.passenger.name} ${ticket.passenger.surname}</td>
             </tr>
         </c:forEach>

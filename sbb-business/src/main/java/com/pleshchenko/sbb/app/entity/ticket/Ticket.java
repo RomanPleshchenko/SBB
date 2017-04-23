@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.app.entity.ticket;
 
-import com.pleshchenko.sbb.app.entity.route.Schedule;
+import com.pleshchenko.sbb.app.entity.segment.Schedule;
 
 import javax.persistence.*;
 

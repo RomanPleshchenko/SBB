@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.app.entity.route;
+package com.pleshchenko.sbb.app.entity.segment;
 
 import javax.persistence.*;
 
@@ -6,17 +6,17 @@ import javax.persistence.*;
  * Created by РОМАН on 31.03.2017.
  */
 @Entity
-@Table(name = "Route")
-public class Route {
+@Table(name = "Segment")
+public class Segment {
 
     @Id
     @Column(name = "id")
     private int id;
 
-    public Route() {
+    public Segment() {
     }
 
-    public Route(Station departureStation, Station destinationStation) {
+    public Segment(Station departureStation, Station destinationStation) {
         this.departureStation = departureStation;
         this.destinationStation = destinationStation;
     }
@@ -58,9 +58,9 @@ public class Route {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Route route = (Route) o;
+        Segment segment = (Segment) o;
 
-        if (id != route.id) return false;
+        if (id != segment.id) return false;
         return true;
     }
 

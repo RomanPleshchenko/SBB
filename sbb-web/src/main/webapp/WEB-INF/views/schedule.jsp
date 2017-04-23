@@ -40,8 +40,8 @@
                     <td>${dir.train.number}</td>
                     <td>${dir.departureTimeInFormat}</td>
                     <td>${dir.destinationTimeInFormat}</td>
-                    <td>${dir.route.departureStation.name}</td>
-                    <td>${dir.route.destinationStation.name}</td>
+                    <td>${dir.segment.departureStation.name}</td>
+                    <td>${dir.segment.destinationStation.name}</td>
                     <td>${dir.train.capacity}</td>
                     <td>${fn:length(dir.tickets)}</td>
                 </tr>

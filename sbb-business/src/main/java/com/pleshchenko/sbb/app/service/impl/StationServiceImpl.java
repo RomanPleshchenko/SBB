@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.app.service.impl;
 
-import com.pleshchenko.sbb.app.entity.route.Station;
+import com.pleshchenko.sbb.app.entity.segment.Station;
 import com.pleshchenko.sbb.app.repositories.interfaces.StationDao;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import org.springframework.beans.factory.annotation.Autowired;

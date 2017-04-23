@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.web.controller;
 
-import com.pleshchenko.sbb.app.entity.route.Station;
+import com.pleshchenko.sbb.app.entity.segment.Station;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
 import org.springframework.beans.factory.annotation.Autowired;

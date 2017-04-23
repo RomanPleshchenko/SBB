@@ -1,13 +1,13 @@
 package com.pleshchenko.sbb.app.repositories.impl;
 
 
-import com.pleshchenko.sbb.app.entity.route.Route;
-import com.pleshchenko.sbb.app.entity.route.Schedule;
-import com.pleshchenko.sbb.app.entity.route.Station;
+import com.pleshchenko.sbb.app.entity.segment.Segment;
+import com.pleshchenko.sbb.app.entity.segment.Schedule;
+import com.pleshchenko.sbb.app.entity.segment.Station;
 import com.pleshchenko.sbb.app.repositories.exceptions.NotEnoughParamsException;
 import com.pleshchenko.sbb.app.repositories.interfaces.AbstractDao;
 import com.pleshchenko.sbb.app.repositories.interfaces.ScheduleDao;
-import com.pleshchenko.sbb.app.service.interfaces.RouteService;
+import com.pleshchenko.sbb.app.service.interfaces.SegmentService;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import com.pleshchenko.sbb.app.service.interfaces.TrainService;
 import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
@@ -36,7 +36,7 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
     StationService stationService;
 
     @Autowired
-    RouteService routeService;
+    SegmentService segmentService;
 
     @Override
     public Schedule findById(Integer id) {
@@ -58,7 +58,7 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
 
 
         List<Schedule> schedule = getEntityManager()
-                .createQuery("SELECT s FROM Schedule s WHERE s.route.departureStation.name LIKE '" + stationName + "'")
+                .createQuery("SELECT s FROM Schedule s WHERE s.segment.departureStation.name LIKE '" + stationName + "'")
                 .getResultList();
         return schedule;
     }
@@ -68,8 +68,8 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
 
         Query query = getEntityManager()
                 .createQuery("SELECT s FROM Schedule s " +
-                        "WHERE s.route.departureStation.id = :departureStationid " +
-                        "AND s.route.destinationStation.id = :destinationStationid " +
+                        "WHERE s.segment.departureStation.id = :departureStationid " +
+                        "AND s.segment.destinationStation.id = :destinationStationid " +
                         "AND s.departureTime >= :data1 " +
                         "AND s.departureTime < :data2 " +
                         "ORDER BY s.departureTime");
@@ -95,13 +95,13 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
         Station station1 = stationService.findById(param.getStation1());
         Station station2 = stationService.findById(param.getStation2());
 
-        Route route = routeService.findByStation(station1,station2,true);
+        Segment segment = segmentService.findByStation(station1,station2,true);
 
         Schedule schedule = new Schedule();
         schedule.setDepartureTime(dateToInstant(param.getData1()));
         schedule.setDestinationTime(dateToInstant(param.getData2()));
         schedule.setTrain(train);
-        schedule.setRoute(route);
+        schedule.setSegment(segment);
 
         List<Ticket> tickets = Collections.emptyList();
         schedule.setTickets(tickets);

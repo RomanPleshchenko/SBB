@@ -176,7 +176,7 @@ public class HomeController {
         if (isCurrentAuthenticationAnonymous()) {
             return "login";
         } else {
-            return "redirect:/home";
+            return "redirect:/";
         }
     }
 

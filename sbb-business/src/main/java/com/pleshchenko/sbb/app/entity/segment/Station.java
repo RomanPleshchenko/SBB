@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.app.entity.route;
+package com.pleshchenko.sbb.app.entity.segment;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

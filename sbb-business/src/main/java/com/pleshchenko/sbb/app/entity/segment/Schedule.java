@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.app.entity.route;
+package com.pleshchenko.sbb.app.entity.segment;
 
 import com.pleshchenko.sbb.app.entity.ticket.Ticket;
 import com.pleshchenko.sbb.app.entity.ticket.Train;
@@ -35,8 +35,8 @@ public class Schedule {
     private Train train;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "routeId")
-    private Route route;
+    @JoinColumn(name = "segmentId")
+    private Segment segment;
 
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private List<Ticket> tickets;
@@ -74,12 +74,12 @@ public class Schedule {
         this.train = train;
     }
 
-    public Route getRoute() {
-        return route;
+    public Segment getSegment() {
+        return segment;
     }
 
-    public void setRoute(Route route) {
-        this.route = route;
+    public void setSegment(Segment segment) {
+        this.segment = segment;
     }
 
     public List<Ticket> getTickets() {
