@@ -40,6 +40,7 @@
         </tbody>
     </table>
     <div class="well">
+        <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
         <a href="<c:url value='/newTrain' />">Add new train</a>
     </div>
 </div>

@@ -30,6 +30,7 @@
     </fieldset>
 
     <footer>
+        <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
         <input type="submit" class="btnLogin" value="Save" tabindex="4">
     </footer>
 

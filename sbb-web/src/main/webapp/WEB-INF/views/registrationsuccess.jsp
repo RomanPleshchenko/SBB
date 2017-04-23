@@ -17,9 +17,9 @@
 		<div class="alert alert-success lead">
 	    	${success}
 		</div>
-		
+
 		<span class="well floatRight">
-			Go to <a href="<c:url value='/list' />">Users List</a>
+			Go to <a href="<c:url value='/'/>">Home</a>
 		</span>
 	</div>
 </body>
