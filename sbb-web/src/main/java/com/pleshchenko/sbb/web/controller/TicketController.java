@@ -2,7 +2,7 @@ package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.app.entity.ticket.Passenger;
 import com.pleshchenko.sbb.app.entity.ticket.Ticket;
-import com.pleshchenko.sbb.app.entity.segment.Schedule;
+import com.pleshchenko.sbb.app.entity.schedule.Schedule;
 import com.pleshchenko.sbb.app.service.interfaces.PassengerService;
 import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
 import com.pleshchenko.sbb.app.service.interfaces.TicketService;

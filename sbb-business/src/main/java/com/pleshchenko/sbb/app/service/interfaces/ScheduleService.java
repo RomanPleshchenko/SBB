@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.app.service.interfaces;
 
-import com.pleshchenko.sbb.app.entity.segment.Schedule;
+import com.pleshchenko.sbb.app.entity.schedule.Schedule;
 import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
 import com.pleshchenko.sbb.app.repositories.exceptions.NotEnoughParamsException;
 import org.springframework.stereotype.Service;

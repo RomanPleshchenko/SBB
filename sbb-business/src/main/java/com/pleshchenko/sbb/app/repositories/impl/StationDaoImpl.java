@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.app.repositories.impl;
 
-import com.pleshchenko.sbb.app.entity.segment.Station;
+import com.pleshchenko.sbb.app.entity.schedule.Station;
 import com.pleshchenko.sbb.app.repositories.interfaces.AbstractDao;
 import com.pleshchenko.sbb.app.repositories.interfaces.StationDao;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.app.service.interfaces;
 
-import com.pleshchenko.sbb.app.entity.segment.Station;
+import com.pleshchenko.sbb.app.entity.schedule.Station;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

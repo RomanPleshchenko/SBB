@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.app.entity.ticket;
 
-import com.pleshchenko.sbb.app.entity.segment.Schedule;
+import com.pleshchenko.sbb.app.entity.schedule.Schedule;
 
 import javax.persistence.*;
 
@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Created by РОМАН on 31.03.2017.
  */
 @Entity
-@Table(name = "ticket")
+@Table(name = "Ticket")
 public class Ticket {
     @Id
     @Column(name = "id")

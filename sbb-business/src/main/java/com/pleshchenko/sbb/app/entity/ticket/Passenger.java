@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by РОМАН on 31.03.2017.
  */
 @Entity
-@Table(name = "passenger")
+@Table(name = "Passenger")
 public class Passenger {
 
     @Id
@@ -22,21 +22,6 @@ public class Passenger {
 
     @Column(name = "birthDate")
     private Date birthDate;
-
-//    @ManyToOne
-//    @JoinColumn(name = "idUser")
-//    private User user;
-
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-
-//    @OneToMany(mappedBy = "passanger", cascade = {CascadeType.ALL})
-//    private List<Ticket> tickets;
 
     public int getId() {
         return id;

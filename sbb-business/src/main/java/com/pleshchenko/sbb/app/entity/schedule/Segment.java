@@ -1,6 +1,7 @@
-package com.pleshchenko.sbb.app.entity.segment;
+package com.pleshchenko.sbb.app.entity.schedule;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by РОМАН on 31.03.2017.

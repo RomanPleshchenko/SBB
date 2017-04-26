@@ -2,8 +2,7 @@ package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.app.entity.authorization.Role;
 import com.pleshchenko.sbb.app.entity.authorization.User;
-import com.pleshchenko.sbb.app.service.interfaces.RoleService;
-import com.pleshchenko.sbb.app.service.interfaces.UserService;
+import com.pleshchenko.sbb.app.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
@@ -42,6 +41,17 @@ public class HomeController {
 
     @Autowired
     AuthenticationTrustResolver authenticationTrustResolver;
+
+    //??????
+    @Autowired
+    SegmentService segmentService;
+
+    @Autowired
+    RouteService routeService;
+
+    @Autowired
+    RouteCompositionService routeCompositionService;
+    //??????
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String homePage(ModelMap model) {
@@ -191,6 +201,17 @@ public class HomeController {
             SecurityContextHolder.getContext().setAuthentication(null);
         }
         return "redirect:/login?logout";
+    }
+
+
+    @RequestMapping(value = "/testList",method = RequestMethod.GET)
+    public String goTrainslist(ModelMap model){
+
+        //List list = segmentService.findAll();
+//        List list = routeService.findAll();
+        List list = routeCompositionService.findAll();
+        model.addAttribute("list",list);
+        return "testlist";
     }
 
 

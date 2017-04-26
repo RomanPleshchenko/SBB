@@ -27,6 +27,7 @@
                 <li><a href="/userslist">users</a></li>
             </sec:authorize>
             <li><a href="/searchTicket">search ticket</a></li>
+            <li><a href="/testList">test list</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

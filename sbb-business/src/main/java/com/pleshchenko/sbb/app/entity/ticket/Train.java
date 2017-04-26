@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  * Created by РОМАН on 31.03.2017.
  */
 @Entity
-@Table(name = "train")
+@Table(name = "Train")
 public class Train {
 
     @Id

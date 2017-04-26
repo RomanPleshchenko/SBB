@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.web.controller;
 
-import com.pleshchenko.sbb.app.entity.segment.Schedule;
-import com.pleshchenko.sbb.app.entity.segment.Station;
+import com.pleshchenko.sbb.app.entity.schedule.Schedule;
+import com.pleshchenko.sbb.app.entity.schedule.Station;
 import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import org.springframework.beans.factory.annotation.Autowired;

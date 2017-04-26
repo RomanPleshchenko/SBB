@@ -1,6 +1,6 @@
 package com.pleshchenko.sbb.app.service.impl;
 
-import com.pleshchenko.sbb.app.entity.segment.Schedule;
+import com.pleshchenko.sbb.app.entity.schedule.Schedule;
 import com.pleshchenko.sbb.app.repositories.exceptions.NotEnoughParamsException;
 import com.pleshchenko.sbb.app.repositories.interfaces.ScheduleDao;
 import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;

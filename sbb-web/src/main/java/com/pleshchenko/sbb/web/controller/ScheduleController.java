@@ -1,8 +1,8 @@
 package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.app.entity.ticket.Train;
-import com.pleshchenko.sbb.app.entity.segment.Schedule;
-import com.pleshchenko.sbb.app.entity.segment.Station;
+import com.pleshchenko.sbb.app.entity.schedule.Schedule;
+import com.pleshchenko.sbb.app.entity.schedule.Station;
 import com.pleshchenko.sbb.app.service.interfaces.PassengerService;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import com.pleshchenko.sbb.app.service.interfaces.TrainService;

@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.app.entity.segment;
+package com.pleshchenko.sbb.app.entity.schedule;
 
 import com.pleshchenko.sbb.app.entity.ticket.Ticket;
 import com.pleshchenko.sbb.app.entity.ticket.Train;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Entity
-@Table(name = "schedule")
+@Table(name = "Schedule")
 public class Schedule {
     @Id
     @Column(name = "id")

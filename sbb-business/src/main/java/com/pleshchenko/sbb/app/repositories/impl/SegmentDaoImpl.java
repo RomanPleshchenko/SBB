@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.app.repositories.impl;
 
-import com.pleshchenko.sbb.app.entity.segment.Segment;
-import com.pleshchenko.sbb.app.entity.segment.Station;
+import com.pleshchenko.sbb.app.entity.schedule.Segment;
+import com.pleshchenko.sbb.app.entity.schedule.Station;
 import com.pleshchenko.sbb.app.repositories.interfaces.AbstractDao;
 import com.pleshchenko.sbb.app.repositories.interfaces.SegmentDao;
 import org.springframework.stereotype.Service;
@@ -42,4 +42,14 @@ public class SegmentDaoImpl extends AbstractDao<Integer,Segment> implements Segm
             return segments.get(0);
         }
     }
+
+    @Override
+    public List<Segment> findAll() {
+
+        List<Segment> segments = getEntityManager()
+                .createQuery("SELECT s FROM Segment s")
+                .getResultList();
+        return segments;
+    }
+
 }

@@ -189,7 +189,7 @@ INSERT INTO `schedule` (`id`, `trainId`, `departureTime`, `destinationTime`, `se
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `segment`
+-- Структура таблицы `schedule`
 --
 
 CREATE TABLE IF NOT EXISTS `segment` (
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `segment` (
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `segment`
+-- Дамп данных таблицы `schedule`
 --
 
 INSERT INTO `segment` (`id`, `departureStationId`, `destinationStationId`) VALUES
@@ -447,7 +447,7 @@ ALTER TABLE `schedule`
   ADD KEY `routeId_idx` (`segmentId`);
 
 --
--- Индексы таблицы `segment`
+-- Индексы таблицы `schedule`
 --
 ALTER TABLE `segment`
   ADD PRIMARY KEY (`id`),
@@ -529,7 +529,7 @@ ALTER TABLE `role`
 ALTER TABLE `schedule`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
--- AUTO_INCREMENT для таблицы `segment`
+-- AUTO_INCREMENT для таблицы `schedule`
 --
 ALTER TABLE `segment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
@@ -583,7 +583,7 @@ ALTER TABLE `schedule`
   ADD CONSTRAINT `trainId` FOREIGN KEY (`trainId`) REFERENCES `train` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ограничения внешнего ключа таблицы `segment`
+-- Ограничения внешнего ключа таблицы `schedule`
 --
 ALTER TABLE `segment`
   ADD CONSTRAINT `departureStationId` FOREIGN KEY (`departureStationId`) REFERENCES `station` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
