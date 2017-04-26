@@ -90,7 +90,8 @@ public class Schedule {
         this.tickets = tickets;
     }
 
-    public String getShowing(){
+    @Override
+    public String toString() {
         return getTrain().getNumber() + "(" + id + ")" + " [" + departureTime + " - " + getDestinationTime() + "]";
     }
 

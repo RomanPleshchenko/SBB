@@ -21,24 +21,29 @@
 <jsp:include page="navigation.jsp"></jsp:include>
 
 <div class="container">
-    <h2>List of trains</h2>
+    <h2>List of CarPrototype</h2>
     <table class="table">
         <thead>
         <tr>
             <th>id</th>
-            <th>route.name</th>
-            <th>segment1</th>
-            <th>segment2</th>
-            <%--<th>routeCompositions</th>--%>
+            <th>siteCarClass</th>
+            <th>sitePrototypes</th>
+            <%--<th>sitePrototypeId</th>--%>
+            <%--<th>level</th>--%>
+            <%--<th>siteCarClass</th>--%>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${list}" var="item">
             <tr>
                 <td>${item.id}  </td>
-                <td>${item.route.name}  </td>
-                <td>${item.segment.departureStation.name}  </td>
-                <td>${item.segment.destinationStation.name}  </td>
+                <td>${item.siteCarClass.name}  </td>
+                <td>${fn:length(item.sitePrototypes)}</td>
+                <%--<td>${item.sitePrototype}  </td>--%>
+                <%--<td>${item.level}  </td>--%>
+                <%--<td>${item.siteCarClass.name}  </td>--%>
+                <%--<td>${item.segment.departureStation.name}  </td>--%>
+                <%--<td>${item.segment.destinationStation.name}  </td>--%>
                 <%--<td>${fn:length(item.routeCompositions)}</td>--%>
                 <%--<td><a href="<c:url value='/delete-train-${train.number}' />" class="btn btn-success custom-width">delete</a></td>--%>
             </tr>

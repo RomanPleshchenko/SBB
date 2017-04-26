@@ -2,6 +2,9 @@ package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.app.entity.authorization.Role;
 import com.pleshchenko.sbb.app.entity.authorization.User;
+import com.pleshchenko.sbb.app.entity.ticket.CarPrototypeComposition;
+import com.pleshchenko.sbb.app.entity.ticket.SiteCarClass;
+import com.pleshchenko.sbb.app.entity.ticket.SitePrototype;
 import com.pleshchenko.sbb.app.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -51,6 +54,18 @@ public class HomeController {
 
     @Autowired
     RouteCompositionService routeCompositionService;
+
+    @Autowired
+    CarPrototypeService carPrototypeService;
+
+    @Autowired
+    SiteCarClassService siteCarClassService;
+
+    @Autowired
+    SitePrototypeService sitePrototypeService;
+
+    @Autowired
+    CarPrototypeCompositionService carPrototypeCompositionService;
     //??????
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
@@ -117,7 +132,6 @@ public class HomeController {
         return "registrationsuccess";
     }
 
-
     /**
      * This method will provide the medium to update an existing user.
      */
@@ -149,7 +163,6 @@ public class HomeController {
         return "registrationsuccess";
     }
 
-
     /**
      * This method will delete an user by it's SSOID value.
      */
@@ -158,7 +171,6 @@ public class HomeController {
         userService.deleteUserBySSO(ssoId);
         return "redirect:/userslist";
     }
-
 
     /**
      * This method will provide UserProfile list to views
@@ -203,17 +215,15 @@ public class HomeController {
         return "redirect:/login?logout";
     }
 
-
     @RequestMapping(value = "/testList",method = RequestMethod.GET)
     public String goTrainslist(ModelMap model){
 
         //List list = segmentService.findAll();
 //        List list = routeService.findAll();
-        List list = routeCompositionService.findAll();
+        List list = carPrototypeService.findAll();
         model.addAttribute("list",list);
         return "testlist";
     }
-
 
     /**
      * This method returns the principal[user-name] of logged-in user.
