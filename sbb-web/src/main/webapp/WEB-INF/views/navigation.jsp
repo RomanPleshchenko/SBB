@@ -22,10 +22,10 @@
             <li><a href="/trains">trains</a></li>
             <li><a href="/tickets">tickets</a></li>
             <li><a href="/stations">stations</a></li>
-            <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <%--<sec:authorize access="hasRole('ROLE_ADMIN')">--%>
                 <li><a href="/schedule">schedule</a></li>
                 <li><a href="/userslist">users</a></li>
-            </sec:authorize>
+            <%--</sec:authorize>--%>
             <li><a href="/searchTicket">search ticket</a></li>
             <li><a href="/testList">test list</a></li>
         </ul>

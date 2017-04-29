@@ -66,7 +66,11 @@ public class HomeController {
 
     @Autowired
     CarPrototypeCompositionService carPrototypeCompositionService;
+
+    @Autowired
+    TrainService trainService;
     //??????
+
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String homePage(ModelMap model) {
@@ -220,7 +224,8 @@ public class HomeController {
 
         //List list = segmentService.findAll();
 //        List list = routeService.findAll();
-        List list = carPrototypeService.findAll();
+//        List list = carPrototypeService.findAll();
+        List list = trainService.findAll();
         model.addAttribute("list",list);
         return "testlist";
     }
@@ -249,4 +254,5 @@ public class HomeController {
     }
 
 }
+
 

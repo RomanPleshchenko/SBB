@@ -21,8 +21,8 @@ public interface ScheduleService {
 
     List<Schedule> findByStation(String stationName);
 
-    List<Schedule> findByParameters(ParametersForSearch param);
-
-    Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException;
+//    List<Schedule> findByParameters(ParametersForSearch param);
+//
+//    Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException;
 
 }

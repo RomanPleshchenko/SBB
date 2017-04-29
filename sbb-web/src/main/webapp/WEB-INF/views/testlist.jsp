@@ -25,9 +25,9 @@
     <table class="table">
         <thead>
         <tr>
-            <th>id</th>
-            <th>siteCarClass</th>
-            <th>sitePrototypes</th>
+            <%--<th>id</th>--%>
+            <th>number</th>
+            <th>capacity</th>
             <%--<th>sitePrototypeId</th>--%>
             <%--<th>level</th>--%>
             <%--<th>siteCarClass</th>--%>
@@ -36,9 +36,9 @@
         <tbody>
         <c:forEach items="${list}" var="item">
             <tr>
-                <td>${item.id}  </td>
-                <td>${item.siteCarClass.name}  </td>
-                <td>${fn:length(item.sitePrototypes)}</td>
+                <td>${item.number}  </td>
+                <td>${item.capacity}  </td>
+                <%--<td>${fn:length(item.sitePrototypes)}</td>--%>
                 <%--<td>${item.sitePrototype}  </td>--%>
                 <%--<td>${item.level}  </td>--%>
                 <%--<td>${item.siteCarClass.name}  </td>--%>

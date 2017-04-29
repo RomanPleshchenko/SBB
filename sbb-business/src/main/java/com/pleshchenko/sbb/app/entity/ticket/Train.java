@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by РОМАН on 31.03.2017.
@@ -22,10 +24,11 @@ public class Train {
     @Column(name = "number")
     private String number;
 
-    @NotNull
-    @Min(1)
-    @Column(name = "capacity")
-    private int capacity;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "trainComposition",
+            joinColumns = { @JoinColumn(name = "trainId") },
+            inverseJoinColumns = { @JoinColumn(name = "carId")})
+    private Set<Car> cars = new HashSet<Car>();
 
     public int getId() {
         return id;
@@ -44,11 +47,24 @@ public class Train {
     }
 
     public int getCapacity() {
+
+        int capacity = 0;
+
+        for (Car car:cars){
+            int carCapacity = car.getCarPrototype().getSitePrototypes().size();
+            capacity += carCapacity;
+            System.out.println("" + car + " ============== " + carCapacity);
+        }
+
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public Set<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(Set<Car> cars) {
+        this.cars = cars;
     }
 
     @Override
@@ -58,18 +74,11 @@ public class Train {
 
         Train train = (Train) o;
 
-        if (id != train.id) return false;
-        if (capacity != train.capacity) return false;
-        if (number != null ? !number.equals(train.number) : train.number != null) return false;
-
-        return true;
+        return id == train.id;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (number != null ? number.hashCode() : 0);
-        result = 31 * result + capacity;
-        return result;
+        return id;
     }
 }

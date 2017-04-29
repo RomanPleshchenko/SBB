@@ -14,10 +14,14 @@ import java.util.List;
 public interface StationService {
     List<Station> findAll();
 
+    public List<Station> findAll(Integer pageNumber,String searchParameter,Integer pageDisplayLength);
+
     void saveStation(Station station);
 
     Station findByName(String name);
 
     public Station findById(Integer id);
+
+    Long getCount();
 
 }

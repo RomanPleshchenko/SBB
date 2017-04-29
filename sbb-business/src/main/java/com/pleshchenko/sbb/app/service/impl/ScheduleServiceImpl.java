@@ -37,16 +37,16 @@ public class ScheduleServiceImpl implements ScheduleService {
         return schedule;
     }
 
-    @Override
-    public List<Schedule> findByParameters(ParametersForSearch param) {
-        List<Schedule> schedule = dao.findByParameters(param);
-        return schedule;
-    }
-
-    @Override
-    public Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException {
-        Schedule schedule = dao.addByParameters(param);
-        return schedule;
-    }
+//    @Override
+//    public List<Schedule> findByParameters(ParametersForSearch param) {
+//        List<Schedule> schedule = dao.findByParameters(param);
+//        return schedule;
+//    }
+//
+//    @Override
+//    public Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException {
+//        Schedule schedule = dao.addByParameters(param);
+//        return schedule;
+//    }
 
 }

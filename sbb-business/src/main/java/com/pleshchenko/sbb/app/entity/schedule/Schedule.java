@@ -34,12 +34,15 @@ public class Schedule {
     @JoinColumn(name = "trainId")
     private Train train;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "segmentId")
-    private Segment segment;
+    @ManyToOne
+    @JoinColumn(name = "routeId")
+    private Route route;
 
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-    private List<Ticket> tickets;
+    @Column(name = "active")
+    boolean active;
+
+//    @OneToMany(mappedBy = "schedule", cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+//    private List<Ticket> tickets;
 
     public int getId() {
         return id;
@@ -74,21 +77,29 @@ public class Schedule {
         this.train = train;
     }
 
-    public Segment getSegment() {
-        return segment;
+    public Route getRoute() {
+        return route;
     }
 
-    public void setSegment(Segment segment) {
-        this.segment = segment;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setActive(boolean active) {
+        this.active = active;
     }
+
+//    public List<Ticket> getTickets() {
+//        return tickets;
+//    }
+//
+//    public void setTickets(List<Ticket> tickets) {
+//        this.tickets = tickets;
+//    }
 
     @Override
     public String toString() {

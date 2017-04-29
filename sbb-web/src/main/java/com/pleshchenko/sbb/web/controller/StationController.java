@@ -1,20 +1,24 @@
 package com.pleshchenko.sbb.web.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pleshchenko.sbb.app.entity.schedule.Schedule;
 import com.pleshchenko.sbb.app.entity.schedule.Station;
 import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
+import com.pleshchenko.sbb.app.temp.StationJsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,11 +34,10 @@ public class StationController {
     @Autowired
     ScheduleService scheduleService;
 
+
     @RequestMapping(value = "/stations",method = RequestMethod.GET)
     public String goStationslist(ModelMap model){
 
-        List<Station> stations  = stationService.findAll();
-        model.addAttribute("stations", stations);
         return "stationsList";
     }
 
@@ -67,4 +70,34 @@ public class StationController {
         stationService.saveStation(station);
         return RequestType.REDIRECT + "stations";
     }
+
+
+    /////???????????? убрать все лишнее в сервисы
+
+    @RequestMapping(value = "/getStationslist", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    String getStationslist(HttpServletRequest request) throws IOException {
+
+        Integer pageNumber = 0;
+        if (null != request.getParameter("iDisplayStart"))
+            pageNumber = (Integer.valueOf(request.getParameter("iDisplayStart"))/10)+1;
+
+        String searchParameter = request.getParameter("sSearch");
+
+        Integer pageDisplayLength = Integer.valueOf(request.getParameter("iDisplayLength"));
+
+        List<Station> stationslist = stationService.findAll(pageNumber,searchParameter,pageDisplayLength);
+
+        StationJsonObject personJsonObject = new StationJsonObject();
+
+        personJsonObject.setiTotalDisplayRecords(stationService.getCount().intValue());
+        personJsonObject.setiTotalRecords(stationService.getCount().intValue());
+        personJsonObject.setAaData(stationslist);
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json2 = gson.toJson(personJsonObject);
+
+        return json2;
+    }
+
 }

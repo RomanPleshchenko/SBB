@@ -21,8 +21,13 @@ public class StationServiceImpl implements StationService {
 
     @Override
     public List<Station> findAll() {
-        List<Station> station = dao.findAll();
-        return station;
+        List<Station> stations = dao.findAll();
+        return stations;
+    }
+
+    public List<Station> findAll(Integer pageNumber,String searchParameter,Integer pageDisplayLength){
+        List<Station> stations = dao.findAll(pageNumber,searchParameter,pageDisplayLength);
+        return stations;
     }
 
     @Override
@@ -40,6 +45,12 @@ public class StationServiceImpl implements StationService {
     public Station findById(Integer id) {
         Station station = dao.findById(id);
         return station;
+    }
+
+    @Override
+    public Long getCount() {
+        Long count = dao.getCount();
+        return count;
     }
 
 }

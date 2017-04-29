@@ -10,9 +10,13 @@ import java.util.List;
 public interface StationDao {
     List<Station> findAll();
 
+    List<Station> findAll(Integer pageNumber,String searchParameter,Integer pageDisplayLength);
+
     void saveStation(Station station);
 
     Station findByName(String name);
 
-    public Station findById(Integer id);
+    Station findById(Integer id);
+
+    Long getCount();
 }

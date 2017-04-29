@@ -24,26 +24,36 @@
         <thead>
         <tr>
             <th>train number</th>
+            <th>route name</th>
             <th>departure time</th>
             <th>destination time</th>
             <th>departure station</th>
             <th>destination station</th>
+            <th>number of station</th>
             <th>capacity</th>
-            <th>sold tickets</th>
+            <th>capacity</th>
+            <%--<th>sold tickets</th>--%>
+            <th>active</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${schedule}" var="dir">
 
-            <c:if test="${dir.train.capacity > fn:length(dir.tickets)}">
+            <%--<c:if test="${dir.train.capacity > fn:length(dir.tickets)}">--%>
+            <c:if test="${dir.train.capacity > 0}">
                 <tr>
                     <td>${dir.train.number}</td>
+                    <td>${dir.route.number} ${dir.route.name}</td>
                     <td>${dir.departureTimeInFormat}</td>
                     <td>${dir.destinationTimeInFormat}</td>
-                    <td>${dir.segment.departureStation.name}</td>
-                    <td>${dir.segment.destinationStation.name}</td>
+                    <td>?????</td>
+                    <td>?????</td>
+                    <%--<td>${dir.segment.departureStation.name}</td>--%>
+                    <%--<td>${dir.segment.destinationStation.name}</td>--%>
+                    <td>${fn:length(dir.route.routeCompositions)+1}</td>
                     <td>${dir.train.capacity}</td>
-                    <td>${fn:length(dir.tickets)}</td>
+                    <%--<td>${fn:length(dir.tickets)}</td>--%>
+                    <td>${dir.active}</td>
                 </tr>
 
             </c:if>
@@ -63,3 +73,4 @@
 <jsp:include page="footer.jsp"/>
 </body>
 </html>
+
