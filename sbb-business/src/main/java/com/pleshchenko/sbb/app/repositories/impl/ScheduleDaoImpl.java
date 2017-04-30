@@ -26,7 +26,8 @@ import java.util.List;
 /**
  * Created by РОМАН on 06.04.2017.
  */
-@Repository("scheduleDaoImpl")
+//@Repository("scheduleDaoImpl")
+@Repository("scheduleDao")
 public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements ScheduleDao {
 
     @Autowired
@@ -63,6 +64,9 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
         return schedule;
     }
 
+    public void save(Schedule dir){
+        persist(dir);
+    }
 //    @Override
 //    public List<Schedule> findByParameters(ParametersForSearch param) {
 //

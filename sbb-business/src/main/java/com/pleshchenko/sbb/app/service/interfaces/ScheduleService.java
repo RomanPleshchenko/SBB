@@ -21,6 +21,10 @@ public interface ScheduleService {
 
     List<Schedule> findByStation(String stationName);
 
+    void makeActive(int id);
+
+    public void makeNotActive(int id);
+
 //    List<Schedule> findByParameters(ParametersForSearch param);
 //
 //    Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException;

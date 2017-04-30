@@ -17,6 +17,8 @@ public interface ScheduleDao {
 
     List<Schedule> findByStation(String stationName);
 
+    void save(Schedule dir);
+
 //    List<Schedule> findByParameters(ParametersForSearch param);
 //
 //    Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException;

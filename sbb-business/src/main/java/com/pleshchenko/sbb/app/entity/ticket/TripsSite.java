@@ -1,6 +1,7 @@
 package com.pleshchenko.sbb.app.entity.ticket;
 
 import com.pleshchenko.sbb.app.entity.schedule.Schedule;
+import com.pleshchenko.sbb.app.entity.schedule.Segment;
 
 import javax.persistence.*;
 
@@ -13,6 +14,7 @@ public class TripsSite {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
@@ -24,11 +26,25 @@ public class TripsSite {
     private Car car;
 
     @ManyToOne
+    @JoinColumn(name = "segmentId")
+    private Segment segment;
+
+    @ManyToOne
     @JoinColumn(name = "sitePrototypeId")
     private SitePrototype sitePrototypeId;
 
     @Column(name = "sold")
     private boolean sold;
+
+    public TripsSite() {
+    }
+
+    public TripsSite(Schedule schedule, Car car, Segment segment, SitePrototype sitePrototypeId) {
+        this.schedule = schedule;
+        this.car = car;
+        this.segment = segment;
+        this.sitePrototypeId = sitePrototypeId;
+    }
 
     public Integer getId() {
         return id;
@@ -52,6 +68,14 @@ public class TripsSite {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public Segment getSegment() {
+        return segment;
+    }
+
+    public void setSegment(Segment segment) {
+        this.segment = segment;
     }
 
     public SitePrototype getSitePrototypeId() {

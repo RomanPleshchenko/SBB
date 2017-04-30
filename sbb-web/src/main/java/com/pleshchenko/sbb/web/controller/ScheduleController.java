@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -92,7 +93,7 @@ public class ScheduleController {
 //            return "addToSchedule";
 //        }
 
-        throw new NotSupportedException("from ScheduleController");
+        throw new NotSupportedException("");
 
     }
 
@@ -105,6 +106,24 @@ public class ScheduleController {
         model.addAttribute("stations", stationService.findAll());
         model.addAttribute("trains",trains);
     }
+
+    @RequestMapping(value = { "/make-active-dir-{id}" }, method = RequestMethod.GET)
+    public String makeActive(@PathVariable int id, ModelMap model) {
+
+        scheduleService.makeActive(id);
+        return RequestType.REDIRECT + "schedule";
+
+    }
+
+    @RequestMapping(value = { "/make-not-active-dir-{id}" }, method = RequestMethod.GET)
+    public String makeNotActive(@PathVariable int id, ModelMap model) {
+
+        scheduleService.makeNotActive(id);
+        return RequestType.REDIRECT + "schedule";
+
+    }
+
+
 
 }
 

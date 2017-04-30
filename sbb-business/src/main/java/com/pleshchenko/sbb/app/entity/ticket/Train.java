@@ -51,9 +51,7 @@ public class Train {
         int capacity = 0;
 
         for (Car car:cars){
-            int carCapacity = car.getCarPrototype().getSitePrototypes().size();
-            capacity += carCapacity;
-            System.out.println("" + car + " ============== " + carCapacity);
+            capacity += car.getCarPrototype().getSitePrototypes().size();
         }
 
         return capacity;

@@ -3,6 +3,7 @@ package com.pleshchenko.sbb.app.entity.schedule;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by РОМАН on 26.04.2017.
@@ -24,7 +25,7 @@ public class Route {
     private String name;
 
     @OneToMany(mappedBy = "route",cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-    private List<RouteComposition> routeCompositions;
+    private Set<RouteComposition> routeCompositions;
 
     public Integer getId() {
         return id;
@@ -50,11 +51,11 @@ public class Route {
         this.name = name;
     }
 
-    public List<RouteComposition> getRouteCompositions() {
+    public Set<RouteComposition> getRouteCompositions() {
         return routeCompositions;
     }
 
-    public void setRouteCompositions(List<RouteComposition> routeCompositions) {
+    public void setRouteCompositions(Set<RouteComposition> routeCompositions) {
         this.routeCompositions = routeCompositions;
     }
 

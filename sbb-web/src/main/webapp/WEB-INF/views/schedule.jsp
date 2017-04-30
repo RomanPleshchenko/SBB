@@ -33,7 +33,7 @@
             <th>capacity</th>
             <th>capacity</th>
             <%--<th>sold tickets</th>--%>
-            <th>active</th>
+            <th>action</th>
         </tr>
         </thead>
         <tbody>
@@ -54,6 +54,17 @@
                     <td>${dir.train.capacity}</td>
                     <%--<td>${fn:length(dir.tickets)}</td>--%>
                     <td>${dir.active}</td>
+
+                    <c:if test="${dir.active}">
+                        <td><a href="<c:url value='/make-not-active-dir-${dir.id}' />" class="btn btn-danger">make not active</a></td>
+                    </c:if>
+
+                    <c:if test="${dir.active!=true}">
+                        <td><a href="<c:url value='/make-active-dir-${dir.id}' />" class="btn btn-success custom-width">make active</a></td>
+                    </c:if>
+
+
+
                 </tr>
 
             </c:if>
@@ -62,9 +73,9 @@
         </c:forEach>
         </tbody>
     </table>
-    <div class="well">
-        <a href="<c:url value='/addToSchedule' />">Add to schedule</a>
-    </div>
+    <%--<div class="well">--%>
+        <%--<a href="<c:url value='/addToSchedule' />">Add to schedule</a>--%>
+    <%--</div>--%>
 </div>
 
 <br>
