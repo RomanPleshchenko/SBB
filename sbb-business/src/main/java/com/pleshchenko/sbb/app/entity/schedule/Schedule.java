@@ -103,7 +103,7 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return getTrain().getNumber() + "(" + id + ")" + " [" + departureTime + " - " + getDestinationTime() + "]";
+        return getTrain().getNumber() + "(Schedule" + id + ")" + " [" + departureTime + " - " + getDestinationTime() + "]";
     }
 
     public String  getDepartureTimeInFormat() {

@@ -6,6 +6,7 @@ import com.pleshchenko.sbb.app.repositories.exceptions.NotEnoughParamsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -19,14 +20,14 @@ public interface ScheduleService {
 
     List<Schedule> findAll();
 
+    List<Schedule> findByParameters(int st1, int st2, Date data1, Date data2);
+
     List<Schedule> findByStation(String stationName);
 
     void makeActive(int id);
 
     public void makeNotActive(int id);
 
-//    List<Schedule> findByParameters(ParametersForSearch param);
-//
-//    Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException;
+
 
 }

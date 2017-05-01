@@ -4,6 +4,7 @@ import com.pleshchenko.sbb.app.entity.schedule.Schedule;
 import com.pleshchenko.sbb.app.repositories.exceptions.NotEnoughParamsException;
 import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -15,12 +16,10 @@ public interface ScheduleDao {
 
     List<Schedule> findAll();
 
+    List<Schedule> findByParameters(int st1,int st2,Date data1,Date data2);
+
     List<Schedule> findByStation(String stationName);
 
     void save(Schedule dir);
-
-//    List<Schedule> findByParameters(ParametersForSearch param);
-//
-//    Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException;
 
 }

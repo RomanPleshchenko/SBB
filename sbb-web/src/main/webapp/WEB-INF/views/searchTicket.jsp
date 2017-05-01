@@ -45,6 +45,7 @@
             <form:input path="data1" type = "date" /> - <form:input path="data2" type = "date"/>
 
             <footer>
+                <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
                 <input type="submit" class="btn btn-success" value="to find" tabindex="4">
             </footer>
 

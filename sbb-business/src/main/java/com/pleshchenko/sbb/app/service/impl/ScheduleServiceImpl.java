@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -37,6 +38,12 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<Schedule> findAll() {
         List<Schedule> schedule = dao.findAll();
+        return schedule;
+    }
+
+    @Override
+    public List<Schedule> findByParameters(int st1, int st2, Date data1, Date data2){
+        List<Schedule> schedule = dao.findByParameters(st1,st2,data1,data2);
         return schedule;
     }
 
@@ -67,7 +74,6 @@ public class ScheduleServiceImpl implements ScheduleService {
         dao.save(dir);
     }
 
-
     @Override
     public void makeNotActive(int id) {
 
@@ -83,16 +89,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     }
 
-//    @Override
-//    public List<Schedule> findByParameters(ParametersForSearch param) {
-//        List<Schedule> schedule = dao.findByParameters(param);
-//        return schedule;
-//    }
-//
-//    @Override
-//    public Schedule addByParameters(ParametersForSearch param) throws NotEnoughParamsException {
-//        Schedule schedule = dao.addByParameters(param);
-//        return schedule;
-//    }
+
 
 }
