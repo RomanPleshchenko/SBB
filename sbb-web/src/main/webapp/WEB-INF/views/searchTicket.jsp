@@ -14,6 +14,10 @@
     <jsp:include page="header.jsp" flush="true" >
         <jsp:param name="title" value="Search ticket"/>
     </jsp:include>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="/static/js/scheduleScripts.js"></script>
 </head>
 <body>
 
@@ -23,17 +27,18 @@
 <div class="container">
     <h2>Find a train</h2>
 
-    <form:form method="post" commandName="parametersForSearch" action="scheduleByParameters" class="box login">
+    <%--<form:form method="post" commandName="parametersForSearch" action="scheduleByParameters" class="box login">--%>
+    <form:form id = "searchForm" method="post" commandName="parametersForSearch" action="" class="box login">
         <fieldset class="boxBody">
             <td>${error} <br></td>
 
             <label>Select station</label>
-            <form:select path="station1">
+            <form:select id = "station1" path="station1">
                 <form:option value="NONE" label="-- Please choose a departure station --"/>
                 <form:options items="${stations}" itemValue="id" itemLabel="name"/>
             </form:select>
             -
-            <form:select path="station2">
+            <form:select id = "station2" path="station2">
                 <form:option value="NONE" label="-- Please choose a destination  station --"/>
                 <form:options items="${stations}" itemValue="id" itemLabel="name"/>
             </form:select>
@@ -42,16 +47,34 @@
 
             <label><label>Select date</label></label>
 
-            <form:input path="data1" type = "date" /> - <form:input path="data2" type = "date"/>
+            <form:input id="data1" path="data1" type = "date" /> - <form:input id="data2" path="data2" type = "date"/>
+
+            <%--<footer>--%>
+                <%--<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />--%>
+                <%--<input type="submit" class="btn btn-success" value="to find" tabindex="4">--%>
+            <%--</footer>--%>
 
             <footer>
-                <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
-                <input type="submit" class="btn btn-success" value="to find" tabindex="4">
+                <%--<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />--%>
+                <input id = "toFind" class="btn btn-success" value="to find" tabindex="4">
             </footer>
 
         </fieldset>
 
     </form:form>
+
+    <table id="scheduleTable" class="table" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>train number</th>
+            <th>route name</th>
+            <th>departure time</th>
+            <th>destination time</th>
+            <th>number of station</th>
+            <th>action</th>
+        </tr>
+        </thead>
+    </table>
 
 </div>
 

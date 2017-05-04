@@ -128,6 +128,12 @@
             <version>${spring.security.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>org.gson.version</version>
+        </dependency>
+
         <!--sbb-->
         <dependency>
             <groupId>com.pleshchenko.sbb</groupId>

@@ -27,55 +27,30 @@
             <th>route name</th>
             <th>departure time</th>
             <th>destination time</th>
-            <th>departure station</th>
-            <th>destination station</th>
             <th>number of station</th>
-            <th>capacity</th>
-            <th>capacity</th>
-            <%--<th>sold tickets</th>--%>
             <th>action</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${schedule}" var="dir">
 
-            <%--<c:if test="${dir.train.capacity > fn:length(dir.tickets)}">--%>
-            <c:if test="${dir.train.capacity > 0}">
-                <tr>
-                    <td>${dir.train.number}</td>
-                    <td>${dir.route.number} ${dir.route.name}</td>
-                    <td>${dir.departureTimeInFormat}</td>
-                    <td>${dir.destinationTimeInFormat}</td>
-                    <td>?????</td>
-                    <td>?????</td>
-                    <%--<td>${dir.segment.departureStation.name}</td>--%>
-                    <%--<td>${dir.segment.destinationStation.name}</td>--%>
-                    <td>${fn:length(dir.route.routeCompositions)+1}</td>
-                    <td>${dir.train.capacity}</td>
-                    <%--<td>${fn:length(dir.tickets)}</td>--%>
-                    <td>${dir.active}</td>
-
-                    <c:if test="${dir.active}">
-                        <td><a href="<c:url value='/make-not-active-dir-${dir.id}' />" class="btn btn-danger">make not active</a></td>
-                    </c:if>
-
-                    <c:if test="${dir.active!=true}">
-                        <td><a href="<c:url value='/make-active-dir-${dir.id}' />" class="btn btn-success custom-width">make active</a></td>
-                    </c:if>
-
-
-
-                </tr>
-
-            </c:if>
-
+            <tr>
+                <td>${dir.train.number}</td>
+                <td>${dir.route.number} ${dir.route.name}</td>
+                <td>${dir.departureTimeInFormat}</td>
+                <td>${dir.destinationTimeInFormat}</td>
+                <td>${fn:length(dir.route.routeCompositions)+1}</td>
+                <c:if test="${dir.active}">
+                    <td><a href="<c:url value='/make-not-active-dir-${dir.id}' />" class="btn btn-danger">make not active</a></td>
+                </c:if>
+                <c:if test="${dir.active!=true}">
+                    <td><a href="<c:url value='/make-active-dir-${dir.id}' />" class="btn btn-success custom-width">make active</a></td>
+                </c:if>
+            </tr>
 
         </c:forEach>
         </tbody>
     </table>
-    <%--<div class="well">--%>
-        <%--<a href="<c:url value='/addToSchedule' />">Add to schedule</a>--%>
-    <%--</div>--%>
 </div>
 
 <br>

@@ -9,13 +9,15 @@ import com.pleshchenko.sbb.app.service.interfaces.TrainService;
 import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
 import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
 import com.pleshchenko.sbb.app.repositories.exceptions.NotEnoughParamsException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.NotSupportedException;
 import javax.validation.Valid;
@@ -53,8 +55,7 @@ public class ScheduleController {
                                              ModelMap model) throws NotSupportedException {
 
 
-//        if (param.getData1()==null|param.getData2()==null|param.getStation1()==null|param.getStation2()==null){
-        if (param.getStation1()==null|param.getStation2()==null){
+        if (param.getData1()==null|param.getData2()==null|param.getStation1()==null|param.getStation2()==null){
 
             List<Station> stations  = stationService.findAll();
             ParametersForSearch parametersForSearch = new ParametersForSearch();
@@ -65,8 +66,8 @@ public class ScheduleController {
         }
         List<Schedule> schedule = scheduleService.findByParameters(param.getStation1(),param.getStation2(),param.getData1(),param.getData2());
         model.addAttribute("schedule",schedule);
-//        return "scheduleByParameters";???????????
-        return "schedule";
+        return "scheduleByParameters";
+//        return "schedule";
 
 
     }
@@ -123,10 +124,38 @@ public class ScheduleController {
 
     }
 
+    @RequestMapping(value = "/getDataTest", method = RequestMethod.GET)
+    public @ResponseBody String showData(@RequestParam("st1") int st1, @RequestParam("st2") int st2,
+                                         @RequestParam("date1") String date1,@RequestParam("date2") String date2, Model model) throws JSONException {
 
+        List<Schedule> schedules = scheduleService.findAll();
+
+        JSONArray dirArray = new JSONArray();
+        for (Schedule dir:schedules) {
+
+            JSONObject dirJSON = new JSONObject();
+            dirJSON.put("trainNumber", dir.getTrain().getNumber());
+            dirJSON.put("routeNumber", dir.getRoute().getNumber());
+            dirJSON.put("routeName", dir.getRoute().getName());
+            dirJSON.put("departureTimeInFormat", dir.getDepartureTimeInFormat());
+            dirJSON.put("destinationTimeInFormat", dir.getDestinationTimeInFormat());
+            dirJSON.put("numberOfStation", dir.getRoute().getRouteCompositions().size());
+            dirJSON.put("active", dir.isActive());
+
+            dirArray.put(dirJSON);
+            
+        }
+
+
+        System.out.println(st1);
+        System.out.println(st2);
+        System.out.println(date1);
+        System.out.println(date1);
+
+
+        return dirArray.toString();
+    }
 
 }
-
-
 
 

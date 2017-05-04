@@ -48,6 +48,12 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public List findFreeSite(int st1, int st2, int dirId, int routeId) {
+        List list = dao.findFreeSite(st1,st2,dirId,routeId);
+        return list;
+    }
+
+    @Override
     public List<Schedule> findByStation(String stationName) {
         List<Schedule> schedule = dao.findByStation(stationName);
         return schedule;
@@ -76,6 +82,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public void makeNotActive(int id) {
+
+        //???????????????/ вылетает с ошибкой
 
         Schedule dir = findById(id);
         List<TripsSite> tripsSites = tripsSiteService.findBySchedule(dir);

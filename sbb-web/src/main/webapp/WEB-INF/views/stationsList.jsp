@@ -11,7 +11,7 @@
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="/static/js/trainsPagination.js"></script>
+    <script type="text/javascript" src="/static/js/stationsPagination.js"></script>
     
 </head>
 <body>
@@ -20,14 +20,13 @@
 
 <form:form action="" method="GET">
     <h2>List of station<br><br></h2>
-    <table width="70%" style="border: 3px;background: rgb(243, 244, 248);"><tr><td>
-        <table id="stationsList" class="display" cellspacing="0" width="100%">
-            <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-            </thead>
-        </table>
+    <table id="stationsList" class="table" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+        </thead>
+    </table>
     </td></tr></table>
 </form:form>
 
