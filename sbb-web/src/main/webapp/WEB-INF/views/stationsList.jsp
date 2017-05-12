@@ -9,9 +9,10 @@
     <title>Spring pagination using data tables</title>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <%--<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>--%>
     <script type="text/javascript" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="/static/js/stationsPagination.js"></script>
+    <script src="<c:url value="/static/js/jquery.min.js"/>"></script>
     
 </head>
 <body>

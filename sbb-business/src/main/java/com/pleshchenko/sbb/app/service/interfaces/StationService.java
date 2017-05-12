@@ -4,6 +4,7 @@ import com.pleshchenko.sbb.app.entity.schedule.Station;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +13,7 @@ import java.util.List;
 @Service("stationService")
 @Transactional
 public interface StationService {
+
     List<Station> findAll();
 
     public List<Station> findAll(Integer pageNumber,String searchParameter,Integer pageDisplayLength);

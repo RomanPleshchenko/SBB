@@ -45,6 +45,7 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
     @Override
     public List<Schedule> findByParameters(int st1,int st2,Date date1,Date date2) {
 
+       //??????? изменить время
         String NATIVE_QUERY = "SELECT \n" +
                 "   dir.id, " +
                 "   dir.active, " +
@@ -66,7 +67,7 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
                 "\n" +
                 "(SELECT \n" +
                 "    r.id routeId, \n" +
-                "    s.departureStationId stId,\n" +
+                "    s.destinationStationId stId,\n" +
                 "    rc.departureTime depTime\n" +
                 "FROM route r LEFT JOIN routeComposition rc on r.id=rc.routeId LEFT JOIN segment s on rc.segmentId=s.id) t2 ON t2.stId = :st2 AND t2.routeId = dir.routeId\n" +
                 "  \n" +
@@ -89,6 +90,7 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
         String NATIVE_QUERY = "SELECT \n" +
                 "\n" +
                 "ts.carId,\n" +
+                "cp.svgFileName,\n" +
                 "sp.number,\n" +
                 "sc.countSegment,\n" +
                 "count(ts.segmentId)\n" +
@@ -96,6 +98,10 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
                 "FROM `tripsSite` ts\n" +
                 "\n" +
                 "LEFT JOIN sitePrototype sp ON sp.id = ts.sitePrototypeId\n" +
+                "\n" +
+                "LEFT JOIN car c ON c.id = ts.carid\n" +
+                "\n" +
+                "LEFT JOIN carPrototype cp ON cp.id = c.carPrototypeId\n" +
                 "\n" +
                 "LEFT JOIN (\n" +
                 "\n" +

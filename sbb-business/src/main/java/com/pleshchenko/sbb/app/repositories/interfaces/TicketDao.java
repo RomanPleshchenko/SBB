@@ -14,4 +14,6 @@ public interface TicketDao {
     void save(Ticket ticket);
 
     Ticket findById(Integer idSchedule,Integer idPassenger);
+
+    Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName);
 }

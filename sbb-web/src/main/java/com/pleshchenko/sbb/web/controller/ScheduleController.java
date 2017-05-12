@@ -8,7 +8,6 @@ import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import com.pleshchenko.sbb.app.service.interfaces.TrainService;
 import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
 import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
-import com.pleshchenko.sbb.app.repositories.exceptions.NotEnoughParamsException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,10 +17,11 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
+import java.sql.Date;
 import javax.transaction.NotSupportedException;
 import javax.validation.Valid;
 import java.util.List;
+
 
 /**
  * Created by РОМАН on 05.04.2017.
@@ -124,35 +124,36 @@ public class ScheduleController {
 
     }
 
-    @RequestMapping(value = "/getDataTest", method = RequestMethod.GET)
+    @RequestMapping(value = "/getScheduleJSON", method = RequestMethod.GET)
     public @ResponseBody String showData(@RequestParam("st1") int st1, @RequestParam("st2") int st2,
                                          @RequestParam("date1") String date1,@RequestParam("date2") String date2, Model model) throws JSONException {
 
-        List<Schedule> schedules = scheduleService.findAll();
+        Date dat1 = Date.valueOf(date1);
+        Date dat2 = Date.valueOf(date2);
+
+        List<Schedule> schedules = scheduleService.findByParameters(st1,st2,dat1,dat2);
 
         JSONArray dirArray = new JSONArray();
         for (Schedule dir:schedules) {
+
+            List listFreeSite = scheduleService.findFreeSite(st1,st2,dir.getId(),dir.getRoute().getId());
 
             JSONObject dirJSON = new JSONObject();
             dirJSON.put("trainNumber", dir.getTrain().getNumber());
             dirJSON.put("routeNumber", dir.getRoute().getNumber());
             dirJSON.put("routeName", dir.getRoute().getName());
-            dirJSON.put("departureTimeInFormat", dir.getDepartureTimeInFormat());
+            dirJSON.put("departureTimeInFormat", dir.getDepartureTimeInFormat());//qqqqqqqqqqq привязать время к станциям а не к конечным точкам
             dirJSON.put("destinationTimeInFormat", dir.getDestinationTimeInFormat());
             dirJSON.put("numberOfStation", dir.getRoute().getRouteCompositions().size());
             dirJSON.put("active", dir.isActive());
-
+            dirJSON.put("ticketsCount", listFreeSite.size());
+            dirJSON.put("dirId", dir.getId());
+            dirJSON.put("routeId",  dir.getRoute().getId());
+//            dirJSON.put("refForSelectTicket","/selectTicket?st1=" + st1 + "&st2=" + st2 + "&dirId="
+//                    + dir.getId() + "&routeId=" + dir.getRoute().getId());//qqqqqqqqqqqqq потом убрать и на странице тоже
             dirArray.put(dirJSON);
-            
+
         }
-
-
-        System.out.println(st1);
-        System.out.println(st2);
-        System.out.println(date1);
-        System.out.println(date1);
-
-
         return dirArray.toString();
     }
 

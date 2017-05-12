@@ -15,69 +15,82 @@
         <jsp:param name="title" value="Search ticket"/>
     </jsp:include>
 
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+    <%--<script src="<c:url value="/static/js/jquery.min.js"/>"></script>--%>
+    <%--<script src="<c:url value="/static/js/jquery.tooltip.min.js"/>"></script>--%>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/scheduleScripts.js"></script>
 </head>
 <body>
 
-<jsp:include page="navigation.jsp"></jsp:include>
+    <jsp:include page="navigation.jsp"></jsp:include>
 
+    <div class="container">
+        <h2>Find a train</h2>
 
-<div class="container">
-    <h2>Find a train</h2>
+        <form:form id = "searchForm" method="post" commandName="parametersForSearch" action="" class="box login">
+            <fieldset class="boxBody">
+                <td>${error} <br></td>
 
-    <%--<form:form method="post" commandName="parametersForSearch" action="scheduleByParameters" class="box login">--%>
-    <form:form id = "searchForm" method="post" commandName="parametersForSearch" action="" class="box login">
-        <fieldset class="boxBody">
-            <td>${error} <br></td>
+                <label>Select station</label>
+                <form:select id = "station1" path="station1">
+                    <form:option value="NONE" label="-- Please choose a departure station --"/>
+                    <form:options items="${stations}" itemValue="id" itemLabel="name"/>
+                </form:select>
+                -
+                <form:select id = "station2" path="station2">
+                    <form:option value="NONE" label="-- Please choose a destination  station --"/>
+                    <form:options items="${stations}" itemValue="id" itemLabel="name"/>
+                </form:select>
 
-            <label>Select station</label>
-            <form:select id = "station1" path="station1">
-                <form:option value="NONE" label="-- Please choose a departure station --"/>
-                <form:options items="${stations}" itemValue="id" itemLabel="name"/>
-            </form:select>
-            -
-            <form:select id = "station2" path="station2">
-                <form:option value="NONE" label="-- Please choose a destination  station --"/>
-                <form:options items="${stations}" itemValue="id" itemLabel="name"/>
-            </form:select>
+                <br>
 
-            <br>
+                <label><label>Select date</label></label>
 
-            <label><label>Select date</label></label>
+                <form:input id="data1" path="data1" type = "date" /> - <form:input id="data2" path="data2" type = "date"/>
 
-            <form:input id="data1" path="data1" type = "date" /> - <form:input id="data2" path="data2" type = "date"/>
+                <footer>
+                    <input id = "toFind" class="btn btn-success" value="to find" tabindex="4">
+                </footer>
 
-            <%--<footer>--%>
-                <%--<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />--%>
-                <%--<input type="submit" class="btn btn-success" value="to find" tabindex="4">--%>
-            <%--</footer>--%>
+            </fieldset>
 
-            <footer>
-                <%--<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />--%>
-                <input id = "toFind" class="btn btn-success" value="to find" tabindex="4">
-            </footer>
+        </form:form>
 
-        </fieldset>
+        <table id="scheduleTable" class="table" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th> </th>
+                <th>train number</th>
+                <th>route name</th>
+                <th>departure time</th>
+                <th>destination time</th>
+                <th>number of station</th>
+                <th>action(Admin only)</th>
+                <th>tickets count</th>
+            </tr>
+            </thead>
+        </table>
 
-    </form:form>
+    </div>
 
-    <table id="scheduleTable" class="table" cellspacing="0" width="100%">
-        <thead>
-        <tr>
-            <th>train number</th>
-            <th>route name</th>
-            <th>departure time</th>
-            <th>destination time</th>
-            <th>number of station</th>
-            <th>action</th>
-        </tr>
-        </thead>
-    </table>
+    <center>
 
-</div>
+        <input type="hidden" id="userName" value= ${pageContext.request.userPrincipal.name}>
 
-<jsp:include page="footer.jsp"/>
+        <div id = "imaps" >
+
+        </div>
+
+        <div id='choosed'></div>
+        <div id='btnBuy'></div>
+
+    </center>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <jsp:include page="footer.jsp"/>
 </body>
 </html>

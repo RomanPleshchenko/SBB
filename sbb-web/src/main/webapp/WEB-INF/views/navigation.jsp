@@ -31,8 +31,16 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
-            <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+
+            <c:if test="${pageContext.request.userPrincipal.name == null}">
+                <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+            </c:if>
+
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <li><a ><span class="glyphicon glyphicon-user"></span>User : ${pageContext.request.userPrincipal.name}</a></li>
+                <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+            </c:if>
+
         </ul>
     </div>
 </nav>

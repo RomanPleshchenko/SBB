@@ -51,6 +51,12 @@
         </c:forEach>
         </tbody>
     </table>
+
+
+    <div id = "imaps">
+
+    </div>
+
 </div>
 
 <br>

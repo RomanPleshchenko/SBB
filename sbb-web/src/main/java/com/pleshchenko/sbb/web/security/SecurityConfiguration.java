@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-				.antMatchers("/","/login","/newuser/**","testlist","/schedule/**","searchTicket").permitAll()
+				.antMatchers("/","/login","/ticketSucces/**","testlist","/schedule/**","searchTicket").permitAll()
 				.antMatchers("/tickets/**","/trains/**","/schedule"
 						,"/scheduleByParameters","/stations_old").hasRole("USER")//?????
 				.antMatchers("/delete-user-*","/edit-user-*","/userslist","/newTrain","/newStation"
@@ -44,7 +44,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password")
 				.and().csrf()
 				.and().rememberMe().tokenValiditySeconds(86400)
-				.and().exceptionHandling().accessDeniedPage("/Access_Denied");
+				.and().exceptionHandling().accessDeniedPage("/Access_Denied")
+				.and().headers().frameOptions().disable();//for svg
 
 
 	}
