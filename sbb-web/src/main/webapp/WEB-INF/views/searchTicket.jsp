@@ -60,12 +60,11 @@
             <thead>
             <tr>
                 <th> </th>
-                <th>train number</th>
-                <th>route name</th>
+                <th>train</th>
+                <th>route</th>
                 <th>departure time</th>
                 <th>destination time</th>
                 <th>number of station</th>
-                <th>action(Admin only)</th>
                 <th>tickets count</th>
             </tr>
             </thead>
@@ -82,7 +81,10 @@
         </div>
 
         <div id='choosed'></div>
-        <div id='btnBuy'></div>
+
+        <div id='btns'>
+            <div id='btnBuy'></div>
+        </div>
 
     </center>
 

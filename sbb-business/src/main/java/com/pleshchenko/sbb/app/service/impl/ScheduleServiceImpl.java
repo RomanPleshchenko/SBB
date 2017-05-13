@@ -42,9 +42,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> findByParameters(int st1, int st2, Date data1, Date data2){
-        List<Schedule> schedule = dao.findByParameters(st1,st2,data1,data2);
-        return schedule;
+    public String getScheduleJSONByParameters(int st1, int st2, Date data1, Date data2){
+        String scheduleJSON = dao.getScheduleJSONByParameters(st1,st2,data1,data2);
+        return scheduleJSON;
     }
 
     @Override

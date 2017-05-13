@@ -37,8 +37,8 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket buyTicket(int st1, int st2, int dirId, int carId, int siteId, String userName) {
-        Ticket ticket = dao.buyTicket(st1,st2,dirId,carId,siteId,userName);
+    public Ticket buyTicket(int st1, int st2, int dirId, int carId, int siteId, String userName,String depTime,String desTime) {
+        Ticket ticket = dao.buyTicket(st1,st2,dirId,carId,siteId,userName,depTime,desTime);
         return ticket;
     }
 }

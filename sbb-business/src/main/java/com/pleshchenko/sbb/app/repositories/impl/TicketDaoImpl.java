@@ -1,15 +1,19 @@
 package com.pleshchenko.sbb.app.repositories.impl;
 
-import com.pleshchenko.sbb.app.entity.authorization.User;
 import com.pleshchenko.sbb.app.entity.ticket.TripsSite;
 import com.pleshchenko.sbb.app.repositories.interfaces.TicketDao;
 import com.pleshchenko.sbb.app.entity.ticket.Ticket;
 import com.pleshchenko.sbb.app.repositories.interfaces.AbstractDao;
+import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import com.pleshchenko.sbb.app.service.interfaces.TripsSiteService;
 import com.pleshchenko.sbb.app.service.interfaces.UserService;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
 
@@ -24,6 +28,9 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    StationService stationService;
 
     @Override
     public List<Ticket> findAll() {
@@ -51,7 +58,7 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
     }
 
     @Override
-    public Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName){
+    public Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName,String depTime,String desTime){
 
         String nativeQuery = "SELECT \n" +
                 "    ts.id,\n" +
@@ -92,15 +99,17 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
         for (TripsSite tripsSite:tripsSites){
             tripsSite.setSold(true);
             tripsSiteService.save(tripsSite);
-            System.out.println(tripsSite.getId());
         }
 
-
         Ticket ticket = new Ticket();
-        User user = userService.findBySSO(userName);
-        ticket.setUser(user);
 
+        ticket.setUser(userService.findBySSO(userName));
+        ticket.setDepartureStation(stationService.findById(st1));
+        ticket.setDestinationStation(stationService.findById(st2));
         ticket.setTripsSites(new HashSet<>(tripsSites));
+
+        ticket.setDepartureTime(Instant.parse(depTime.replace("_","T") + ".00Z").plusSeconds(-3600*3));
+        ticket.setDestinationTime(Instant.parse(desTime.replace("_","T") + ".00Z").plusSeconds(-3600*3));
 
         persist(ticket);
 

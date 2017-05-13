@@ -94,15 +94,14 @@ public class TicketController {
             jsonObject.put("freeSitesArray",freeSitesArray);
             jsonArray.put(jsonObject);
         }
-
         return jsonArray.toString();
     }
-
 
     @RequestMapping(value = "/buyTicket", method = RequestMethod.GET)
     public String showData(@RequestParam("st1") int st1, @RequestParam("st2") int st2,
                                          @RequestParam("dirId") int dirId,@RequestParam("carId") int carId,
-                           @RequestParam("siteId") int siteId,@RequestParam("userName") String userName, Model model) throws JSONException {
+                           @RequestParam("siteId") int siteId,@RequestParam("userName") String userName,
+                           @RequestParam("depTime") String depTime, @RequestParam("desTime") String desTime, Model model) throws JSONException {
 
 
         //qqqqqqqqqq
@@ -114,7 +113,7 @@ public class TicketController {
         model.addAttribute("userName",userName);
         //qqqqqqqqqq
 
-        ticketService.buyTicket(st1,st2,dirId,carId,siteId,userName);
+        ticketService.buyTicket(st1,st2,dirId,carId,siteId,userName,depTime,desTime);
 
         return "ticketSucces";
     }

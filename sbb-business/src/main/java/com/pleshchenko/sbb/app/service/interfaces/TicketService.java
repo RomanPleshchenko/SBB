@@ -19,5 +19,5 @@ public interface TicketService {
 
     Ticket findById(Integer id);
 
-    Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName);
+    Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName,String depTime,String desTime);
 }

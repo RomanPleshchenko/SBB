@@ -18,7 +18,7 @@ public interface ScheduleService {
 
     List<Schedule> findAll();
 
-    List<Schedule> findByParameters(int st1, int st2, Date data1, Date data2);
+    String getScheduleJSONByParameters(int st1, int st2, Date data1, Date data2);
 
     public List findFreeSite(int st1,int st2,int dirId,int routeId);
 

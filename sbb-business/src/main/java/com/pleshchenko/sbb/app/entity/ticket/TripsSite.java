@@ -108,4 +108,5 @@ public class TripsSite {
     public int hashCode() {
         return id.hashCode();
     }
+
 }

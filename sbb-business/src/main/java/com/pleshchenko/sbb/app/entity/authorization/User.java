@@ -35,7 +35,7 @@ public class User implements Serializable {
 	@Column(name="email", nullable=false)
 	private String email;
 
-//	@NotEmpty
+//	@NotEmpty qqqqqqqqqqqq
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "userRole",
 			joinColumns = { @JoinColumn(name = "user_id") },

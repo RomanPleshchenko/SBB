@@ -3,16 +3,17 @@ package com.pleshchenko.sbb.app.repositories.impl;
 import com.pleshchenko.sbb.app.entity.schedule.Schedule;
 import com.pleshchenko.sbb.app.repositories.interfaces.AbstractDao;
 import com.pleshchenko.sbb.app.repositories.interfaces.ScheduleDao;
+import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import com.pleshchenko.sbb.app.service.interfaces.TrainService;
-import com.pleshchenko.sbb.app.service.other.SetId;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.time.Instant;
 import java.sql.Date;
 import java.util.List;
-
-////???????? время показывает на три часа меньше чем храниться в БД временно оставлю так
 
 /**
  * Created by РОМАН on 06.04.2017.
@@ -26,6 +27,9 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
 
     @Autowired
     StationService stationService;
+
+    @Autowired
+    ScheduleService scheduleService;
 
     @Override
     public Schedule findById(Integer id) {
@@ -43,16 +47,17 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
     }
 
     @Override
-    public List<Schedule> findByParameters(int st1,int st2,Date date1,Date date2) {
+    public String getScheduleJSONByParameters(int st1,int st2,Date date1,Date date2) {
 
-       //??????? изменить время
         String NATIVE_QUERY = "SELECT \n" +
                 "   dir.id, " +
                 "   dir.active, " +
                 "   dir.routeId, " +
                 "   dir.trainId, " +
                 "   dir.departureTime, " +
-                "   dir.destinationTime " +
+                "   dir.destinationTime, " +
+                "   dir.departureTime + INTERVAL t1.depTime MINUTE departureTimeFromSt1, " +
+                "   dir.departureTime + INTERVAL t2.desTime MINUTE destinationTimeForSt2 " +
                 "FROM \n" +
                 "\tschedule dir      \n" +
                 "LEFT JOIN \n" +
@@ -68,20 +73,46 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
                 "(SELECT \n" +
                 "    r.id routeId, \n" +
                 "    s.destinationStationId stId,\n" +
-                "    rc.departureTime depTime\n" +
+                "    rc.departureTime depTime,\n" +
+                "    rc.destinationTime desTime\n" +
                 "FROM route r LEFT JOIN routeComposition rc on r.id=rc.routeId LEFT JOIN segment s on rc.segmentId=s.id) t2 ON t2.stId = :st2 AND t2.routeId = dir.routeId\n" +
                 "  \n" +
                 "WHERE t1.depTime < t2.depTime " +
                 "AND dir.departureTime + INTERVAL t1.depTime MINUTE BETWEEN :date1 AND (:date2 + INTERVAL 24*3600-1 SECOND)";
 
-        List<Schedule> schedules = getEntityManager()
-                .createNativeQuery(NATIVE_QUERY, Schedule.class)
+        List schedule = getEntityManager()
+                .createNativeQuery(NATIVE_QUERY)
                 .setParameter("st1",st1)
                 .setParameter("st2",st2)
                 .setParameter("date1",date1)
                 .setParameter("date2",date2)
                 .getResultList();
-        return schedules;
+
+        JSONArray dirArray = new JSONArray();
+
+        for (Object el:schedule) {
+
+            int dirId = (int)((Object[])el)[0];
+            Schedule dir = scheduleService.findById(dirId);
+
+            List listFreeSite = scheduleService.findFreeSite(st1,st2,dir.getId(),dir.getRoute().getId());
+
+            JSONObject dirJSON = new JSONObject();
+            dirJSON.put("trainNumber", dir.getTrain().getNumber());
+            dirJSON.put("routeNumber", dir.getRoute().getNumber());
+            dirJSON.put("routeName", dir.getRoute().getName());
+            dirJSON.put("departureTimeInFormat", ((Object[])el)[6].toString().replace(".0",""));
+            dirJSON.put("destinationTimeInFormat",((Object[])el)[7].toString().replace(".0",""));
+            dirJSON.put("numberOfStation", dir.getRoute().getRouteCompositions().size());
+            dirJSON.put("active", dir.isActive());
+            dirJSON.put("ticketsCount", listFreeSite.size());
+            dirJSON.put("dirId", dir.getId());
+            dirJSON.put("routeId",  dir.getRoute().getId());
+            dirArray.put(dirJSON);
+
+        }
+        return dirArray.toString();
+
     }
 
     @Override
@@ -174,7 +205,6 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
 
     @Override
     public List<Schedule> findByStation(String stationName) {
-
 
         List<Schedule> schedule = getEntityManager()
                 .createQuery("SELECT s FROM Schedule s WHERE s.segment.departureStation.name LIKE '" + stationName + "'")

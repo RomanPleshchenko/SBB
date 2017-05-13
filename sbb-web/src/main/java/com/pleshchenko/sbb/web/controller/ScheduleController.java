@@ -109,30 +109,9 @@ public class ScheduleController {
         Date dat1 = Date.valueOf(date1);
         Date dat2 = Date.valueOf(date2);
 
-        List<Schedule> schedules = scheduleService.findByParameters(st1,st2,dat1,dat2);
+        String scheduleJSON = scheduleService.getScheduleJSONByParameters(st1,st2,dat1,dat2);
+        return scheduleJSON;
 
-        JSONArray dirArray = new JSONArray();
-        for (Schedule dir:schedules) {
-
-            List listFreeSite = scheduleService.findFreeSite(st1,st2,dir.getId(),dir.getRoute().getId());
-
-            JSONObject dirJSON = new JSONObject();
-            dirJSON.put("trainNumber", dir.getTrain().getNumber());
-            dirJSON.put("routeNumber", dir.getRoute().getNumber());
-            dirJSON.put("routeName", dir.getRoute().getName());
-            dirJSON.put("departureTimeInFormat", dir.getDepartureTimeInFormat());//qqqqqqqqqqq привязать время к станциям а не к конечным точкам
-            dirJSON.put("destinationTimeInFormat", dir.getDestinationTimeInFormat());
-            dirJSON.put("numberOfStation", dir.getRoute().getRouteCompositions().size());
-            dirJSON.put("active", dir.isActive());
-            dirJSON.put("ticketsCount", listFreeSite.size());
-            dirJSON.put("dirId", dir.getId());
-            dirJSON.put("routeId",  dir.getRoute().getId());
-//            dirJSON.put("refForSelectTicket","/selectTicket?st1=" + st1 + "&st2=" + st2 + "&dirId="
-//                    + dir.getId() + "&routeId=" + dir.getRoute().getId());//qqqqqqqqqqqqq потом убрать и на странице тоже
-            dirArray.put(dirJSON);
-
-        }
-        return dirArray.toString();
     }
 
 }

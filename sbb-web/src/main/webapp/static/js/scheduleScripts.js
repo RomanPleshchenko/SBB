@@ -15,11 +15,11 @@ $(document).ready(function() {
 
 function addClicks() {
 
-
     $('body').off('click', '[name="dirRadio"]');
     $('body').on('click', '[name="dirRadio"]', function() {
             includeMaps($(this).val(),$(this).attr("routeId"));
-            setTimeout(markFreeSite,500,$(this).val(),$(this).attr("routeId"));
+            setTimeout(markFreeSite, 500, $(this).val(), $(this).attr("routeId"), $(this).attr("departureTimeInFormat"), $(this).attr("destinationTimeInFormat"));
+
         }
     );
 }
@@ -52,20 +52,14 @@ function searchAjax() {
 
         $.each(data, function (index, value) {
 
-            if(value.active == "true"){
-                var actionBtn= "<a href=\"<c:url value='/make-active-dir-${dir.id}' />\" class=\"btn btn-success\">make active</a>";
-            }else {
-                var actionBtn= "<a href=\"<c:url value='/make-not-active-dir-${dir.id}' />\" class=\"btn btn-danger\">make not active</a>";
-            }
-
             var htmlrow ="<tr>" +
-                "<td> <input id = 'dirRadio'" + value.dirId + " type='radio' name='dirRadio' routeId = " + value.routeId + " value='" + value.dirId + "'> </td>" +
+                // "<td> <input id = 'dirRadio'" + value.dirId + " type='radio' name='dirRadio' routeId = " + value.routeId + " departureTimeInFormat = " + value.departureTimeInFormat + " destinationTimeInFormat = " + value.destinationTimeInFormat + " value='" + value.dirId + "'> </td>" +
+                "<td> <input id = 'dirRadio'" + value.dirId + " type='radio' name='dirRadio' routeId = " + value.routeId + " departureTimeInFormat = " + value.departureTimeInFormat.replace(" ","_") + " destinationTimeInFormat = " + value.destinationTimeInFormat.replace(" ","_") + " value='" + value.dirId + "'> </td>" +
                 "<td>" + value.trainNumber + "</td>" +
                 "<td>" + value.routeNumber + " " + value.routeName + "</td>" +
                 "<td>" + value.departureTimeInFormat + "</td>" +
                 "<td>" + value.destinationTimeInFormat + "</td>" +
                 "<td>" + value.numberOfStation + "</td>" +
-                "<td>" + actionBtn + "</td>" +
                 "<td>" + value.ticketsCount + "</td>" +
                 "<tr>";
 
@@ -80,6 +74,9 @@ function includeMaps(dirId,routeId) {
     var st2 = $('#station2').val();
 
     $("#imapcs").remove();
+    $("#btnBuy").remove();
+
+    $("#btns").append("<div id='btnBuy'></div>");
 
     var json = "http://localhost:8080/getFreeTicket?st1=" + st1 + "&st2=" + st2 + "&dirId=" + dirId + "&routeId=" + routeId + "";//qqqqqqqqq localhost
     $.getJSON(json, function(data){
@@ -106,7 +103,7 @@ function includeMaps(dirId,routeId) {
     );
 }
 
-function markFreeSite(dirId,routeId) {
+function markFreeSite(dirId,routeId,departureTimeInFormat,destinationTimeInFormat) {
 
     var st1 = $('#station1').val();
     var st2 = $('#station2').val();
@@ -114,7 +111,6 @@ function markFreeSite(dirId,routeId) {
     var userName = $('#userName').val();
 
     $.each(freeTicketData, function (index, value) {
-        // $.each(data, function (index, value) {
         var carNumber = value.carNumber;
         var svgobject = document.getElementById('imap' + carNumber);
         if ('contentDocument' in svgobject){
@@ -127,12 +123,13 @@ function markFreeSite(dirId,routeId) {
             $(svgdom.getElementsByClassName("area")).click(
                 function () {
                     var id = $(this).attr("id");
-                    document.getElementById('choosed').innerHTML = 'Selected plase: ' + id.replace("s","") + " car № " + carNumber;
+                    document.getElementById('choosed').innerHTML = '<h4>Selected plase: ' + id.replace("s","") + " car № " + carNumber + "</h4>";
 
                     btnRef = "/buyTicket?st1=" + st1 + "&st2=" + st2 + "&dirId=" + dirId
-                        + "&carId=" + carNumber + "&siteId="+ id.replace("s","") + "&userName=" + userName;
+                        + "&carId=" + carNumber + "&siteId="+ id.replace("s","") + "&userName=" + userName
+                        + "&depTime=" + departureTimeInFormat+ "&desTime=" + destinationTimeInFormat ;
 
-                    var btnBuy = "<a href=" + btnRef + " class=\"btn btn-success\">to buy ticket</a>";
+                    var btnBuy = "<a href=" + btnRef + " class='btn btn-success'>to buy ticket</a>";
 
                     document.getElementById('btnBuy').innerHTML = btnBuy;
 

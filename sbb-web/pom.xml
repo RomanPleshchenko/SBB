@@ -131,7 +131,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>org.gson.version</version>
+            <version>LATEST</version>
         </dependency>
 
         <!--sbb-->
