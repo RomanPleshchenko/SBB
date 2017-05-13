@@ -80,9 +80,8 @@
 
         </div>
 
-        <div id='choosed'></div>
-
         <div id='btns'>
+            <div id='choosed'></div>
             <div id='btnBuy'></div>
         </div>
 

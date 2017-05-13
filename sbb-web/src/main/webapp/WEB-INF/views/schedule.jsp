@@ -46,6 +46,9 @@
                 <c:if test="${dir.active!=true}">
                     <td><a href="<c:url value='/make-active-dir-${dir.id}' />" class="btn btn-success custom-width">make active</a></td>
                 </c:if>
+                <c:if test="${dir.composed!=true}">
+                    <td><a href="<c:url value='/compose-free-sites-${dir.id}' />" class="btn btn-success custom-width">compose free sites</a></td>
+                </c:if>
             </tr>
 
         </c:forEach>

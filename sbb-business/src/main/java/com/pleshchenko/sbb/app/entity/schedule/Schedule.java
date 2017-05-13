@@ -41,8 +41,8 @@ public class Schedule {
     @Column(name = "active")
     boolean active;
 
-//    @OneToMany(mappedBy = "schedule", cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-//    private List<Ticket> tickets;
+    @Column(name = "composed")
+    boolean composed;
 
     public int getId() {
         return id;
@@ -93,13 +93,13 @@ public class Schedule {
         this.active = active;
     }
 
-//    public List<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void setTickets(List<Ticket> tickets) {
-//        this.tickets = tickets;
-//    }
+    public boolean isComposed() {
+        return composed;
+    }
+
+    public void setComposed(boolean composed) {
+        this.composed = composed;
+    }
 
     @Override
     public String toString() {

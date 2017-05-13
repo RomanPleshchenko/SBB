@@ -63,6 +63,23 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void makeActive(int id) {
 
         Schedule dir = findById(id);
+        dir.setActive(true);
+        dao.save(dir);
+    }
+
+    @Override
+    public void makeNotActive(int id) {
+
+        Schedule dir = findById(id);
+        dir.setActive(false);
+        dao.save(dir);
+
+    }
+
+    @Override
+    public void composeFreeSites(int id) {
+
+        Schedule dir = findById(id);
         Set<Car> cars = dir.getTrain().getCars();
         Set<RouteComposition> routeCompositions = dir.getRoute().getRouteCompositions();
 
@@ -76,27 +93,9 @@ public class ScheduleServiceImpl implements ScheduleService {
             }
         }
 
-        dir.setActive(true);
-        dao.save(dir);
-    }
-
-    @Override
-    public void makeNotActive(int id) {
-
-        //???????????????/ вылетает с ошибкой
-
-        Schedule dir = findById(id);
-        List<TripsSite> tripsSites = tripsSiteService.findBySchedule(dir);
-
-        for (TripsSite tripsSite:tripsSites) {
-            tripsSiteService.delete(tripsSite);
-        }
-
-        dir.setActive(false);
+        dir.setComposed(true);
         dao.save(dir);
 
     }
-
-
 
 }

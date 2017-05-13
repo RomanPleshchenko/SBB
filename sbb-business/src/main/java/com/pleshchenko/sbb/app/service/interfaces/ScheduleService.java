@@ -28,6 +28,8 @@ public interface ScheduleService {
 
     public void makeNotActive(int id);
 
+    public void composeFreeSites(int id);
+
 
 
 }

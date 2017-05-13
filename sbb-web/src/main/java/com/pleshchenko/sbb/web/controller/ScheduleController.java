@@ -102,6 +102,14 @@ public class ScheduleController {
 
     }
 
+    @RequestMapping(value = { "/compose-free-sites-dir-{id}" }, method = RequestMethod.GET)
+    public String composeFreeSites(@PathVariable int id, ModelMap model) {
+
+        scheduleService.composeFreeSites(id);
+        return RequestType.REDIRECT + "schedule";
+
+    }
+
     @RequestMapping(value = "/getScheduleJSON", method = RequestMethod.GET)
     public @ResponseBody String showData(@RequestParam("st1") int st1, @RequestParam("st2") int st2,
                                          @RequestParam("date1") String date1,@RequestParam("date2") String date2, Model model) throws JSONException {

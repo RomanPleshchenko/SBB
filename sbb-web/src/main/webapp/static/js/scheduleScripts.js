@@ -5,7 +5,7 @@ $(document).ready(function() {
 
         $('#toFind').click(
             function () {
-                searchAjax();
+                fillScheduleTable();
                 $("#imapcs").remove();
                 setTimeout(addClicks,500);
             }
@@ -24,7 +24,7 @@ function addClicks() {
     );
 }
 
-function searchAjax() {
+function fillScheduleTable() {
 
     var st1 = $('#station1').val();
     var st2 = $('#station2').val();
@@ -74,9 +74,10 @@ function includeMaps(dirId,routeId) {
     var st2 = $('#station2').val();
 
     $("#imapcs").remove();
+    $("#choosed").remove();
     $("#btnBuy").remove();
 
-    $("#btns").append("<div id='btnBuy'></div>");
+    $("#btns").append("<div id='choosed'></div> <div id='btnBuy'></div>");
 
     var json = "http://localhost:8080/getFreeTicket?st1=" + st1 + "&st2=" + st2 + "&dirId=" + dirId + "&routeId=" + routeId + "";//qqqqqqqqq localhost
     $.getJSON(json, function(data){
