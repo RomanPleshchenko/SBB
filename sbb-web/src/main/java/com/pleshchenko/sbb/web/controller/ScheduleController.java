@@ -50,28 +50,6 @@ public class ScheduleController {
         return "schedule";
     }
 
-    @RequestMapping(value = "/scheduleByParameters",method = RequestMethod.POST)
-    public String scheduleByParameters(@Valid ParametersForSearch param, BindingResult result,
-                                             ModelMap model) throws NotSupportedException {
-
-
-        if (param.getData1()==null|param.getData2()==null|param.getStation1()==null|param.getStation2()==null){
-
-            List<Station> stations  = stationService.findAll();
-            ParametersForSearch parametersForSearch = new ParametersForSearch();
-            model.addAttribute("parametersForSearch",parametersForSearch);
-            model.addAttribute("stations", stationService.findAll());
-            model.addAttribute("error","            You must fill in all the fields!!!!!");
-            return "searchTicket";
-        }
-        List<Schedule> schedule = scheduleService.findByParameters(param.getStation1(),param.getStation2(),param.getData1(),param.getData2());
-        model.addAttribute("schedule",schedule);
-        return "scheduleByParameters";
-//        return "schedule";
-
-
-    }
-
     @RequestMapping(value = "/addToSchedule",method = RequestMethod.GET)
     public String addToSchedule(ModelMap model){
 

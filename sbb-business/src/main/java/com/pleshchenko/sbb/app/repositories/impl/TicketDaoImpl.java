@@ -1,13 +1,16 @@
 package com.pleshchenko.sbb.app.repositories.impl;
 
+import com.pleshchenko.sbb.app.entity.authorization.User;
 import com.pleshchenko.sbb.app.entity.ticket.TripsSite;
 import com.pleshchenko.sbb.app.repositories.interfaces.TicketDao;
 import com.pleshchenko.sbb.app.entity.ticket.Ticket;
 import com.pleshchenko.sbb.app.repositories.interfaces.AbstractDao;
 import com.pleshchenko.sbb.app.service.interfaces.TripsSiteService;
+import com.pleshchenko.sbb.app.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -18,6 +21,9 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
 
     @Autowired
     TripsSiteService tripsSiteService;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public List<Ticket> findAll() {
@@ -33,10 +39,10 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
     }
 
     @Override
-    public Ticket findById(Integer idSchedule, Integer idPassenger) {
+    public Ticket findById(Integer id) {
         List<Ticket> tickets = getEntityManager()
-                .createQuery("SELECT t FROM Ticket t WHERE t.passenger.id = "
-                        + idPassenger + " AND t.schedule.id = " + idSchedule)
+                .createQuery("SELECT t FROM Ticket t WHERE t.id = "
+                        + id)
                 .getResultList();
         if (tickets.size()==0)
             return null;
@@ -44,6 +50,7 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
             return tickets.get(0);
     }
 
+    @Override
     public Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName){
 
         String nativeQuery = "SELECT \n" +
@@ -85,8 +92,18 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
         for (TripsSite tripsSite:tripsSites){
             tripsSite.setSold(true);
             tripsSiteService.save(tripsSite);
+            System.out.println(tripsSite.getId());
         }
 
-        return new Ticket();//?????
+
+        Ticket ticket = new Ticket();
+        User user = userService.findBySSO(userName);
+        ticket.setUser(user);
+
+        ticket.setTripsSites(new HashSet<>(tripsSites));
+
+        persist(ticket);
+
+        return ticket;
     }
 }

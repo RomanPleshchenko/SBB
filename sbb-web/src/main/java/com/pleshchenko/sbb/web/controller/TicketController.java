@@ -47,50 +47,6 @@ public class TicketController {
         return "ticketslist";
     }
 
-    @RequestMapping(value = {"/saveTicket-{idShedule}"}, method = RequestMethod.GET)
-    public String saveTicket(ModelMap model,@ModelAttribute("set") SetId set,@PathVariable String idShedule) {
-
-        Ticket ticket;
-
-        Integer idSchedule = Integer.parseInt(idShedule);
-        Integer idPassenger = set.getId1();
-
-        ticket = ticketService.findById(idSchedule,idPassenger);
-        if (ticket==null){
-            Schedule schedule = scheduleService.findById(idSchedule);
-            Passenger passenger = passengerService.findById(idPassenger);
-            ticket = new Ticket();
-            ticket.setSchedule(schedule);
-            ticket.setPassenger(passenger);
-            ticketService.save(ticket);
-            return RequestType.REDIRECT + "tickets";
-        }else{
-            model.addAttribute("message","You can not buy two tickets for one trip");
-            return "notification";
-        }
-    }
-
-    @RequestMapping(value = { "/buy-ticket-{id}" }, method = RequestMethod.GET)
-    public ModelAndView saveTicket(ModelMap model, @PathVariable String id) {
-
-        List<Passenger> passengers = passengerService.findAll();
-        model.addAttribute("passengers",passengers);
-        model.addAttribute("idShedule",id);
-        return new ModelAndView("selectPassenger","set",new SetId());
-    }
-
-    @RequestMapping(value = { "/selectTicket" }, method = RequestMethod.GET)
-    public String selectTicket(@RequestParam("st1") int st1, @RequestParam("st2") int st2,
-                               @RequestParam("dirId") int dirId,@RequestParam("routeId") int routeId, ModelMap model) {
-
-        model.addAttribute("st1",st1);
-        model.addAttribute("st2",st2);
-        model.addAttribute("dirId",dirId);
-        model.addAttribute("routeId",routeId);
-
-        return "selectTicket";
-
-    }
 
     @RequestMapping(value = { "/getFreeTicket" }, method = RequestMethod.GET)
     public @ResponseBody String getFreeTicket(@RequestParam("st1") int st1, @RequestParam("st2") int st2,
@@ -149,39 +105,17 @@ public class TicketController {
                            @RequestParam("siteId") int siteId,@RequestParam("userName") String userName, Model model) throws JSONException {
 
 
+        //qqqqqqqqqq
         model.addAttribute("st1",st1);
         model.addAttribute("st2",st2);
         model.addAttribute("dirId",dirId);
         model.addAttribute("carId",carId);
         model.addAttribute("siteId",siteId);
         model.addAttribute("userName",userName);
+        //qqqqqqqqqq
 
         ticketService.buyTicket(st1,st2,dirId,carId,siteId,userName);
 
-//        Date dat1 = Date.valueOf(date1);
-//        Date dat2 = Date.valueOf(date2);
-//
-//        List<Schedule> schedules = scheduleService.findByParameters(st1,st2,dat1,dat2);
-//
-//        JSONArray dirArray = new JSONArray();
-//        for (Schedule dir:schedules) {
-//
-//            List listFreeSite = scheduleService.findFreeSite(st1,st2,dir.getId(),dir.getRoute().getId());
-//
-//            JSONObject dirJSON = new JSONObject();
-//            dirJSON.put("trainNumber", dir.getTrain().getNumber());
-//            dirJSON.put("routeNumber", dir.getRoute().getNumber());
-//            dirJSON.put("routeName", dir.getRoute().getName());
-//            dirJSON.put("departureTimeInFormat", dir.getDepartureTimeInFormat());
-//            dirJSON.put("destinationTimeInFormat", dir.getDestinationTimeInFormat());
-//            dirJSON.put("numberOfStation", dir.getRoute().getRouteCompositions().size());
-//            dirJSON.put("active", dir.isActive());
-//            dirJSON.put("ticketsCount", listFreeSite.size());
-//            dirJSON.put("refForSelectTicket","/selectTicket?st1=" + st1 + "&st2=" + st2 + "&dirId="
-//                    + dir.getId() + "&routeId=" + dir.getRoute().getId());
-//            dirArray.put(dirJSON);
-//
-//        }
         return "ticketSucces";
     }
 

@@ -1,8 +1,14 @@
 package com.pleshchenko.sbb.app.entity.ticket;
 
+import com.pleshchenko.sbb.app.entity.authorization.User;
 import com.pleshchenko.sbb.app.entity.schedule.Schedule;
+import com.sun.istack.internal.Nullable;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by РОМАН on 31.03.2017.
@@ -10,17 +16,20 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Ticket")
 public class Ticket {
+
     @Id
     @Column(name = "id")
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "idPassenger")
-    private Passenger passenger;
+    @JoinColumn(name = "userId")
+    private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "scheduleId")
-    private Schedule schedule;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "ticketComposition",
+            joinColumns = { @JoinColumn(name = "ticketId")},
+            inverseJoinColumns = { @JoinColumn(name = "tripsSiteId")})
+    private Set<TripsSite> tripsSites = new HashSet<TripsSite>();
 
     public int getId() {
         return id;
@@ -30,20 +39,20 @@ public class Ticket {
         this.id = id;
     }
 
-    public Passenger getPassenger() {
-        return passenger;
+    public User getUser() {
+        return user;
     }
 
-    public void setPassenger(Passenger passenger) {
-        this.passenger = passenger;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Schedule getSchedule() {
-        return schedule;
+    public Set<TripsSite> getTripsSites() {
+        return tripsSites;
     }
 
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
+    public void setTripsSites(Set<TripsSite> tripsSites) {
+        this.tripsSites = tripsSites;
     }
 
     @Override

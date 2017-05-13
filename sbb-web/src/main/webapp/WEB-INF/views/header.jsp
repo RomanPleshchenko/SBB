@@ -13,6 +13,4 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%--<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>--%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-
+<link href="<c:url value='/static/css/sbb.css' />" rel="stylesheet"></link>

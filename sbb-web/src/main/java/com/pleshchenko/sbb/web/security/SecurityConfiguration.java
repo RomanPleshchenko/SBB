@@ -32,26 +32,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests()
-				.antMatchers("/","/login","/ticketSucces/**","testlist","/schedule/**","searchTicket").permitAll()
-				.antMatchers("/tickets/**","/trains/**","/schedule"
-						,"/scheduleByParameters","/stations_old").hasRole("USER")//?????
-				.antMatchers("/delete-user-*","/edit-user-*","/userslist","/newTrain","/newStation"
-						,"/newStation").hasRole("ADMIN")
-				.and().formLogin().loginPage("/login")
-				.loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password")
-				.and().csrf()
-				.and().rememberMe().tokenValiditySeconds(86400)
-				.and().exceptionHandling().accessDeniedPage("/Access_Denied")
-				.and().headers().frameOptions().disable();//for svg
-
-
-	}
+        http.authorizeRequests()
+                .antMatchers("/","/login").permitAll()
+                .antMatchers("/trains","/schedule","/stations_old","/ticketSucces"
+                        ,"/schedule","searchTicket","/searchTicket").hasRole("USER")
+                .antMatchers("/tickets","/delete-user-*","/edit-user-*","/userslist","/newTrain","/newStation"
+                        ,"/newStation","/stations").hasRole("ADMIN")
+                .and().formLogin().loginPage("/login")
+                .loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password")
+                .and().csrf()
+                .and().rememberMe().tokenValiditySeconds(86400)
+                .and().exceptionHandling().accessDeniedPage("/Access_Denied")
+                .and().headers().frameOptions().disable();//for svg
+    }
 
 
-	@Bean
+    @Bean
 	public PasswordEncoder passwordEncoder() {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		return encoder;

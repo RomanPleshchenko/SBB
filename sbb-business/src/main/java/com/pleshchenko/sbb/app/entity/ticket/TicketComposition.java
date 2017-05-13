@@ -3,23 +3,23 @@ package com.pleshchenko.sbb.app.entity.ticket;
 import javax.persistence.*;
 
 /**
- * Created by РОМАН on 30.04.2017.
+ * Created by РОМАН on 13.05.2017.
  */
 @Entity
-@Table(name = "TrainComposition")
-public class TrainComposition {
+@Table(name = "TicketComposition")
+public class TicketComposition {
 
     @Id
     @Column(name = "id")
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "departureStationId")
-    private Car car;
+    @JoinColumn(name = "ticketId")
+    private Ticket ticket;
 
     @ManyToOne
-    @JoinColumn(name = "trainId")
-    private Train train;
+    @JoinColumn(name = "tripsSiteId")
+    private TripsSite tripsSite;
 
     public Integer getId() {
         return id;
@@ -29,20 +29,20 @@ public class TrainComposition {
         this.id = id;
     }
 
-    public Car getCar() {
-        return car;
+    public Ticket getTicket() {
+        return ticket;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
-    public Train getTrain() {
-        return train;
+    public TripsSite getTripsSite() {
+        return tripsSite;
     }
 
-    public void setTrain(Train train) {
-        this.train = train;
+    public void setTripsSite(TripsSite tripsSite) {
+        this.tripsSite = tripsSite;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class TrainComposition {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TrainComposition that = (TrainComposition) o;
+        TicketComposition that = (TicketComposition) o;
 
         return id.equals(that.id);
     }
@@ -60,5 +60,3 @@ public class TrainComposition {
         return id.hashCode();
     }
 }
-
-

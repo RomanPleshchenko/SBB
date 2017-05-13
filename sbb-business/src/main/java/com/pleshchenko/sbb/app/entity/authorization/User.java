@@ -11,7 +11,8 @@ import java.util.Set;
 @Table(name="User")
 public class User implements Serializable {
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
 	@NotEmpty

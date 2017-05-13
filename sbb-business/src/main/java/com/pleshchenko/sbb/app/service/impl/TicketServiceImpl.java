@@ -31,8 +31,8 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket findById(Integer idSchedule, Integer idPassenger) {
-        Ticket  ticket = dao.findById(idSchedule,idPassenger);
+    public Ticket findById(Integer id) {
+        Ticket  ticket = dao.findById(id);
         return ticket;
     }
 

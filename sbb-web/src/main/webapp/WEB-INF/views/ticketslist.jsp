@@ -19,27 +19,26 @@
 
 <div class="container">
     <h2>List of tickets</h2>
-    <p>List of all sold tickets</p>
     <table class="table">
         <thead>
         <tr>
             <th>trains number</th>
-            <th>departure time</th>
-            <th>destination time</th>
-            <th>departure station</th>
-            <th>departure station</th>
-            <th>passenger</th>
+            <%--<th>departure time</th>--%>
+            <%--<th>destination time</th>--%>
+            <%--<th>departure station</th>--%>
+            <%--<th>departure station</th>--%>
+            <%--<th>passenger</th>--%>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${tickets}" var="ticket">
             <tr>
-                <td>${ticket.schedule.train.number}</td>
-                <td>${ticket.schedule.departureTimeInFormat}</td>
-                <td>${ticket.schedule.destinationTimeInFormat}</td>
-                <td>${ticket.schedule.segment.departureStation.name}</td>
-                <td>${ticket.schedule.segment.destinationStation.name}</td>
-                <td>${ticket.passenger.name} ${ticket.passenger.surname}</td>
+                <td>${ticket}</td>
+                <%--<td>${ticket.schedule.departureTimeInFormat}</td>--%>
+                <%--<td>${ticket.schedule.destinationTimeInFormat}</td>--%>
+                <%--<td>${ticket.schedule.segment.departureStation.name}</td>--%>
+                <%--<td>${ticket.schedule.segment.destinationStation.name}</td>--%>
+                <%--<td>${ticket.passenger.name} ${ticket.passenger.surname}</td>--%>
             </tr>
         </c:forEach>
         </tbody>

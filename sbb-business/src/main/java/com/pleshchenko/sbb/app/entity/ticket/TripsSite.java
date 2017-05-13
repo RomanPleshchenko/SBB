@@ -4,6 +4,7 @@ import com.pleshchenko.sbb.app.entity.schedule.Schedule;
 import com.pleshchenko.sbb.app.entity.schedule.Segment;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by РОМАН on 30.04.2017.
@@ -14,7 +15,6 @@ public class TripsSite {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne

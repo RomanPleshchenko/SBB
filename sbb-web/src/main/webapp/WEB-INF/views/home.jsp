@@ -15,12 +15,12 @@
         <jsp:param name="title" value="Home"/>
     </jsp:include>
 </head>
-<body>
+<body background="">
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
-    <img src= "/static/images/train.jpg"  width="1500" height="500">
+<center><img src= "/static/images/home.png"></center>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp "/>
 </body>
 </html>

@@ -43,18 +43,4 @@ public abstract class AbstractDao<PK extends Serializable, T> {
         entityManager.remove(entity);
     }
 
-    ///////////////////////
-
-//    @Autowired
-//    private SessionFactory sessionFactory;
-//
-//    protected Criteria createEntityCriteria(){
-//        return getSession().createCriteria(persistentClass);
-//    }
-
-//    protected Session getSession(){
-//        return sessionFactory.getCurrentSession();
-//    }
-
-
 }

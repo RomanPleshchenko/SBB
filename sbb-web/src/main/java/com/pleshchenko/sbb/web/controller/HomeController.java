@@ -45,33 +45,6 @@ public class HomeController {
     @Autowired
     AuthenticationTrustResolver authenticationTrustResolver;
 
-    //??????
-    @Autowired
-    SegmentService segmentService;
-
-    @Autowired
-    RouteService routeService;
-
-    @Autowired
-    RouteCompositionService routeCompositionService;
-
-    @Autowired
-    CarPrototypeService carPrototypeService;
-
-    @Autowired
-    SiteCarClassService siteCarClassService;
-
-    @Autowired
-    SitePrototypeService sitePrototypeService;
-
-    @Autowired
-    CarPrototypeCompositionService carPrototypeCompositionService;
-
-    @Autowired
-    TrainService trainService;
-    //??????
-
-
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String homePage(ModelMap model) {
 
@@ -217,17 +190,6 @@ public class HomeController {
             SecurityContextHolder.getContext().setAuthentication(null);
         }
         return "redirect:/login?logout";
-    }
-
-    @RequestMapping(value = "/testList",method = RequestMethod.GET)
-    public String goTrainslist(ModelMap model){
-
-        //List list = segmentService.findAll();
-//        List list = routeService.findAll();
-//        List list = carPrototypeService.findAll();
-        List list = trainService.findAll();
-        model.addAttribute("list",list);
-        return "testlist";
     }
 
     /**
