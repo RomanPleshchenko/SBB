@@ -23,9 +23,8 @@ public class SearchTicketController {
     public String goSearchTicket(ModelMap model){
 
         List<Station> stations  = stationService.findAll();
-//        ParametersForSearch parametersForSearch = new ParametersForSearch();
-//        model.addAttribute("parametersForSearch",parametersForSearch);
         model.addAttribute("stations", stationService.findAll());
         return "searchTicket";
     }
+
 }

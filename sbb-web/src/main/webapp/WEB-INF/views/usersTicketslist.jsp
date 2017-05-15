@@ -15,32 +15,16 @@
         <jsp:param name="title" value="Tickets"/>
     </jsp:include>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/allTicketsPage.js"></script>
+    <script type="text/javascript" src="/static/js/userTicketsPage.js"></script>
 </head>
 <body>
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
+<input type="hidden" id="userSSO" value= ${pageContext.request.userPrincipal.name}>
+
 <div class="container">
     <h2>List of tickets</h2>
-
-    <form id = "searchForm" class="box login">
-
-        <label>Select train</label>
-
-        <select select id = "train" path="train">
-            <c:forEach items="${trains}" var="train">
-                <option value = ${train.id}> ${train.number}</option>
-            </c:forEach>
-        </select>
-
-        <br>
-
-        <footer>
-            <input id = "toShowTicketsByTrainId" class="btn btn-success" value="to show" tabindex="4">
-        </footer>
-
-    </form>
 
     <table id="ticketTable" class="table">
         <thead>
@@ -51,7 +35,6 @@
             <th>departure station</th>
             <th>destination time</th>
             <th>departure time</th>
-            <th>passenger</th>
         </tr>
         </thead>
     </table>

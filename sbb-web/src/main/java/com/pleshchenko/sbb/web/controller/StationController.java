@@ -100,4 +100,12 @@ public class StationController {
         return json2;
     }
 
+
+    @RequestMapping("/getStationslistJSON")
+    @ResponseBody public String getStationslistJSON(){
+
+        String ticketListJSON = stationService.getStationslistJSON();
+        return ticketListJSON;
+    }
+
 }

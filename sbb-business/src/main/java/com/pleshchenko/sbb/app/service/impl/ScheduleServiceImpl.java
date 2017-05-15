@@ -98,4 +98,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     }
 
+    public boolean routeIsEditable(int routeId){
+        return dao.findUnComposedByRouteId(routeId).size()==0;
+    }
 }

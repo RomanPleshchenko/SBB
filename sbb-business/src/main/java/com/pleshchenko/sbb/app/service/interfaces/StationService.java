@@ -55,4 +55,9 @@ public interface StationService {
      */
     Long getCount();
 
+    /**
+     *
+     * @return stationslist list in JSON
+     */
+    String getStationslistJSON();
 }

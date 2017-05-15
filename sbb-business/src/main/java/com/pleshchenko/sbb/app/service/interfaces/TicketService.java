@@ -47,5 +47,7 @@ public interface TicketService {
      */
     Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName,String desTime,String depTime);
 
-    String getTicketsJSONById(int trainId);
+    String getTicketsJSONByTrainId(int trainId);
+
+    String getTicketsJSONByUserSSO(String userSSO);
 }

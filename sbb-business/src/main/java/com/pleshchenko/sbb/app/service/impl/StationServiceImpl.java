@@ -3,11 +3,14 @@ package com.pleshchenko.sbb.app.service.impl;
 import com.pleshchenko.sbb.app.entity.schedule.Station;
 import com.pleshchenko.sbb.app.repositories.interfaces.StationDao;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by РОМАН on 07.04.2017.
@@ -53,4 +56,22 @@ public class StationServiceImpl implements StationService {
         return count;
     }
 
+    @Override
+    public String getStationslistJSON(){
+
+        List<Station> stationList = dao.findAll();
+
+        JSONArray stationArray = new JSONArray();
+
+        for (Station station:stationList) {
+
+            JSONObject stationJSON = new JSONObject();
+            stationJSON.put("stationId",station.getId());
+            stationJSON.put("stationName",station.getName());
+            stationArray.put(stationJSON);
+        }
+
+        return stationArray.toString();
+
+    }
 }

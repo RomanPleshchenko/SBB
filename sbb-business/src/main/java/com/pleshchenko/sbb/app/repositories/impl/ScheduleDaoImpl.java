@@ -46,6 +46,19 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
         return schedule;
     }
 
+
+
+    @Override
+    public List<Schedule> findUnComposedByRouteId(int routeId) {
+
+        List<Schedule> schedule = getEntityManager()
+                .createQuery("SELECT s FROM Schedule s WHERE s.route.id =:routeId AND s.composed = true ORDER BY s.departureTime")
+                .setParameter("routeId",routeId)
+                .getResultList();
+
+        return schedule;
+    }
+
     @Override
     public String getScheduleJSONByParameters(int st1,int st2,Date date1,Date date2) {
 
@@ -222,5 +235,6 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
         Instant instant = Instant.ofEpochMilli(date.getTime());
         return instant;
     }
+
 }
 

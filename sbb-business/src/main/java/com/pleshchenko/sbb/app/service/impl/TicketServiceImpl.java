@@ -45,9 +45,9 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public String getTicketsJSONById(int trainId) {
+    public String getTicketsJSONByTrainId(int userId) {
 
-        List<Ticket> tickets = dao.getTicketsByTrain(trainId);
+        List<Ticket> tickets = dao.getTicketsByTrainId(userId);
 
         JSONArray ticketArray = new JSONArray();
 
@@ -68,5 +68,31 @@ public class TicketServiceImpl implements TicketService {
         }
 
         return ticketArray.toString();
+    }
+
+    @Override
+    public String getTicketsJSONByUserSSO(String userSSO) {
+
+        List<Ticket> tickets = dao.getTicketsByUserSSO(userSSO);
+
+        JSONArray ticketArray = new JSONArray();
+
+        for (Ticket ticket:tickets) {
+
+            JSONObject ticketJSON = new JSONObject();
+
+            ticketJSON.put("ticketId",ticket.getId());
+            ticketJSON.put("trainNumber",ticket.getTrain().getNumber());
+            ticketJSON.put("destinationStation",ticket.getDestinationStation().getName());
+            ticketJSON.put("departureStation",ticket.getDepartureStation().getName());
+            ticketJSON.put("destinationTime",ticket.getDestinationTime().plusSeconds(3600*3).toString());
+            ticketJSON.put("departureTime",ticket.getDepartureTime().plusSeconds(3600*3).toString());
+
+            ticketArray.put(ticketJSON);
+
+        }
+
+        return ticketArray.toString();
+
     }
 }

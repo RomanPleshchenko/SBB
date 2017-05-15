@@ -18,4 +18,12 @@ public interface RouteService {
      * @return a list of all route
      */
     List<Route> findAll();
+
+    /**
+     *
+     * @return a JSON array of all route
+     */
+    String getRoutesJSON();
+
+    String getRoutesJSONByRouteId(int routeId);
 }

@@ -68,6 +68,11 @@ public interface ScheduleService {
      */
     public void composeFreeSites(int id);
 
-
+    /**
+     *
+     * @param routeId
+     * @return Editable or not route by id
+     */
+    public boolean routeIsEditable(int routeId);
 
 }

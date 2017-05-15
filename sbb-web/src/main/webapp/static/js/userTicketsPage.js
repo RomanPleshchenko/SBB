@@ -1,18 +1,14 @@
 $(document).ready(function() {
 
-        $('#toShow').click(
-            function () {
-                fillTicketTable();
-            }
-        );
+        fillUserTicketTable();
     }
 );
 
-function fillTicketTable() {
+function fillUserTicketTable() {
 
-    var trainId = $('#train').val();
+    var userSSO = $('#userSSO').val();
 
-    var json = "http://localhost:8080/getTicketsJSON?trainId=" + trainId;
+    var json = "http://localhost:8080/getTicketsJSONByUserSSO?userSSO=" + userSSO;
 
     $.getJSON(json, function(data){
 
@@ -27,13 +23,11 @@ function fillTicketTable() {
                     "<td>" + value.departureStation + "</td>" +
                     "<td>" + value.destinationTime.replace("T"," ").replace("Z"," ") + "</td>" +
                     "<td>" + value.departureTime.replace("T"," ").replace("Z"," ") + "</td>" +
-                    "<td>" + value.passenger + "</td>" +
                     "<tr>";
 
                 $('#ticketTable').append(htmlrow);
             });
         }
     );
-
 
 }

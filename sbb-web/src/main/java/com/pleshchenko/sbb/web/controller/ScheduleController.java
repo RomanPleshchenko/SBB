@@ -106,6 +106,15 @@ public class ScheduleController {
 
     }
 
+    @RequestMapping(value = "/routeIsEditable", method = RequestMethod.GET)
+    public @ResponseBody boolean routeIsEditable(@RequestParam("routeId") int routeId) throws JSONException {
+
+
+        boolean routeIsEditable = scheduleService.routeIsEditable(routeId);
+        return routeIsEditable;
+
+    }
+
 }
 
 

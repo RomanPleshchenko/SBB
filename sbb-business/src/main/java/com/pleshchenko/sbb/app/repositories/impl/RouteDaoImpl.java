@@ -19,4 +19,13 @@ public class RouteDaoImpl extends AbstractDao<Integer,Route> implements RouteDao
                 .getResultList();
         return routes;
     }
+
+    @Override
+    public Route findById(int id) {
+        Route route = (Route)getEntityManager()
+                .createQuery("SELECT r FROM Route  r WHERE r.id =:id ORDER BY r.name ASC")
+                .setParameter("id",id)
+                .getSingleResult();
+        return route;
+    }
 }

@@ -41,6 +41,11 @@ public class TicketController {
         return "ticketslist";
     }
 
+    @RequestMapping(value = "/myTickets",method = RequestMethod.GET)
+    public String goMyTicketsLis(){
+        return "usersTicketslist";
+    }
+
 
     @RequestMapping(value = { "/getFreeTicket" }, method = RequestMethod.GET)
     public @ResponseBody String getFreeTicket(@RequestParam("st1") int st1, @RequestParam("st2") int st2,
@@ -97,29 +102,22 @@ public class TicketController {
                            @RequestParam("siteId") int siteId,@RequestParam("userName") String userName,
                            @RequestParam("desTime") String desTime,@RequestParam("depTime") String depTime,  Model model) throws JSONException {
 
-
-        //qqqqqqqqqq
-//        1. сделать страницу со списком купленных билетов\
-//        2. сделать возможность отправки загрузки билета
-        model.addAttribute("st1",st1);
-        model.addAttribute("st2",st2);
-        model.addAttribute("dirId",dirId);
-        model.addAttribute("carId",carId);
-        model.addAttribute("siteId",siteId);
-        model.addAttribute("userName",userName);
-        //qqqqqqqqqq
-
-        ticketService.buyTicket(st1,st2,dirId,carId,siteId,userName,desTime,depTime);
-
-        return "ticketSucces";
+        return "usersTicketslist";
     }
 
 
 
-    @RequestMapping(value = "/getTicketsJSON", method = RequestMethod.GET)
-    public @ResponseBody String showData(@RequestParam("trainId") int trainId) throws JSONException {
+    @RequestMapping(value = "/getTicketsJSONByTrainId", method = RequestMethod.GET)
+    public @ResponseBody String getTicketsJSONByTrainId(@RequestParam("trainId") int trainId) throws JSONException {
 
-        return ticketService.getTicketsJSONById(trainId);
+        return ticketService.getTicketsJSONByTrainId(trainId);
+
+    }
+
+    @RequestMapping(value = "/getTicketsJSONByUserSSO", method = RequestMethod.GET)
+    public @ResponseBody String getTicketsJSONByUserSSO(@RequestParam("userSSO") String userSSO) throws JSONException {
+
+        return ticketService.getTicketsJSONByUserSSO(userSSO);
 
     }
 

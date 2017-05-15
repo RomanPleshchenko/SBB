@@ -119,7 +119,7 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
     }
 
     @Override
-    public List<Ticket> getTicketsByTrain(int trainId) {
+    public List<Ticket> getTicketsByTrainId(int trainId) {
 
         List<Ticket> tickets = getEntityManager()
                 .createQuery("SELECT t FROM Ticket t WHERE t.train.id = :trainId")
@@ -127,5 +127,14 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
                 .getResultList();
         return tickets;
 
+    }
+
+    @Override
+    public List<Ticket> getTicketsByUserSSO(String userSSO) {
+        List<Ticket> tickets = getEntityManager()
+                .createQuery("SELECT t FROM Ticket t WHERE t.user.ssoId = :userSSO")
+                .setParameter("userSSO",userSSO)
+                .getResultList();
+        return tickets;
     }
 }

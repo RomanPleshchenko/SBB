@@ -70,4 +70,9 @@ public class Segment {
         int result = id;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return departureStation.getName() + " - " + destinationStation.getName();
+    }
 }

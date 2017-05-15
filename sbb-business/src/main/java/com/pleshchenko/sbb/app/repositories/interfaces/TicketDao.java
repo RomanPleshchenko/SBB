@@ -17,5 +17,7 @@ public interface TicketDao {
 
     Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName,String desTime,String depTime);
 
-    public List<Ticket> getTicketsByTrain(int trainId);
+    public List<Ticket> getTicketsByTrainId(int trainId);
+
+    public List<Ticket> getTicketsByUserSSO(String userSSO);
 }

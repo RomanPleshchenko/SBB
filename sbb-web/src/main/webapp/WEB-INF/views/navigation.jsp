@@ -25,8 +25,10 @@
                 <li><a href="/schedule">schedule</a></li>
                 <li><a href="/userslist">users</a></li>
                 <li><a href="/tickets">tickets</a></li>
+                <li><a href="/routesPage">routes composition</a></li>
             </sec:authorize>
             <li><a href="/searchTicket">search ticket</a></li>
+            <li><a href="/myTickets">my tickets</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
