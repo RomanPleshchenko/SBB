@@ -13,5 +13,9 @@ import java.util.List;
 @Transactional
 public interface RouteService {
 
+    /**
+     *
+     * @return a list of all route
+     */
     List<Route> findAll();
 }

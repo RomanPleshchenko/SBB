@@ -13,13 +13,35 @@ import java.util.List;
 @Transactional
 public interface TrainService {
 
+    /**
+     *
+     * @return a list of all train
+     */
     List<Train> findAll() ;
 
+    /**
+     *
+     * @param number of train
+     */
     void deleteByNumber(String number);
 
+    /**
+     * save train in DB
+     * @param train
+     */
     void saveTrain(Train train);
 
+    /**
+     *
+     * @param number of train
+     * @return a train by number
+     */
     Train findByNumber(String number);
 
+    /**
+     *
+     * @param id of train
+     * @return a train by id
+     */
     Train findById(Integer id);
 }

@@ -14,16 +14,45 @@ import java.util.List;
 @Transactional
 public interface StationService {
 
+    /**
+     *
+     * @return a list of all station
+     */
     List<Station> findAll();
 
+    /**
+     *
+     * @param pageNumber
+     * @param searchParameter name or fragment of name station
+     * @param pageDisplayLength
+     * @return
+     */
     public List<Station> findAll(Integer pageNumber,String searchParameter,Integer pageDisplayLength);
 
+    /**
+     *
+     * @param station save station in DB
+     */
     void saveStation(Station station);
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     Station findByName(String name);
 
+    /**
+     *
+     * @param id of station
+     * @return station by id
+     */
     public Station findById(Integer id);
 
+    /**
+     *
+     * @return a cout of all stations
+     */
     Long getCount();
 
 }

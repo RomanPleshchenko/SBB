@@ -1,8 +1,8 @@
 package com.pleshchenko.sbb.app.repositories.interfaces;
 
 import com.pleshchenko.sbb.app.entity.schedule.Schedule;
-import com.pleshchenko.sbb.app.repositories.exceptions.NotEnoughParamsException;
-import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
+//import com.pleshchenko.sbb.app.repositories.exceptions.NotEnoughParamsException;
+//import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
 
 import java.sql.Date;
 import java.util.List;

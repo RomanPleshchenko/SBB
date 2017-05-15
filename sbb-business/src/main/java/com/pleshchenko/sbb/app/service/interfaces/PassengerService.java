@@ -13,7 +13,15 @@ import java.util.List;
 @Transactional
 public interface PassengerService {
 
+    /**
+     *
+     * @return a passenger by id
+     */
     Passenger findById(Integer id);
-    
+
+    /**
+     *
+     * @return a list of all passenger
+     */
     List<Passenger> findAll();
 }

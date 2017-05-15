@@ -7,11 +7,15 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <html>
 <head>
     <jsp:include page="header.jsp" flush="true" >
         <jsp:param name="title" value="Tickets"/>
     </jsp:include>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/forTicketPage.js"></script>
 </head>
 <body>
 
@@ -19,29 +23,37 @@
 
 <div class="container">
     <h2>List of tickets</h2>
-    <table class="table">
+
+    <form id = "searchForm" class="box login">
+
+        <label>Select train</label>
+
+        <select select id = "train" path="train">
+            <c:forEach items="${trains}" var="train">
+                <option value = ${train.id}> ${train.number}</option>
+            </c:forEach>
+        </select>
+
+        <br>
+
+        <footer>
+            <input id = "toShow" class="btn btn-success" value="to show" tabindex="4">
+        </footer>
+
+    </form>
+
+    <table id="ticketTable" class="table">
         <thead>
         <tr>
+            <th>tickets number</th>
             <th>trains number</th>
-            <%--<th>departure time</th>--%>
-            <%--<th>destination time</th>--%>
-            <%--<th>departure station</th>--%>
-            <%--<th>departure station</th>--%>
-            <%--<th>passenger</th>--%>
+            <th>destination station</th>
+            <th>departure station</th>
+            <th>destination time</th>
+            <th>departure time</th>
+            <th>passenger</th>
         </tr>
         </thead>
-        <tbody>
-        <c:forEach items="${tickets}" var="ticket">
-            <tr>
-                <td>${ticket}</td>
-                <%--<td>${ticket.schedule.departureTimeInFormat}</td>--%>
-                <%--<td>${ticket.schedule.destinationTimeInFormat}</td>--%>
-                <%--<td>${ticket.schedule.segment.departureStation.name}</td>--%>
-                <%--<td>${ticket.schedule.segment.destinationStation.name}</td>--%>
-                <%--<td>${ticket.passenger.name} ${ticket.passenger.surname}</td>--%>
-            </tr>
-        </c:forEach>
-        </tbody>
     </table>
 </div>
 

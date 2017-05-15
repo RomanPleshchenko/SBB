@@ -31,10 +31,4 @@ public class TripsSiteServiceImpl implements TripsSiteService {
         dao.save(tripsSite);
     }
 
-    @Override
-    public void delete(TripsSite tripsSite) {
-        dao.delete(tripsSite);
-    }
-
-
 }

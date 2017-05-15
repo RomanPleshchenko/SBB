@@ -48,24 +48,24 @@ function fillScheduleTable() {
 
     $.getJSON(json, function(data){
 
-        $("#scheduleTable td").remove();
+            $("#scheduleTable td").remove();
 
-        $.each(data, function (index, value) {
+            $.each(data, function (index, value) {
 
-            var htmlrow ="<tr>" +
-                // "<td> <input id = 'dirRadio'" + value.dirId + " type='radio' name='dirRadio' routeId = " + value.routeId + " departureTimeInFormat = " + value.departureTimeInFormat + " destinationTimeInFormat = " + value.destinationTimeInFormat + " value='" + value.dirId + "'> </td>" +
-                "<td> <input id = 'dirRadio'" + value.dirId + " type='radio' name='dirRadio' routeId = " + value.routeId + " departureTimeInFormat = " + value.departureTimeInFormat.replace(" ","_") + " destinationTimeInFormat = " + value.destinationTimeInFormat.replace(" ","_") + " value='" + value.dirId + "'> </td>" +
-                "<td>" + value.trainNumber + "</td>" +
-                "<td>" + value.routeNumber + " " + value.routeName + "</td>" +
-                "<td>" + value.departureTimeInFormat + "</td>" +
-                "<td>" + value.destinationTimeInFormat + "</td>" +
-                "<td>" + value.numberOfStation + "</td>" +
-                "<td>" + value.ticketsCount + "</td>" +
-                "<tr>";
+                var htmlrow ="<tr>" +
+                    "<td> <input id = 'dirRadio'" + value.dirId + " type='radio' name='dirRadio' routeId = " + value.routeId + " destinationTimeInFormat = " + value.destinationTimeInFormat.replace(" ","_") + " departureTimeInFormat = " + value.departureTimeInFormat.replace(" ","_") + " value='" + value.dirId + "'> </td>" +
+                    "<td>" + value.trainNumber + "</td>" +
+                    "<td>" + value.routeNumber + " " + value.routeName + "</td>" +
+                    "<td>" + value.departureTimeInFormat + "</td>" +
+                    "<td>" + value.destinationTimeInFormat + "</td>" +
+                    "<td>" + value.numberOfStation + "</td>" +
+                    "<td>" + value.ticketsCount + "</td>" +
+                    "<tr>";
 
-            $('#scheduleTable').append(htmlrow);
-        });
-    });
+                $('#scheduleTable').append(htmlrow);
+            });
+        }
+    );
 }
 
 function includeMaps(dirId,routeId) {
@@ -128,7 +128,7 @@ function markFreeSite(dirId,routeId,departureTimeInFormat,destinationTimeInForma
 
                     btnRef = "/buyTicket?st1=" + st1 + "&st2=" + st2 + "&dirId=" + dirId
                         + "&carId=" + carNumber + "&siteId="+ id.replace("s","") + "&userName=" + userName
-                        + "&depTime=" + departureTimeInFormat+ "&desTime=" + destinationTimeInFormat ;
+                        + "&desTime=" + destinationTimeInFormat + "&depTime=" + departureTimeInFormat ;
 
                     var btnBuy = "<a href=" + btnRef + " class='btn btn-success'>to buy ticket</a>";
 

@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.app.common;
+package com.pleshchenko.sbb.app.enums;
 
 /**
  * Created by WorkWorkWork on 09.10.2016.

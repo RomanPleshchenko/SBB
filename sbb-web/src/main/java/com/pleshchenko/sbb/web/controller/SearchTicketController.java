@@ -2,7 +2,6 @@ package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.app.entity.schedule.Station;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
-import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,8 +23,8 @@ public class SearchTicketController {
     public String goSearchTicket(ModelMap model){
 
         List<Station> stations  = stationService.findAll();
-        ParametersForSearch parametersForSearch = new ParametersForSearch();
-        model.addAttribute("parametersForSearch",parametersForSearch);
+//        ParametersForSearch parametersForSearch = new ParametersForSearch();
+//        model.addAttribute("parametersForSearch",parametersForSearch);
         model.addAttribute("stations", stationService.findAll());
         return "searchTicket";
     }

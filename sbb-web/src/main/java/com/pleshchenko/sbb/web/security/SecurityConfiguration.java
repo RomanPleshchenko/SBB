@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/trains","/schedule","/stations_old","/ticketSucces"
                         ,"/schedule","searchTicket","/searchTicket","/buyTicket").hasRole("USER")
                 .antMatchers("/tickets","/delete-user-*","/edit-user-*","/userslist","/newTrain","/newStation"
-                        ,"/newStation","/stations").hasRole("ADMIN")
+                        ,"/newStation","/stations","/getTicketsJSON*","/getScheduleJSON*").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password")
                 .and().csrf()

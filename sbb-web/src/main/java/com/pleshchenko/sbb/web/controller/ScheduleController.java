@@ -1,16 +1,11 @@
 package com.pleshchenko.sbb.web.controller;
 
-import com.pleshchenko.sbb.app.entity.ticket.Train;
 import com.pleshchenko.sbb.app.entity.schedule.Schedule;
-import com.pleshchenko.sbb.app.entity.schedule.Station;
 import com.pleshchenko.sbb.app.service.interfaces.PassengerService;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import com.pleshchenko.sbb.app.service.interfaces.TrainService;
-import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
 import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.sql.Date;
 import javax.transaction.NotSupportedException;
-import javax.validation.Valid;
 import java.util.List;
 
 
@@ -53,13 +47,13 @@ public class ScheduleController {
     @RequestMapping(value = "/addToSchedule",method = RequestMethod.GET)
     public String addToSchedule(ModelMap model){
 
-        fillModel(model);
+        //fillModel(model);
         return "addToSchedule";
     }
 
 
     @RequestMapping(value = "/addToSchedule",method = RequestMethod.POST)
-    public String addToSchedule(@Valid ParametersForSearch param, BindingResult result,
+    public String addToSchedule(BindingResult result,
                                       ModelMap model) throws NotSupportedException {
 //
 //        try {
@@ -72,18 +66,8 @@ public class ScheduleController {
 //            return "addToSchedule";
 //        }
 
-        throw new NotSupportedException("");
+        throw new NotSupportedException("!!!!!!!!!!!!");
 
-    }
-
-    private void fillModel(ModelMap model){
-
-        List<Station> stations  = stationService.findAll();
-        List<Train> trains = trainService.findAll();
-        ParametersForSearch parametersForSearch = new ParametersForSearch();
-        model.addAttribute("parametersForSearch",parametersForSearch);
-        model.addAttribute("stations", stationService.findAll());
-        model.addAttribute("trains",trains);
     }
 
     @RequestMapping(value = { "/make-active-dir-{id}" }, method = RequestMethod.GET)

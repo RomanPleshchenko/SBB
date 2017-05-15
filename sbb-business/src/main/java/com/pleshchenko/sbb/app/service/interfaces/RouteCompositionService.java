@@ -12,5 +12,9 @@ import java.util.List;
 @Service("routeCompositionService")
 @Transactional
 public interface RouteCompositionService {
+    /**
+     *
+     * @return a list of all route compositions
+     */
     List<RouteComposition> findAll();
 }

@@ -6,11 +6,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by РОМАН on 26.04.2017.
- */
 @Service("carPrototypeCompositionService")
 @Transactional
 public interface CarPrototypeCompositionService {
+
+    /**
+     *
+     * @return a list of all car prototype pomposition
+     */
     List<CarPrototypeComposition> findAll();
+
 }

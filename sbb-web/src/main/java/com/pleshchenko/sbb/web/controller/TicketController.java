@@ -1,13 +1,7 @@
 package com.pleshchenko.sbb.web.controller;
 
-import com.pleshchenko.sbb.app.entity.ticket.Passenger;
-import com.pleshchenko.sbb.app.entity.ticket.Ticket;
-import com.pleshchenko.sbb.app.entity.schedule.Schedule;
-import com.pleshchenko.sbb.app.entity.ticket.TripsSite;
-import com.pleshchenko.sbb.app.service.interfaces.PassengerService;
-import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
-import com.pleshchenko.sbb.app.service.interfaces.TicketService;
-import com.pleshchenko.sbb.app.service.other.SetId;
+
+import com.pleshchenko.sbb.app.service.interfaces.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,9 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,10 +31,13 @@ public class TicketController {
     @Autowired
     ScheduleService scheduleService;
 
+    @Autowired
+    TrainService trainService;
+
     @RequestMapping(value = "/tickets",method = RequestMethod.GET)
     public String goTicketsLis(ModelMap model){
-        List<Ticket> tickets = ticketService.findAll();
-        model.addAttribute("tickets",tickets);
+
+        model.addAttribute("trains", trainService.findAll());
         return "ticketslist";
     }
 
@@ -53,7 +47,7 @@ public class TicketController {
                                @RequestParam("dirId") int dirId,@RequestParam("routeId") int routeId, ModelMap model) {
 
 
-        //?????? перенести в сервисы
+        //qqqqqqqqq перенести в сервисы
         List freeSites = scheduleService.findFreeSite(st1,st2,dirId,routeId);
 
         Map<Integer,String> svgFileNameMap = new HashMap();
@@ -101,10 +95,12 @@ public class TicketController {
     public String showData(@RequestParam("st1") int st1, @RequestParam("st2") int st2,
                                          @RequestParam("dirId") int dirId,@RequestParam("carId") int carId,
                            @RequestParam("siteId") int siteId,@RequestParam("userName") String userName,
-                           @RequestParam("depTime") String depTime, @RequestParam("desTime") String desTime, Model model) throws JSONException {
+                           @RequestParam("desTime") String desTime,@RequestParam("depTime") String depTime,  Model model) throws JSONException {
 
 
         //qqqqqqqqqq
+//        1. сделать страницу со списком купленных билетов\
+//        2. сделать возможность отправки загрузки билета
         model.addAttribute("st1",st1);
         model.addAttribute("st2",st2);
         model.addAttribute("dirId",dirId);
@@ -113,11 +109,18 @@ public class TicketController {
         model.addAttribute("userName",userName);
         //qqqqqqqqqq
 
-        ticketService.buyTicket(st1,st2,dirId,carId,siteId,userName,depTime,desTime);
+        ticketService.buyTicket(st1,st2,dirId,carId,siteId,userName,desTime,depTime);
 
         return "ticketSucces";
     }
 
 
+
+    @RequestMapping(value = "/getTicketsJSON", method = RequestMethod.GET)
+    public @ResponseBody String showData(@RequestParam("trainId") int trainId) throws JSONException {
+
+        return ticketService.getTicketsJSONById(trainId);
+
+    }
 
 }

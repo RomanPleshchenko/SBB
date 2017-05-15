@@ -27,34 +27,35 @@
     <div class="container">
         <h2>Find a train</h2>
 
-        <form:form id = "searchForm" method="post" commandName="parametersForSearch" action="" class="box login">
-            <fieldset class="boxBody">
-                <td>${error} <br></td>
+        <form id = "searchForm" class="box login">
 
-                <label>Select station</label>
-                <form:select id = "station1" path="station1">
-                    <form:option value="NONE" label="-- Please choose a departure station --"/>
-                    <form:options items="${stations}" itemValue="id" itemLabel="name"/>
-                </form:select>
-                -
-                <form:select id = "station2" path="station2">
-                    <form:option value="NONE" label="-- Please choose a destination  station --"/>
-                    <form:options items="${stations}" itemValue="id" itemLabel="name"/>
-                </form:select>
+            <label>Select station</label>
 
-                <br>
+            <select select id = "station1" path="station1">
+                <c:forEach items="${stations}" var="station">
+                    <option value = ${station.id}> ${station.name}</option>
+                </c:forEach>
+            </select>
+            -
+            <select select id = "station2" path="station2">
+                <c:forEach items="${stations}" var="station">
+                    <option value = ${station.id}> ${station.name}</option>
+                </c:forEach>
+            </select>
 
-                <label><label>Select date</label></label>
+            <br>
 
-                <form:input id="data1" path="data1" type = "date" /> - <form:input id="data2" path="data2" type = "date"/>
+            <label><label>Select date</label></label>
 
-                <footer>
-                    <input id = "toFind" class="btn btn-success" value="to find" tabindex="4">
-                </footer>
+            <input id="data1" path="data1" type = "date" /> - <input id="data2" path="data2" type = "date"/>
 
-            </fieldset>
+            <footer>
+                <input id = "toFind" class="btn btn-success" value="to find" tabindex="4">
+            </footer>
 
-        </form:form>
+        </form>
+
+
 
         <table id="scheduleTable" class="table" cellspacing="0" width="100%">
             <thead>

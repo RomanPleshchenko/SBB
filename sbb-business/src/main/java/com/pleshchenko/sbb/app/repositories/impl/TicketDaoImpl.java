@@ -58,7 +58,7 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
     }
 
     @Override
-    public Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName,String depTime,String desTime){
+    public Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName,String desTime,String depTime){
 
         String nativeQuery = "SELECT \n" +
                 "    ts.id,\n" +
@@ -104,15 +104,28 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
         Ticket ticket = new Ticket();
 
         ticket.setUser(userService.findBySSO(userName));
-        ticket.setDepartureStation(stationService.findById(st1));
-        ticket.setDestinationStation(stationService.findById(st2));
+        ticket.setDestinationStation(stationService.findById(st1));
+        ticket.setDepartureStation(stationService.findById(st2));
         ticket.setTripsSites(new HashSet<>(tripsSites));
+        ticket.setTrain(tripsSites.get(0).getSchedule().getTrain());
 
-        ticket.setDepartureTime(Instant.parse(depTime.replace("_","T") + ".00Z").plusSeconds(-3600*3));
         ticket.setDestinationTime(Instant.parse(desTime.replace("_","T") + ".00Z").plusSeconds(-3600*3));
+        ticket.setDepartureTime(Instant.parse(depTime.replace("_","T") + ".00Z").plusSeconds(-3600*3));
+
 
         persist(ticket);
 
         return ticket;
+    }
+
+    @Override
+    public List<Ticket> getTicketsByTrain(int trainId) {
+
+        List<Ticket> tickets = getEntityManager()
+                .createQuery("SELECT t FROM Ticket t WHERE t.train.id = :trainId")
+                .setParameter("trainId",trainId)
+                .getResultList();
+        return tickets;
+
     }
 }

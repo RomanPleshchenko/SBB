@@ -12,5 +12,10 @@ import java.util.List;
 @Service("siteCarClassService")
 @Transactional
 public interface SiteCarClassService {
+
+    /**
+     *
+     * @return a list of all site car class
+     */
     List<SiteCarClass> findAll();
 }

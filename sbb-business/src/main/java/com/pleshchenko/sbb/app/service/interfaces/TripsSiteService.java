@@ -14,9 +14,17 @@ import java.util.List;
 @Transactional
 public interface TripsSiteService {
 
+    /**
+     *
+     * @param schedule
+     * @return a list of all schedule
+     */
     public List<TripsSite> findBySchedule(Schedule schedule);
 
+    /**
+     * save trip site in DB
+     * @param tripsSite
+     */
     void save(TripsSite tripsSite);
 
-    public void delete(TripsSite tripsSite);
 }

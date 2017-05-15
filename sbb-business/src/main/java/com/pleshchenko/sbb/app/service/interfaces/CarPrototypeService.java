@@ -12,5 +12,10 @@ import java.util.List;
 @Service("carPrototypeService")
 @Transactional
 public interface CarPrototypeService {
+
+    /**
+     *
+     * @return a list of all car prototype
+     */
     List<CarPrototype> findAll();
 }

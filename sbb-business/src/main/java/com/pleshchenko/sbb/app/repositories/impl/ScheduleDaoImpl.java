@@ -56,8 +56,8 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
                 "   dir.trainId, " +
                 "   dir.departureTime, " +
                 "   dir.destinationTime, " +
-                "   dir.departureTime + INTERVAL t1.depTime MINUTE departureTimeFromSt1, " +
-                "   dir.departureTime + INTERVAL t2.desTime MINUTE destinationTimeForSt2 " +
+                "   dir.departureTime + INTERVAL t1.depTime MINUTE destinationTimeForSt2, " +
+                "   dir.departureTime + INTERVAL t2.desTime MINUTE departureTimeFromSt1 " +
                 "FROM \n" +
                 "\tschedule dir      \n" +
                 "LEFT JOIN \n" +
@@ -102,8 +102,8 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
             dirJSON.put("trainNumber", dir.getTrain().getNumber());
             dirJSON.put("routeNumber", dir.getRoute().getNumber());
             dirJSON.put("routeName", dir.getRoute().getName());
-            dirJSON.put("departureTimeInFormat", ((Object[])el)[6].toString().replace(".0",""));
-            dirJSON.put("destinationTimeInFormat",((Object[])el)[7].toString().replace(".0",""));
+            dirJSON.put("destinationTimeInFormat",((Object[])el)[6].toString().replace(".0",""));
+            dirJSON.put("departureTimeInFormat", ((Object[])el)[7].toString().replace(".0",""));
             dirJSON.put("numberOfStation", dir.getRoute().getRouteCompositions().size());
             dirJSON.put("active", dir.isActive());
             dirJSON.put("ticketsCount", listFreeSite.size());

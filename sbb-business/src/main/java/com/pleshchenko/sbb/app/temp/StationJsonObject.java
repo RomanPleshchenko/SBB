@@ -1,7 +1,12 @@
 package com.pleshchenko.sbb.app.temp;
 
 import com.pleshchenko.sbb.app.entity.schedule.Station;
+import com.pleshchenko.sbb.app.service.interfaces.StationService;
+import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * class for ajax
+ */
 import java.util.List;
 
 public class StationJsonObject {
@@ -17,35 +22,36 @@ public class StationJsonObject {
     List<Station> aaData;
 
     public int getiTotalRecords() {
-	return iTotalRecords;
+
+        return iTotalRecords;
     }
 
     public void setiTotalRecords(int iTotalRecords) {
-	this.iTotalRecords = iTotalRecords;
+        this.iTotalRecords = iTotalRecords;
     }
 
     public int getiTotalDisplayRecords() {
-	return iTotalDisplayRecords;
+        return iTotalDisplayRecords;
     }
 
     public void setiTotalDisplayRecords(int iTotalDisplayRecords) {
-	this.iTotalDisplayRecords = iTotalDisplayRecords;
+        this.iTotalDisplayRecords = iTotalDisplayRecords;
     }
 
     public String getsEcho() {
-	return sEcho;
+        return sEcho;
     }
 
     public void setsEcho(String sEcho) {
-	this.sEcho = sEcho;
+        this.sEcho = sEcho;
     }
 
     public String getsColumns() {
-	return sColumns;
+        return sColumns;
     }
 
     public void setsColumns(String sColumns) {
-	this.sColumns = sColumns;
+        this.sColumns = sColumns;
     }
 
     public List<Station> getAaData() {
@@ -56,5 +62,5 @@ public class StationJsonObject {
         this.aaData = aaData;
     }
 
-    
+
 }

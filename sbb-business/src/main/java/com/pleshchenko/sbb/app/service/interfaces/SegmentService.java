@@ -15,5 +15,9 @@ import java.util.List;
 public interface SegmentService {
     Segment findByStation(Station departureStation, Station destinationStation, boolean createNew);
 
+    /**
+     *
+     * @return a list of ol segments
+     */
     List<Segment> findAll();
 }

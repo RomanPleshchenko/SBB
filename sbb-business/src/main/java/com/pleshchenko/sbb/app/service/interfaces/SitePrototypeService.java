@@ -13,5 +13,9 @@ import java.util.List;
 @Transactional
 public interface SitePrototypeService {
 
+    /**
+     *
+     * @return a list of all site prototype
+     */
     public List<SitePrototype> findAll();
 }

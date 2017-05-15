@@ -1,17 +1,12 @@
 package com.pleshchenko.sbb.app.entity.ticket;
 
 import com.pleshchenko.sbb.app.entity.authorization.User;
-import com.pleshchenko.sbb.app.entity.schedule.Schedule;
 import com.pleshchenko.sbb.app.entity.schedule.Station;
-import com.sun.istack.internal.Nullable;
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Created by РОМАН on 31.03.2017.
@@ -38,12 +33,18 @@ public class Ticket {
     private Station destinationStation;
 
     @Column(name = "departureTime")
-//    @NotNull
+    @NotNull
     private Instant departureTime;
 
     @Column(name = "destinationTime")
-//    @NotNull
+    @NotNull
     private Instant destinationTime;
+
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "trainId")
+    private Train train;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ticketComposition",
@@ -105,6 +106,14 @@ public class Ticket {
 
     public void setTripsSites(Set<TripsSite> tripsSites) {
         this.tripsSites = tripsSites;
+    }
+
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
     }
 
     @Override
