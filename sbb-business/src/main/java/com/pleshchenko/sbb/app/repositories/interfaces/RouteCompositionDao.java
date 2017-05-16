@@ -10,4 +10,7 @@ import java.util.List;
 public interface RouteCompositionDao {
 
     List<RouteComposition> findAll();
+
+    void deleteRouteComposition(RouteComposition routeComposition);
+
 }

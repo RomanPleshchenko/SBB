@@ -19,4 +19,11 @@ public class RouteCompositionDaoImpl extends AbstractDao<Integer,RouteCompositio
                 .getResultList();
         return routeCompositions;
     }
+
+    @Override
+    public void deleteRouteComposition(RouteComposition routeComposition) {
+        delete(routeComposition);
+    }
+
+
 }

@@ -25,4 +25,8 @@ public class RouteCompositionServiceImpl implements RouteCompositionService {
         List<RouteComposition> routeCompositions = dao.findAll();
         return routeCompositions;
     }
+
+    public void deleteRouteComposition(RouteComposition routeComposition){
+        dao.deleteRouteComposition(routeComposition);
+    }
 }

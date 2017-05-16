@@ -8,7 +8,7 @@ function fillUserTicketTable() {
 
     var userSSO = $('#userSSO').val();
 
-    var json = "http://localhost:8080/getTicketsJSONByUserSSO?userSSO=" + userSSO;
+    var json = "/getTicketsJSONByUserSSO?userSSO=" + userSSO;
 
     $.getJSON(json, function(data){
 

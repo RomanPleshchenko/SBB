@@ -17,4 +17,10 @@ public interface RouteCompositionService {
      * @return a list of all route compositions
      */
     List<RouteComposition> findAll();
+
+    /**
+     *
+     * @param routeComposition
+     */
+    void deleteRouteComposition(RouteComposition routeComposition);
 }

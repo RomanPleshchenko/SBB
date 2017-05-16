@@ -28,4 +28,9 @@ public class RouteDaoImpl extends AbstractDao<Integer,Route> implements RouteDao
                 .getSingleResult();
         return route;
     }
+
+    @Override
+    public void saveRoute(Route route) {
+        persist(route);
+    }
 }

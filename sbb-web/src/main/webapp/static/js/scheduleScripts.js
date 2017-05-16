@@ -44,7 +44,8 @@ function fillScheduleTable() {
         return;
     }
 
-    var json = "http://localhost:8080/getScheduleJSON?st1=" + st1 + "&st2=" + st2 + "&date1=" + date1 + "&date2=" + date2 + "";
+    // var json = "/getScheduleJSON?st1=" + st1 + "&st2=" + st2 + "&date1=" + date1 + "&date2=" + date2 + "";
+    var json = "/getScheduleJSON?st1=" + st1 + "&st2=" + st2 + "&date1=" + date1 + "&date2=" + date2 + "";
 
     $.getJSON(json, function(data){
 
@@ -79,7 +80,7 @@ function includeMaps(dirId,routeId) {
 
     $("#btns").append("<div id='choosed'></div> <div id='btnBuy'></div>");
 
-    var json = "http://localhost:8080/getFreeTicket?st1=" + st1 + "&st2=" + st2 + "&dirId=" + dirId + "&routeId=" + routeId + "";//qqqqqqqqq localhost
+    var json = "/getFreeTicket?st1=" + st1 + "&st2=" + st2 + "&dirId=" + dirId + "&routeId=" + routeId + "";//qqqqqqqqq localhost
     $.getJSON(json, function(data){
             freeTicketData = data;
 

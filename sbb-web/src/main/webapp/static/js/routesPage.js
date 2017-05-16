@@ -12,7 +12,7 @@ function fillRoutesTable() {
 
     var userSSO = $('#userSSO').val();
 
-    var json = "http://localhost:8080/getRoutesJSON";
+    var json = "/getRoutesJSON";
 
     //заполнение таблицы route
     $.getJSON(json, function(data){
@@ -37,9 +37,9 @@ function fillRoutesTable() {
 
 function fillRouteCompositionsTable(routeId) {
 
-    var json = "http://localhost:8080/getRoutesCompositionJSONByRouteId?routeId=" + routeId;
-    var StationsJson = "http://localhost:8080/getStationslistJSON";
-    var routeIsEditableJson = "http://localhost:8080/routeIsEditable?routeId=" + routeId;
+    var json = "/getRoutesCompositionJSONByRouteId?routeId=" + routeId;
+    var StationsJson = "/getStationslistJSON";
+    var routeIsEditableJson = "/routeIsEditable?routeId=" + routeId;
 
     $.getJSON(routeIsEditableJson, function(routeIsEditableJson){
 
@@ -55,7 +55,8 @@ function fillRouteCompositionsTable(routeId) {
             if(routeIsEditable){
                 $("#msg").append("<div id='attent'> <label>You can edit composition and click batton CONFIRM to save changes </label></div>");
 
-                $("#btns").append("<button id = 'addRow' class='btn btn-success'>add row</button> - ");
+
+                $("#btns").append("<button id = 'addRow' class='btn btn-success'>add row</button>");
                 $("#btns").append("<button id = 'confirm' class='btn btn-info'>confirm</button>");
 
                 //событие для добавления строки сразу с кнопкой удаления
@@ -75,10 +76,10 @@ function fillRouteCompositionsTable(routeId) {
                 $('body').off('click', '[id="confirm"]');
                 $('body').on('click', '[id="confirm"]', function() {
 
-                        //чтение всех данных таблицы композиции
-
+                        // чтение всех данных таблицы композиции
                         var table = $("#routeCompositionTable");
 
+                        var rows = "";
                         $('#routeCompositionTable tr').each(function() {
 
                                 var cId = $(this).attr("id");
@@ -92,16 +93,42 @@ function fillRouteCompositionsTable(routeId) {
                                         var stationId1 = $("#stationId1" + id).val();
                                         var stationId2 = $("#stationId2" + id).val();
 
-                                        alert("depDate " + depDate + "desDate " + desDate + "stationId1 " + stationId1 + "stationId2 " + stationId2);
-
-
+                                        rows += "{'st1':" + stationId1 + ",'st2':" + stationId2 + ",'t1':" + depDate + ",'t2':" + desDate + "},";
                                     }
                                 }
-
-
                             }
                         );
 
+                        //союираю JSON но с круглыми скобками чтобы отправить параметром гет запроса
+                        rows = rows.substring(0, rows.length - 1)
+                        var allJSON = "{'routeId':" + routeId + ",'arrayJSON':[" + rows + "]}";
+                        //
+
+                        var search = {};
+                        search["allJSON"] = allJSON;
+
+                        $.ajax({
+                            type : "POST",
+                            contentType : "application/json",
+                            url : "/sendRouteCompositionsJSON",
+                            data : JSON.stringify(search),
+                            dataType : 'json',
+                            timeout : 100000,
+                            success : function(data) {
+                                console.log("SUCCESS: ", data);
+                                alert("All changes confirmed");
+                            },
+                            error : function(e) {
+                                console.log("ERROR: ", e);
+                                alert("ERROR");
+                                console.log(JSON.stringify(e));
+                            },
+                            done : function(e) {
+                                alert("DONE");
+                                console.log("DONE");
+                            }
+
+                        });
                     }
                 );
 

@@ -12,7 +12,6 @@
     <modules>
         <module>sbb-web</module>
         <module>sbb-business</module>
-        <!--<module>service</module>-->
     </modules>
 
     <properties>
@@ -32,6 +31,7 @@
         <spring.security.version>3.2.3.RELEASE</spring.security.version>
         <google.gson.version>2.2.2</google.gson.version>
         <org.gson.version>20160810</org.gson.version>
+        <jackson.version>2.6.3</jackson.version>
     </properties>
 
     <build>

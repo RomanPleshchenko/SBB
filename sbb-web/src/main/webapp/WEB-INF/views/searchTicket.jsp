@@ -63,8 +63,8 @@
                 <th> </th>
                 <th>train</th>
                 <th>route</th>
-                <th>departure time</th>
                 <th>destination time</th>
+                <th>departure time</th>
                 <th>number of station</th>
                 <th>tickets count</th>
             </tr>

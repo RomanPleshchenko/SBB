@@ -42,5 +42,4 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     protected void delete(T entity) {
         entityManager.remove(entity);
     }
-
 }

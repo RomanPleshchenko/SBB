@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 public class RouteComposition {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -18,10 +19,11 @@ public class RouteComposition {
     private Route route;
 
     @ManyToOne
-    @JoinColumn(name = "segmentId")
+    @JoinColumn(name = "segmentId",nullable=false)
     private Segment segment;
 
     @Column(name = "departureTime")
+    @NotNull
     private Integer departureTime;
 
     @Column(name = "destinationTime")
@@ -56,7 +58,7 @@ public class RouteComposition {
         return departureTime;
     }
 
-    public void setDepartureTime(Integer Integer) {
+    public void setDepartureTime(Integer departureTime) {
         this.departureTime = departureTime;
     }
 
@@ -78,8 +80,9 @@ public class RouteComposition {
         return id.equals(that.id);
     }
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
+//qqqqqqqqqqqqqqq не понятно что делать с хешкодом
+    //    @Override
+//    public int hashCode() {
+//        return id.hashCode();
+//    }
 }

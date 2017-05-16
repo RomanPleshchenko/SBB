@@ -38,16 +38,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/","/login").permitAll()
-                .antMatchers("/trains","/schedule","/stations_old","/ticketSucces","/myTickets","/routesPage"
-                        ,"/schedule","searchTicket","/searchTicket","/buyTicket").hasRole("USER")
+                .antMatchers("/trains","/schedule","/ticketSucces","/myTickets","/routesPage"
+                        ,"/schedule","/searchTicket","/buyTicket","/sendRouteCompositionsJSON").hasRole("USER")
                 .antMatchers("/tickets","/delete-user-*","/edit-user-*","/userslist","/newTrain","/newStation"
                         ,"/newStation","/stations","/getTicketsJSON*","/getScheduleJSON*").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password")
-                .and().csrf()
                 .and().rememberMe().tokenValiditySeconds(86400)
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied")
                 .and().headers().frameOptions().disable();//for svg
+
+        http.authorizeRequests().and().csrf().disable();
     }
 
 

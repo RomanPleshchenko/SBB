@@ -69,7 +69,13 @@
 
 
 <div class="well well-sm">
+
     <center>
+
+        <input type="hidden" id="csrfToken" value="${_csrf.token}"/>
+        <input type="hidden" id="csrfHeader" value="${_csrf.headerName}"/>
+
+
         <div id = "btns" class="well well-sm">
         </div>
     </center>

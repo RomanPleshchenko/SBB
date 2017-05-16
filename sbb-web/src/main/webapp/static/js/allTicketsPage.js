@@ -12,7 +12,7 @@ function fillTicketTable() {
 
     var trainId = $('#train').val();
 
-    var json = "http://localhost:8080/getTicketsJSONByTrainId?trainId=" + trainId;
+    var json = "/getTicketsJSONByTrainId?trainId=" + trainId;
 
     $.getJSON(json, function(data){
 

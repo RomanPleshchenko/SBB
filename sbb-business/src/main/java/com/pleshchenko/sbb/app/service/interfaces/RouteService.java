@@ -26,4 +26,6 @@ public interface RouteService {
     String getRoutesJSON();
 
     String getRoutesJSONByRouteId(int routeId);
+
+    void updateRouteFromJSON(String routeJSON);
 }

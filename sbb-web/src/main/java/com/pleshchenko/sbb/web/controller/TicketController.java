@@ -1,6 +1,7 @@
 package com.pleshchenko.sbb.web.controller;
 
 
+import com.pleshchenko.sbb.app.entity.ticket.Ticket;
 import com.pleshchenko.sbb.app.service.interfaces.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -102,6 +103,7 @@ public class TicketController {
                            @RequestParam("siteId") int siteId,@RequestParam("userName") String userName,
                            @RequestParam("desTime") String desTime,@RequestParam("depTime") String depTime,  Model model) throws JSONException {
 
+        Ticket ticket = ticketService.buyTicket(st1,st2,dirId,carId,siteId,userName,desTime,depTime);
         return "usersTicketslist";
     }
 
