@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    //,"/getStationslistJSON" for user
 
         http.authorizeRequests()
-                .antMatchers("/","/login").permitAll()
+                .antMatchers("/","/login","/getScheduleJSONBy*").permitAll()
                 .antMatchers("/trains","/schedule","/ticketSucces","/myTickets","/routesPage"
                         ,"/schedule","/searchTicket","/buyTicket","/sendRouteCompositionsJSON").hasRole("USER")
                 .antMatchers("/tickets","/delete-user-*","/edit-user-*","/userslist","/newTrain","/newStation"
@@ -47,8 +47,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().rememberMe().tokenValiditySeconds(86400)
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied")
                 .and().headers().frameOptions().disable();//for svg
-
-        http.authorizeRequests().and().csrf().disable();
     }
 
 

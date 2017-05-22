@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
  * Created by РОМАН on 26.04.2017.
  */
 @Entity(name = "RouteComposition")
-public class RouteComposition {
+public class RouteComposition implements Comparable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -80,7 +80,13 @@ public class RouteComposition {
         return id.equals(that.id);
     }
 
-//qqqqqqqqqqqqqqq не понятно что делать с хешкодом
+    @Override
+    public int compareTo(Object o) {
+        return (getDepartureTime().compareTo(((RouteComposition)o).getDepartureTime()));
+    }
+
+
+    //qqqqqqqqqqqqqqq не понятно что делать с хешкодом
     //    @Override
 //    public int hashCode() {
 //        return id.hashCode();

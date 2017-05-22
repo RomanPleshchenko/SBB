@@ -1,13 +1,11 @@
 package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.app.service.interfaces.RouteService;
-import com.pleshchenko.sbb.web.AjaxResponseBody;
 import com.pleshchenko.sbb.web.SearchCriteria;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -44,17 +42,13 @@ public class RouteController {
     }
 
     @RequestMapping(value = "/sendRouteCompositionsJSON",method = RequestMethod.POST)
-    public AjaxResponseBody getSearchResultViaAjax(@RequestBody SearchCriteria search) {
-
+    public ResponseEntity<?> getSearchResultViaAjax(@RequestBody SearchCriteria search) {
 
         String jsonString = search.getAllJSON();
+
         routeService.updateRouteFromJSON(jsonString);
 
-        AjaxResponseBody result = new AjaxResponseBody();
-        result.setMsg("ok");
-        result.setCode("204");
-
-        return null;
+        return ResponseEntity.ok("OK");
 
     }
 

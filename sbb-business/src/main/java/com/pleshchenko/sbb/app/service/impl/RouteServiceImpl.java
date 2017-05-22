@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by РОМАН on 26.04.2017.
@@ -71,9 +72,11 @@ public class RouteServiceImpl implements RouteService {
 
         Set<RouteComposition> routeCompositions = route.getRouteCompositions();
 
+        TreeSet<RouteComposition> routeCompositionsTreeSet = new TreeSet<>(routeCompositions);
+
         JSONArray routeArray = new JSONArray();
 
-        for (RouteComposition rc:routeCompositions) {
+        for (RouteComposition rc:routeCompositionsTreeSet) {
 
             JSONObject ticketJSON = new JSONObject();
             ticketJSON.put("segmentId",rc.getSegment().getId());

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by РОМАН on 26.04.2017.
@@ -52,6 +53,9 @@ public class Route {
     }
 
     public Set<RouteComposition> getRouteCompositions() {
+
+
+
         return routeCompositions;
     }
 

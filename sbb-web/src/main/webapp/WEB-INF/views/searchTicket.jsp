@@ -56,15 +56,14 @@
         </form>
 
 
-
         <table id="scheduleTable" class="table" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th> </th>
                 <th>train</th>
                 <th>route</th>
-                <th>destination time</th>
                 <th>departure time</th>
+                <th>destination time</th>
                 <th>number of station</th>
                 <th>tickets count</th>
             </tr>

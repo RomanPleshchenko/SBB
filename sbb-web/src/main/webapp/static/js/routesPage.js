@@ -1,6 +1,5 @@
 var selectOptions = "";
 var lastRowId = 0;
-routeIsEditable = false;
 $(document).ready(function() {
 
         fillRoutesTable();
@@ -40,6 +39,8 @@ function fillRouteCompositionsTable(routeId) {
     var json = "/getRoutesCompositionJSONByRouteId?routeId=" + routeId;
     var StationsJson = "/getStationslistJSON";
     var routeIsEditableJson = "/routeIsEditable?routeId=" + routeId;
+
+    routeIsEditable = false;
 
     $.getJSON(routeIsEditableJson, function(routeIsEditableJson){
 
@@ -107,26 +108,31 @@ function fillRouteCompositionsTable(routeId) {
                         var search = {};
                         search["allJSON"] = allJSON;
 
+                        var headerName = $("#headerName").val();
+                        var csrfToken = $("#csrfToken").val();
+
                         $.ajax({
                             type : "POST",
+
+                            beforeSend: function(xhr){
+                                xhr.setRequestHeader(headerName, csrfToken);
+                            },
+
                             contentType : "application/json",
                             url : "/sendRouteCompositionsJSON",
                             data : JSON.stringify(search),
-                            dataType : 'json',
-                            timeout : 100000,
                             success : function(data) {
-                                console.log("SUCCESS: ", data);
                                 alert("All changes confirmed");
-                            },
-                            error : function(e) {
-                                console.log("ERROR: ", e);
-                                alert("ERROR");
-                                console.log(JSON.stringify(e));
-                            },
-                            done : function(e) {
-                                alert("DONE");
-                                console.log("DONE");
                             }
+                            ,
+                            error : function(error) {
+                                console.log("ERROR: ", error);
+                                console.log('request',qXHR);
+                                console.log('status text', textStatus);
+                                console.log(JSON.stringify(error));
+                                alert(error);
+                            }
+
 
                         });
                     }

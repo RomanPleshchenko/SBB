@@ -5,6 +5,7 @@ import com.pleshchenko.sbb.app.service.interfaces.PassengerService;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import com.pleshchenko.sbb.app.service.interfaces.TrainService;
 import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
+import com.pleshchenko.sbb.web.messaging.MessageSender;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,10 @@ public class ScheduleController {
 
     @Autowired
     StationService stationService;
+
+
+    @Autowired
+    MessageSender messageSender;
 
     @RequestMapping(value = "/schedule",method = RequestMethod.GET)
     public String getSchedule(ModelMap model){
@@ -73,6 +78,8 @@ public class ScheduleController {
     @RequestMapping(value = { "/make-active-dir-{id}" }, method = RequestMethod.GET)
     public String makeActive(@PathVariable int id, ModelMap model) {
 
+        messageSender.sendMessage("update" + id);
+
         scheduleService.makeActive(id);
         return RequestType.REDIRECT + "schedule";
 
@@ -80,6 +87,8 @@ public class ScheduleController {
 
     @RequestMapping(value = { "/make-not-active-dir-{id}" }, method = RequestMethod.GET)
     public String makeNotActive(@PathVariable int id, ModelMap model) {
+
+        messageSender.sendMessage("remove" + id);
 
         scheduleService.makeNotActive(id);
         return RequestType.REDIRECT + "schedule";
@@ -112,6 +121,23 @@ public class ScheduleController {
 
         boolean routeIsEditable = scheduleService.routeIsEditable(routeId);
         return routeIsEditable;
+
+    }
+
+
+    @RequestMapping(value = "/getScheduleJSONByStationsName", method = RequestMethod.GET)
+    public @ResponseBody String getScheduleJSONByStationsName(@RequestParam("stationsName") String stationsName) throws JSONException {
+
+        String scheduleJSON = scheduleService.getScheduleJSONByStationsName(stationsName);
+        return scheduleJSON;
+
+    }
+
+    @RequestMapping(value = "/getScheduleJSONByStationsNameAndID", method = RequestMethod.GET)
+    public @ResponseBody String getScheduleJSONByID(@RequestParam("id") int id,@RequestParam("stationsName") String stationsName) throws JSONException {
+
+        String scheduleJSON = scheduleService.getScheduleJSONByStationsNameAndID(id,stationsName);
+        return scheduleJSON;
 
     }
 

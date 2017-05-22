@@ -21,6 +21,6 @@
 
 <center><img src= "/static/images/home.png"></center>
 
-<jsp:include page="footer.jsp "/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

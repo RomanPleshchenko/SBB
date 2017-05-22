@@ -33,8 +33,8 @@
             <th>trains number</th>
             <th>destination station</th>
             <th>departure station</th>
-            <th>destination time</th>
             <th>departure time</th>
+            <th>destination time</th>
         </tr>
         </thead>
     </table>

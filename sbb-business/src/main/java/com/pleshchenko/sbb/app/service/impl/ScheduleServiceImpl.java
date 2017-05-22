@@ -1,5 +1,8 @@
 package com.pleshchenko.sbb.app.service.impl;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.pleshchenko.sbb.app.dto.ScheduleByStationDTO;
 import com.pleshchenko.sbb.app.entity.schedule.RouteComposition;
 import com.pleshchenko.sbb.app.entity.schedule.Schedule;
 import com.pleshchenko.sbb.app.entity.ticket.Car;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -58,6 +62,43 @@ public class ScheduleServiceImpl implements ScheduleService {
         List<Schedule> schedule = dao.findByStation(stationName);
         return schedule;
     }
+
+    @Override
+    public String getScheduleJSONByStationsName(String stationsName) {
+
+        List<Schedule> schedules = findByStation(stationsName);
+        List<ScheduleByStationDTO> scheduleByStationDTOs = new ArrayList<>();
+
+        for (Schedule schedule:schedules) {
+
+            ScheduleByStationDTO scheduleByStationDTO = new ScheduleByStationDTO(schedule,stationsName);
+            scheduleByStationDTOs.add(scheduleByStationDTO);
+
+        }
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(scheduleByStationDTOs);
+
+        return json;
+    }
+
+    @Override
+    public String getScheduleJSONByStationsNameAndID(int id,String stationsName) {
+
+        Schedule schedule = findById(id);
+
+
+        ScheduleByStationDTO scheduleByStationDTO = new ScheduleByStationDTO(schedule,stationsName);
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        String json = gson.toJson(scheduleByStationDTO);
+
+
+        return json;
+    }
+
+
 
     @Override
     public void makeActive(int id) {

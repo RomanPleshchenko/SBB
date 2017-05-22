@@ -58,7 +58,7 @@ function fillScheduleTable() {
                     "<td>" + value.trainNumber + "</td>" +
                     "<td>" + value.routeNumber + " " + value.routeName + "</td>" +
                     "<td>" + value.departureTimeInFormat + "</td>" +
-                    "<td>" + value.destinationTimeInFormat + "</td>" +
+                    "<td>" + value.destinationTimeInFormat+ "</td>" +
                     "<td>" + value.numberOfStation + "</td>" +
                     "<td>" + value.ticketsCount + "</td>" +
                     "<tr>";

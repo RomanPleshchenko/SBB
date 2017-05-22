@@ -51,6 +51,20 @@ public interface ScheduleService {
     List<Schedule> findByStation(String stationName);
 
     /**
+     *
+     * @param stationsName
+     * @return a schedules list in JSON by station name
+     */
+    public String getScheduleJSONByStationsName(String stationsName);
+
+    /**
+     *
+     * @param id
+     * @return a schedules in JSON by id and by station name
+     */
+    public String getScheduleJSONByStationsNameAndID(int id,String stationsName);
+
+    /**
      * make schedule active and visible for searh ticket
      * @param id id of schedule
      */

@@ -14,7 +14,7 @@
     <jsp:include page="header.jsp" flush="true" >
         <jsp:param name="title" value="routes"/>
     </jsp:include>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/routesPage.js"></script>
 </head>
 <body>
@@ -57,10 +57,10 @@
     <table id="routeCompositionTable" class="table">
         <thead>
         <tr>
-            <th>departure station</th>
             <th>destination station</th>
-            <th>departureTime</th>
+            <th>departure station</th>
             <th>destinationTime</th>
+            <th>departureTime</th>
         </tr>
         </thead>
     </table>
@@ -73,8 +73,7 @@
     <center>
 
         <input type="hidden" id="csrfToken" value="${_csrf.token}"/>
-        <input type="hidden" id="csrfHeader" value="${_csrf.headerName}"/>
-
+        <input type="hidden" id="headerName" value="${_csrf.headerName}"/>
 
         <div id = "btns" class="well well-sm">
         </div>

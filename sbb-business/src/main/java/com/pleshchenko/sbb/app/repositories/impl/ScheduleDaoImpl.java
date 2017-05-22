@@ -221,8 +221,13 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
     public List<Schedule> findByStation(String stationName) {
 
         List<Schedule> schedule = getEntityManager()
-                .createQuery("SELECT s FROM Schedule s WHERE s.segment.departureStation.name LIKE '" + stationName + "'")
+                .createQuery("SELECT s FROM Schedule s WHERE s.active = true AND s.route IN " +
+                        "(SELECT rc.route FROM RouteComposition rc WHERE " +
+                        "rc.segment.departureStation.name LIKE:stationName OR rc.segment.destinationStation.name LIKE:stationName)")
+                .setParameter("stationName",stationName)
                 .getResultList();
+
+
         return schedule;
     }
 
