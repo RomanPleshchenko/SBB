@@ -35,4 +35,14 @@ public class CarServiceImpl implements CarService {
         Car car = dao.findById(carId);
         return car;
     }
+
+    @Override
+    public void deleteById(int id) {
+        dao.deleteById(id);
+    }
+
+    @Override
+    public void save(Car car) {
+        dao.save(car);
+    }
 }

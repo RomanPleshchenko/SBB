@@ -18,4 +18,11 @@ public interface CarPrototypeService {
      * @return a list of all car prototype
      */
     List<CarPrototype> findAll();
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    CarPrototype findByCarClassId(int id);
 }

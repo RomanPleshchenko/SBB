@@ -23,4 +23,16 @@ public interface CarService {
      * @return
      */
     Car findById(int carId);
+
+    /**
+     * deleted car by id
+     * @param id
+     */
+    void deleteById(int id);
+
+    /**
+     *
+     * @param car
+     */
+    void save(Car car);
 }

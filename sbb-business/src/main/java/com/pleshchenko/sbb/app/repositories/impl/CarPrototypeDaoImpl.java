@@ -19,4 +19,22 @@ public class CarPrototypeDaoImpl extends AbstractDao<Integer,CarPrototype> imple
                 .getResultList();
         return carPrototypes;
     }
+
+    @Override
+    public CarPrototype findByCarClassId(int id) {
+        List<CarPrototype> carPrototypes = getEntityManager()
+                .createQuery("SELECT c FROM CarPrototype c WHERE c.siteCarClass.id = :id")
+                .setParameter("id",id)
+                .getResultList();
+
+        if (carPrototypes.isEmpty()){
+            return null;
+        }else {
+            return carPrototypes.get(0);
+        }
+
+
+    }
+
+
 }

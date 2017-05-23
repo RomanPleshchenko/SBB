@@ -28,6 +28,15 @@ public class CarDaoImpl  extends AbstractDao<Integer,Car> implements CarDao {
                 .setParameter("carId",carId)
                 .getSingleResult();
         return car;
+    }
 
+    @Override
+    public void deleteById(int id){
+        delete(findById(id));
+    }
+
+    @Override
+    public void save(Car car){
+        persist(car);
     }
 }

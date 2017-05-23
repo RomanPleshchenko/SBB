@@ -10,4 +10,6 @@ import java.util.List;
 public interface CarPrototypeDao {
 
     List<CarPrototype> findAll();
+
+    CarPrototype findByCarClassId(int id);
 }

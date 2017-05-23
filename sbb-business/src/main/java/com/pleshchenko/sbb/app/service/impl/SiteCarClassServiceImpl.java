@@ -25,4 +25,10 @@ public class SiteCarClassServiceImpl implements SiteCarClassService {
         return siteCarClasses;
 
     }
+
+    @Override
+    public SiteCarClass findById(int id) {
+        SiteCarClass siteCarClass =  dao.findById(id);
+        return siteCarClass;
+    }
 }

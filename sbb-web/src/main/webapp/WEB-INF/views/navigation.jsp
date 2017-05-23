@@ -29,6 +29,7 @@
             </sec:authorize>
             <li><a href="/searchTicket">search ticket</a></li>
             <li><a href="/myTickets">my tickets</a></li>
+            <li><a href="/cars">cars</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

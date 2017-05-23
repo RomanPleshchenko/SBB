@@ -12,4 +12,8 @@ public interface CarDao {
     List<Car> findAll();
 
     Car findById(int carId);
+
+    void deleteById(int id);
+
+    void save(Car car);
 }

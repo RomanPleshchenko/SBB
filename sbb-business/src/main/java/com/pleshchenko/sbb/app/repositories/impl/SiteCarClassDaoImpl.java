@@ -20,4 +20,18 @@ public class SiteCarClassDaoImpl extends AbstractDao<Integer,SiteCarClass> imple
         return siteCarClasses;
 
     }
+
+    @Override
+    public SiteCarClass findById(int id) {
+        List<SiteCarClass> resultList = getEntityManager()
+                .createQuery("SELECT s FROM SiteCarClass s WHERE s.id = :id")
+                .setParameter("id",id)
+                .getResultList();
+
+        if (resultList.isEmpty()){
+            return null;
+        }else {
+            return resultList.get(0);
+        }
+    }
 }

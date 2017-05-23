@@ -10,4 +10,6 @@ import java.util.List;
 public interface SiteCarClassDao {
 
     List<SiteCarClass> findAll();
+
+    SiteCarClass findById(int id);
 }

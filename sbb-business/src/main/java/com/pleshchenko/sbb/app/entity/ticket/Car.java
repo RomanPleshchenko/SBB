@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Car {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -19,6 +20,14 @@ public class Car {
 
     @Column(name = "number")
     private int number;
+
+    public Car() {
+    }
+
+    public Car(CarPrototype carPrototype, int number) {
+        this.carPrototype = carPrototype;
+        this.number = number;
+    }
 
     public int getId() {
         return id;

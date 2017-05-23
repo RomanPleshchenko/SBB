@@ -17,7 +17,10 @@ public class CarsListToArray {
         for (Car car:cars){
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("car",car.toString());
+            jsonObject.put("number",car.getNumber());
             jsonObject.put("carId",car.getId());
+            jsonObject.put("carsClass",car.getCarPrototype().getSiteCarClass().getName());
+            jsonObject.put("capacity",car.getCarPrototype().getSitePrototypes().size());
             jsonArray.put(jsonObject);
         }
 

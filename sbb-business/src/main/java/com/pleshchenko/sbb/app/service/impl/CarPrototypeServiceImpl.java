@@ -23,4 +23,10 @@ public class CarPrototypeServiceImpl implements CarPrototypeService {
         List<CarPrototype> carPrototypes = dao.findAll();
         return carPrototypes;
     }
+
+    @Override
+    public CarPrototype findByCarClassId(int id) {
+        CarPrototype carPrototype = dao.findByCarClassId(id);
+        return carPrototype;
+    }
 }

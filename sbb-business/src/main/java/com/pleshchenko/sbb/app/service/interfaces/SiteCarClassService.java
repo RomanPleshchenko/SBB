@@ -18,4 +18,11 @@ public interface SiteCarClassService {
      * @return a list of all site car class
      */
     List<SiteCarClass> findAll();
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    SiteCarClass findById(int id);
 }

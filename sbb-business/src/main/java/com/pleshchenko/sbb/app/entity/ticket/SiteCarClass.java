@@ -5,12 +5,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * Created by РОМАН on 26.04.2017.
  */
-@Entity(name = "SiteCarClass")
+@Entity
+@Table(name = "SiteCarClass")
 public class SiteCarClass {
 
     @Id

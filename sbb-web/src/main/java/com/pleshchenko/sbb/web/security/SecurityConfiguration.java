@@ -34,17 +34,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
 
-	    //,"/getStationslistJSON" for user
-		///getAllCarsJSON
-//		getTrainsCompositionJSONByTrainId
-//		newRoute
-
         http.authorizeRequests()
                 .antMatchers("/","/login","/getScheduleJSONBy*").permitAll()
                 .antMatchers("/trains","/schedule","/ticketSucces","/myTickets","/routesPage"
-                        ,"/schedule","/searchTicket","/buyTicket","/sendRouteCompositionsJSON").hasRole("USER")
+                        ,"/schedule","/searchTicket","/buyTicket","/sendRouteCompositionsJSON","/getStationslistJSON").hasRole("USER")
                 .antMatchers("/tickets","/delete-user-*","/edit-user-*","/userslist","/newTrain","/newStation"
-                        ,"/newStation","/stations","/getTicketsJSON*","/getScheduleJSON*").hasRole("ADMIN")
+                        ,"/newStation","/stations","/getTicketsJSON*","/getScheduleJSON*"
+						,"/cars","/deleteCarById","/newRoute","/getTrainsCompositionJSONByTrainId"
+						,"/getAllCarsJSON").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password")
                 .and().rememberMe().tokenValiditySeconds(86400)
