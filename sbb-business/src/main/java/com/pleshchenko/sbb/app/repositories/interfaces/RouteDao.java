@@ -15,4 +15,5 @@ public interface RouteDao {
 
     void saveRoute(Route route);
 
+    Route findByNumber(String routesNumber);
 }

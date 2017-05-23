@@ -25,7 +25,29 @@ public interface RouteService {
      */
     String getRoutesJSON();
 
+    /**
+     *
+     * @param routeId
+     * @return
+     */
     String getRoutesJSONByRouteId(int routeId);
 
+    /**
+     *
+     * @param routeJSON
+     */
     void updateRouteFromJSON(String routeJSON);
+
+    /**
+     *
+     * @param routesNumber
+     * @return
+     */
+    Route findByNumber(String routesNumber);
+
+    /**
+     *
+     * @param route
+     */
+    void save(Route route);
 }

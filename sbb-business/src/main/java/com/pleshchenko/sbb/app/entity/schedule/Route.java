@@ -14,6 +14,7 @@ import java.util.TreeSet;
 public class Route {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -27,6 +28,14 @@ public class Route {
 
     @OneToMany(mappedBy = "route",cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private Set<RouteComposition> routeCompositions;
+
+    public Route() {
+    }
+
+    public Route(String number, String name) {
+        this.number = number;
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -54,8 +63,6 @@ public class Route {
 
     public Set<RouteComposition> getRouteCompositions() {
 
-
-
         return routeCompositions;
     }
 
@@ -75,6 +82,6 @@ public class Route {
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id != null ? id.hashCode() : 0;
     }
 }

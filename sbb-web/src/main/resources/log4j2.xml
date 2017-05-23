@@ -19,7 +19,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name= "com.pleshchenko.sbb.web.controller.TrainsController" level="error" additivity="true">
+        <Logger name= "com.pleshchenko.sbb.web.controller.TrainController" level="error" additivity="true">
             <!--<AppenderRef ref="Console"/>-->
             <AppenderRef ref="fileLogger"/>
         </Logger>

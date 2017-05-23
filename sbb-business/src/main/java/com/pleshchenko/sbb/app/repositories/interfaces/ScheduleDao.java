@@ -26,4 +26,5 @@ public interface ScheduleDao {
 
     void save(Schedule dir);
 
+    List<Schedule> findByTrainId(int trainId);
 }

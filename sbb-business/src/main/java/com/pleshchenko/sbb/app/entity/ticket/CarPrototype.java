@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "CarPrototype")
 public class CarPrototype {
 
-    //????? не забыть про новое поле svgFileName в таблице бд
+    //qqqqqqqqqqqqqqq не забыть про новое поле svgFileName в таблице бд
 
 
     @Id

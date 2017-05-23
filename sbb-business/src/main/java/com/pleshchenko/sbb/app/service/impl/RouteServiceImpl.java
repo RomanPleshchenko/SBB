@@ -104,10 +104,10 @@ public class RouteServiceImpl implements RouteService {
 
         Route route = dao.findById(routeId);
 
-
         for (RouteComposition rc:route.getRouteCompositions()) {
             routeCompositionService.deleteRouteComposition(rc);
         }
+
         route.getRouteCompositions().clear();
 
         for (Object obj:jsonArray) {
@@ -131,6 +131,7 @@ public class RouteServiceImpl implements RouteService {
             routeComposition.setDepartureTime(t1);
             routeComposition.setDestinationTime(t2);
 
+
             routeComposition.setRoute(route);
             route.getRouteCompositions().add(routeComposition);
         }
@@ -138,5 +139,16 @@ public class RouteServiceImpl implements RouteService {
         //пытаемся сохранить в бд
         dao.saveRoute(route);
 
+    }
+
+    @Override
+    public Route findByNumber(String routesNumber) {
+        Route route = dao.findByNumber(routesNumber);
+        return route;
+    }
+
+    @Override
+    public void save(Route route) {
+        dao.saveRoute(route);
     }
 }

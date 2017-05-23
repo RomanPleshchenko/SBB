@@ -1,6 +1,7 @@
 package com.pleshchenko.sbb.app.service.interfaces;
 
 import com.pleshchenko.sbb.app.entity.schedule.Schedule;
+import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -89,4 +90,10 @@ public interface ScheduleService {
      */
     public boolean routeIsEditable(int routeId);
 
+    /**
+     *
+     * @param trainId
+     * @return a schedule by train id
+     */
+    List<Schedule> findByTrainId(int trainId);
 }

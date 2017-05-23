@@ -16,20 +16,22 @@
         <jsp:param name="title" value="New train"/>
     </jsp:include>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/trainsScripts.js"></script>
+    <script type="text/javascript" src="/static/js/routesPage.js"></script>
 </head>
 <body>
 
 <jsp:include page="navigation.jsp"></jsp:include>
 
 <label>Number</label>
+<input id="routesNumber" path="routesNumber" />
 
-<input id="trainsNumber" path="trainsNumber" />
+<label>connection</label>
+<input id="routesName" path="routesName" />
 
 <input type="hidden" id="csrfToken" value="${_csrf.token}"/>
 <input type="hidden" id="headerName" value="${_csrf.headerName}"/>
 
-<input id = "saveTrain" class="btn btn-success" value="save  train" tabindex="4" type="button">
+<input id = "saveRoute" class="btn btn-success" value="save  route" tabindex="4" type="button">
 
 
 

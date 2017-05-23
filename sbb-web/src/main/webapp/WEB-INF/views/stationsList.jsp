@@ -33,6 +33,11 @@
     </td></tr></table>
 </form:form>
 
+<div class="well">
+    <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
+    <a href="<c:url value='/newStation' />">Add new station</a>
+</div>
+
 
 </body>
 </html>

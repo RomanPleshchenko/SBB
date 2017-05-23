@@ -20,7 +20,7 @@
 <jsp:include page="navigation.jsp"></jsp:include>
 
 <div class="container">
-	<h2>List of trains</h2>
+	<h2>List of users</h2>
 	<table class="table table-hover">
 		<thead>
 		<tr>

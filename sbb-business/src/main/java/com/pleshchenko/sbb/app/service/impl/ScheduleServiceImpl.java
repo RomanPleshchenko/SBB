@@ -14,6 +14,7 @@ import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
 import com.pleshchenko.sbb.app.service.interfaces.TripsSiteService;
 //import com.pleshchenko.sbb.app.service.other.ParametersForSearch;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -98,8 +99,6 @@ public class ScheduleServiceImpl implements ScheduleService {
         return json;
     }
 
-
-
     @Override
     public void makeActive(int id) {
 
@@ -141,5 +140,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     public boolean routeIsEditable(int routeId){
         return dao.findUnComposedByRouteId(routeId).size()==0;
+    }
+
+    @Override
+    public List<Schedule> findByTrainId(int trainId) {
+        List<Schedule> schedule = dao.findByTrainId(trainId);
+        return schedule;
     }
 }

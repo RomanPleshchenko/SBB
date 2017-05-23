@@ -30,6 +30,16 @@ public class Train {
             inverseJoinColumns = { @JoinColumn(name = "carId")})
     private Set<Car> cars = new HashSet<Car>();
 
+    @OneToMany(mappedBy = "train",cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    private Set<TrainComposition> trainCompositions;
+
+    public Train() {
+    }
+
+    public Train(String number) {
+        this.number = number;
+    }
+
     public int getId() {
         return id;
     }
@@ -63,6 +73,14 @@ public class Train {
 
     public void setCars(Set<Car> cars) {
         this.cars = cars;
+    }
+
+    public Set<TrainComposition> getTrainCompositions() {
+        return trainCompositions;
+    }
+
+    public void setTrainCompositions(Set<TrainComposition> trainCompositions) {
+        this.trainCompositions = trainCompositions;
     }
 
     @Override

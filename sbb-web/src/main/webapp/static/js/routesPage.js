@@ -3,6 +3,7 @@ var lastRowId = 0;
 $(document).ready(function() {
 
         fillRoutesTable();
+        addSaveRouteClicks();
         setTimeout(addRouteRadioClicks,100);
     }
 );
@@ -100,13 +101,11 @@ function fillRouteCompositionsTable(routeId) {
                             }
                         );
 
-                        //союираю JSON но с круглыми скобками чтобы отправить параметром гет запроса
-                        rows = rows.substring(0, rows.length - 1)
+                        rows = rows.substring(0, rows.length - 1);
                         var allJSON = "{'routeId':" + routeId + ",'arrayJSON':[" + rows + "]}";
-                        //
 
                         var search = {};
-                        search["allJSON"] = allJSON;
+                        search["text"] = allJSON;
 
                         var headerName = $("#headerName").val();
                         var csrfToken = $("#csrfToken").val();
@@ -126,10 +125,6 @@ function fillRouteCompositionsTable(routeId) {
                             }
                             ,
                             error : function(error) {
-                                console.log("ERROR: ", error);
-                                console.log('request',qXHR);
-                                console.log('status text', textStatus);
-                                console.log(JSON.stringify(error));
                                 alert(error);
                             }
 
@@ -145,7 +140,7 @@ function fillRouteCompositionsTable(routeId) {
         }
     );
 
-    //полуим селект чтобы потом в каждой строке таблицы выбирать станции
+    //получим селект чтобы потом в каждой строке таблицы выбирать станции
     selectOptions = "<select id = stationId1> ";
     $.getJSON(StationsJson, function(stationsList){
 
@@ -207,3 +202,58 @@ function addRouteRadioClicks() {
     );
 }
 
+function addSaveRouteClicks() {
+
+    $('#saveRoute').click(
+        function () {
+
+            var routesNumber = $('#routesNumber').val();
+            var routesName = $('#routesName').val();
+            saveRoute(routesNumber,routesName)
+
+        }
+    );
+}
+
+function saveRoute(routesNumber,routesName) {
+
+
+    var headerName = $("#headerName").val();
+    var csrfToken = $("#csrfToken").val();
+
+    if(routesNumber==""||routesName==""){
+        alert("You must enter all fields");
+    }else{
+
+        var jsonOb = {};
+        jsonOb["routesNumber"] = routesNumber;
+        jsonOb["routesName"] = routesName;
+
+        var search = {};
+        search["text"] = JSON.stringify(jsonOb);
+
+        $.ajax({
+            type : "POST",
+
+            beforeSend: function(xhr){
+                xhr.setRequestHeader(headerName, csrfToken);
+            },
+
+            contentType : "application/json",
+            url : "/saveRoute",
+            data : JSON.stringify(search),
+
+            success : function(data) {
+                alert(data);
+
+                if(data=="Route saved"){
+                    window.location.replace("/routesPage");
+                }
+            }
+            ,
+            error : function(error) {
+                alert("Route is not saved!");
+            }
+        });
+    }
+}

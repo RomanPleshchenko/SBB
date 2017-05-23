@@ -236,10 +236,17 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
         persist(dir);
     }
 
+    public List<Schedule> findByTrainId(int trainId){
+        List<Schedule> schedules = getEntityManager()
+                .createQuery("SELECT s FROM Schedule s WHERE s.train.id = :trainId")
+                .setParameter("trainId",trainId)
+                .getResultList();
+        return schedules;
+    }
+
     private Instant dateToInstant(Date date){
         Instant instant = Instant.ofEpochMilli(date.getTime());
         return instant;
     }
-
 }
 

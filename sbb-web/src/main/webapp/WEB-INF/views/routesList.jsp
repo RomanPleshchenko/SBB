@@ -74,12 +74,16 @@
 
         <input type="hidden" id="csrfToken" value="${_csrf.token}"/>
         <input type="hidden" id="headerName" value="${_csrf.headerName}"/>
-
         <div id = "btns" class="well well-sm">
         </div>
     </center>
 </div>
 
+
+<div class="well">
+    <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
+    <a href="<c:url value='/newRoute' />">Add new route</a>
+</div>
 
 
 <br>

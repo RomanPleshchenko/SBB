@@ -44,4 +44,24 @@ public interface TrainService {
      * @return a train by id
      */
     Train findById(Integer id);
+
+    /**
+     *
+     * @param trainId
+     * @return list of Trains Composition in JSON
+     */
+    String getTrainsCompositionJSONByTrainId(int trainId);
+
+    /**
+     *
+     * @param trainId
+     * @return
+     */
+    boolean trainIsEditable(int trainId);
+
+    /**
+     *
+     * @param jsonString
+     */
+    void updateTrainFromJSON(String jsonString);
 }

@@ -2,19 +2,18 @@ package com.pleshchenko.sbb.web;
 
 public class SearchCriteria {
 
-	String allJSON;
+	String text;
 
 	@Override
 	public String toString() {
-		return allJSON;
+		return text;
 	}
 
-
-	public String getAllJSON() {
-		return allJSON;
+	public String getText() {
+		return text;
 	}
 
-	public void setAllJSON(String allJSON) {
-		this.allJSON = allJSON;
+	public void setText(String text) {
+		this.text = text;
 	}
 }

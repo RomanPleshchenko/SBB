@@ -35,6 +35,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
 	    //,"/getStationslistJSON" for user
+		///getAllCarsJSON
+//		getTrainsCompositionJSONByTrainId
+//		newRoute
 
         http.authorizeRequests()
                 .antMatchers("/","/login","/getScheduleJSONBy*").permitAll()

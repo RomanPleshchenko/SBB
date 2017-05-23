@@ -86,9 +86,4 @@ public class RouteComposition implements Comparable{
     }
 
 
-    //qqqqqqqqqqqqqqq не понятно что делать с хешкодом
-    //    @Override
-//    public int hashCode() {
-//        return id.hashCode();
-//    }
 }

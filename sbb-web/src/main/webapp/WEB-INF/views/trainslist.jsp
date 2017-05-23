@@ -13,6 +13,8 @@
     <jsp:include page="header.jsp" flush="true" >
         <jsp:param name="title" value="Train list"/>
     </jsp:include>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/trainsScripts.js"></script>
 </head>
 
 <body>
@@ -24,6 +26,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th> </th>
             <th>number</th>
             <th>capacity</th>
             <th>action</th>
@@ -32,6 +35,7 @@
         <tbody>
         <c:forEach items="${trains}" var="train">
             <tr>
+                <td> <input id = trainRadioId${train.id} type=radio name=trainRadio value=${train.id} </td>
                 <td>${train.number}  </td>
                 <td>${train.capacity}  </td>
                 <td><a href="<c:url value='/delete-train-${train.number}' />" class="btn btn-success custom-width">delete</a></td>
@@ -39,6 +43,34 @@
         </c:forEach>
         </tbody>
     </table>
+
+
+
+
+    <div class="well well-sm">
+
+        <center>
+            <label>Trains composition</label>
+        </center>
+
+        <table id="trainsCompositionTable" class="table">
+            <thead>
+            <tr>
+                <th>Car</th>
+            </tr>
+            </thead>
+        </table>
+
+        <center>
+            <input type="hidden" id="csrfToken" value="${_csrf.token}"/>
+            <input type="hidden" id="headerName" value="${_csrf.headerName}"/>
+            <div id='btns'>
+
+            </div>
+        </center>
+    </div>
+
+
     <div class="well">
         <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
         <a href="<c:url value='/newTrain' />">Add new train</a>

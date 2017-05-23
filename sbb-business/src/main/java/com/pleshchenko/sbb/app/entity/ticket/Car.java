@@ -58,4 +58,15 @@ public class Car {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public String toString() {
+
+        int capacity = getCarPrototype().getSitePrototypes().size();
+        String carsClass = getCarPrototype().getSiteCarClass().getName();
+        return "Car " +
+                " number:" + number +
+                ", capacity:" + capacity +
+                ", class:" + carsClass;
+    }
 }

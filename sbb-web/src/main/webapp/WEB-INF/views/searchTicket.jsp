@@ -45,7 +45,7 @@
 
             <br>
 
-            <label><label>Select date</label></label>
+            <label>Select date</label>
 
             <input id="data1" path="data1" type = "date" /> - <input id="data2" path="data2" type = "date"/>
 
