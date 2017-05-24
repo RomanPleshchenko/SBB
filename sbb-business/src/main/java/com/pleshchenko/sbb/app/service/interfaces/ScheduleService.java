@@ -96,4 +96,10 @@ public interface ScheduleService {
      * @return a schedule by train id
      */
     List<Schedule> findByTrainId(int trainId);
+
+    /**
+     *
+     * @param schedule
+     */
+    void save(Schedule schedule);
 }

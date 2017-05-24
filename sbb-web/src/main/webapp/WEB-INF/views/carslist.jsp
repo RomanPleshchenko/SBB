@@ -40,7 +40,7 @@
     <div class="well">
         <label>Number</label>
         <input id="carsNumber" path="carsNumber" />
-
+        <label>car type</label>
         <select select id = "carsClassId" path="carsClass">
             <c:forEach items="${carsClasses}" var="carsClass">
                 <option value = ${carsClass.id}> ${carsClass.name}</option>

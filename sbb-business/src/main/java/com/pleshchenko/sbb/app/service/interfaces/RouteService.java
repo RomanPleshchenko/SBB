@@ -50,4 +50,11 @@ public interface RouteService {
      * @param route
      */
     void save(Route route);
+
+    /**
+     *
+     * @param routeId
+     * @return
+     */
+    Route findById(int routeId);
 }

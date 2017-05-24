@@ -151,4 +151,10 @@ public class RouteServiceImpl implements RouteService {
     public void save(Route route) {
         dao.saveRoute(route);
     }
+
+    @Override
+    public Route findById(int routeId) {
+        Route route = dao.findById(routeId);
+        return route;
+    }
 }

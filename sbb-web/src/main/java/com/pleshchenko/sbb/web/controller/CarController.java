@@ -68,8 +68,6 @@ public class CarController {
         }
     }
 
-
-
     @RequestMapping(value = {"/saveNewCar"}, method = RequestMethod.POST)
     public  ResponseEntity<?> saveNewCar(@RequestBody SearchCriteria search) {
 

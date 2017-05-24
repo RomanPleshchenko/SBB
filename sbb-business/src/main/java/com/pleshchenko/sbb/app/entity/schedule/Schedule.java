@@ -1,10 +1,8 @@
 package com.pleshchenko.sbb.app.entity.schedule;
 
-import com.pleshchenko.sbb.app.entity.ticket.Ticket;
 import com.pleshchenko.sbb.app.entity.ticket.Train;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -12,7 +10,6 @@ import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.List;
 import java.util.Locale;
 
 @Entity
@@ -43,6 +40,22 @@ public class Schedule {
 
     @Column(name = "composed")
     boolean composed;
+
+    public Schedule() {
+    }
+
+    public Schedule(Route route, Train train, Instant departureTime) {
+        this.route = route;
+        this.train = train;
+        this.departureTime = departureTime;
+
+        int maxValue = 0;
+        for (RouteComposition routeComposition:route.getRouteCompositions()){
+            maxValue = Integer.max(routeComposition.getDestinationTime(),maxValue);
+        }
+
+        this.destinationTime = departureTime.plusSeconds(maxValue*60);
+    }
 
     public int getId() {
         return id;

@@ -13,10 +13,15 @@
     <jsp:include page="header.jsp" flush="true" >
         <jsp:param name="title" value="Schedule"/>
     </jsp:include>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/saveScheduleScripts.js"></script>
 </head>
 <body>
 
 <jsp:include page="navigation.jsp"></jsp:include>
+
+<input type="hidden" id="csrfToken" value="${_csrf.token}"/>
+<input type="hidden" id="headerName" value="${_csrf.headerName}"/>
 
 <div class="container">
     <h2>Schedule</h2>
@@ -55,10 +60,29 @@
         </tbody>
     </table>
 
+    <div class="well">
 
-    <div id = "imaps">
+        <label>route</label>
+        <select select id = "routeId" path="routeId">
+            <c:forEach items="${routes}" var="route">
+                <option value = ${route.id}> ${route.name}</option>
+            </c:forEach>
+        </select>
 
+        <label>train</label>
+        <select select id = "trainId" path="trainId">
+            <c:forEach items="${trains}" var="train">
+                <option value = ${train.id}> ${train.number}</option>
+            </c:forEach>
+        </select>
+
+        <label>Select departure time</label>
+        <input id="departureTime" path="departureTime" type = "date" />
+
+        <%--<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />--%>
+        <button id = "saveNewSchedule" type="button" class="btn btn-primary"> Save new schedule </button>
     </div>
+
 
 </div>
 

@@ -1,20 +1,24 @@
 package com.pleshchenko.sbb.web.controller;
 
+import com.pleshchenko.sbb.app.entity.schedule.Route;
 import com.pleshchenko.sbb.app.entity.schedule.Schedule;
-import com.pleshchenko.sbb.app.service.interfaces.PassengerService;
-import com.pleshchenko.sbb.app.service.interfaces.StationService;
-import com.pleshchenko.sbb.app.service.interfaces.TrainService;
-import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
+import com.pleshchenko.sbb.app.entity.ticket.Train;
+import com.pleshchenko.sbb.app.service.interfaces.*;
+import com.pleshchenko.sbb.web.SearchCriteria;
 import com.pleshchenko.sbb.web.messaging.MessageSender;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.sql.Date;
-import javax.transaction.NotSupportedException;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -37,42 +41,31 @@ public class ScheduleController {
     @Autowired
     StationService stationService;
 
+    @Autowired
+    RouteService routeService;
 
     @Autowired
     MessageSender messageSender;
+
+    static final Logger logger = LogManager.getLogger(TrainController.class);
 
     @RequestMapping(value = "/schedule",method = RequestMethod.GET)
     public String getSchedule(ModelMap model){
 
         List<Schedule> schedule = scheduleService.findAll();
+        List<Route> routes = routeService.findAll();
+        List<Train> trains = trainService.findAll();
+
         model.addAttribute("schedule",schedule);
+        model.addAttribute("routes",routes);
+        model.addAttribute("trains",trains);
         return "schedule";
     }
 
     @RequestMapping(value = "/addToSchedule",method = RequestMethod.GET)
     public String addToSchedule(ModelMap model){
 
-        //fillModel(model);
         return "addToSchedule";
-    }
-
-
-    @RequestMapping(value = "/addToSchedule",method = RequestMethod.POST)
-    public String addToSchedule(BindingResult result,
-                                      ModelMap model) throws NotSupportedException {
-//
-//        try {
-//            Schedule schedule = scheduleService.addByParameters(param);
-//            return RequestType.REDIRECT + "schedule";
-//        } catch (NotEnoughParamsException e) {
-//
-//            fillModel(model);
-//            model.addAttribute("error",e.getMessage());
-//            return "addToSchedule";
-//        }
-
-        throw new NotSupportedException("!!!!!!!!!!!!");
-
     }
 
     @RequestMapping(value = { "/make-active-dir-{id}" }, method = RequestMethod.GET)
@@ -82,7 +75,6 @@ public class ScheduleController {
 
         scheduleService.makeActive(id);
         return RequestType.REDIRECT + "schedule";
-
     }
 
     @RequestMapping(value = { "/make-not-active-dir-{id}" }, method = RequestMethod.GET)
@@ -92,7 +84,6 @@ public class ScheduleController {
 
         scheduleService.makeNotActive(id);
         return RequestType.REDIRECT + "schedule";
-
     }
 
     @RequestMapping(value = { "/compose-free-sites-dir-{id}" }, method = RequestMethod.GET)
@@ -100,7 +91,6 @@ public class ScheduleController {
 
         scheduleService.composeFreeSites(id);
         return RequestType.REDIRECT + "schedule";
-
     }
 
     @RequestMapping(value = "/getScheduleJSON", method = RequestMethod.GET)
@@ -112,7 +102,6 @@ public class ScheduleController {
 
         String scheduleJSON = scheduleService.getScheduleJSONByParameters(st1,st2,dat1,dat2);
         return scheduleJSON;
-
     }
 
     @RequestMapping(value = "/routeIsEditable", method = RequestMethod.GET)
@@ -121,16 +110,13 @@ public class ScheduleController {
 
         boolean routeIsEditable = scheduleService.routeIsEditable(routeId);
         return routeIsEditable;
-
     }
-
 
     @RequestMapping(value = "/getScheduleJSONByStationsName", method = RequestMethod.GET)
     public @ResponseBody String getScheduleJSONByStationsName(@RequestParam("stationsName") String stationsName) throws JSONException {
 
         String scheduleJSON = scheduleService.getScheduleJSONByStationsName(stationsName);
         return scheduleJSON;
-
     }
 
     @RequestMapping(value = "/getScheduleJSONByStationsNameAndID", method = RequestMethod.GET)
@@ -138,8 +124,41 @@ public class ScheduleController {
 
         String scheduleJSON = scheduleService.getScheduleJSONByStationsNameAndID(id,stationsName);
         return scheduleJSON;
+    }
+
+
+    @RequestMapping(value = {"/saveNewSchedule"}, method = RequestMethod.POST)
+    public ResponseEntity<?> saveNewSchedule(@RequestBody SearchCriteria search) {
+
+        String json = search.getText();
+
+        JSONObject jsonObject = new JSONObject(json);
+        int routeId = Integer.parseInt((String)jsonObject.get("routeId"));//3
+        int trainId = Integer.parseInt((String)jsonObject.get("trainId"));//4
+        String departureTimeString = (String)jsonObject.get("departureTime");//2017-05-01
+
+        if(departureTimeString.length()==10){
+            departureTimeString+=" 00:00:00";
+        }
+
+        Instant departureTime = Instant.parse(departureTimeString.replace(" ","T") + ".00Z").plusSeconds(-3600*3);
+
+        try{
+            Route route = routeService.findById(routeId);
+            Train train = trainService.findById(trainId);
+
+            Schedule schedule = new Schedule(route,train,departureTime);
+            scheduleService.save(schedule);
+
+            return ResponseEntity.ok("Schedule saved");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            logger.error("Schedule is not saved:" + e.getMessage());
+            return ResponseEntity.ok("Schedule is not saved");
+        }
 
     }
+
 
 }
 

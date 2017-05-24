@@ -1,7 +1,12 @@
 
 var freeTicketData;
+var headerName;
+var csrfToken;
 
 $(document).ready(function() {
+
+        headerName = $("#headerName").val();
+        csrfToken = $("#csrfToken").val();
 
         $('#toFind').click(
             function () {
@@ -10,6 +15,7 @@ $(document).ready(function() {
                 setTimeout(addClicks,500);
             }
         );
+
     }
 );
 

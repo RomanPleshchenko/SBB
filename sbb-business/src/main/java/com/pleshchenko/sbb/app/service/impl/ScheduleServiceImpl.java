@@ -147,4 +147,9 @@ public class ScheduleServiceImpl implements ScheduleService {
         List<Schedule> schedule = dao.findByTrainId(trainId);
         return schedule;
     }
+
+    @Override
+    public void save(Schedule schedule) {
+        dao.save(schedule);
+    }
 }

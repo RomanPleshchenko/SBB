@@ -50,7 +50,7 @@
             <input id="data1" path="data1" type = "date" /> - <input id="data2" path="data2" type = "date"/>
 
             <footer>
-                <input id = "toFind" class="btn btn-success" value="to find" tabindex="4">
+                <input id = "toFind" class="btn btn-success" value="to find"  type="button" tabindex="4">
             </footer>
 
         </form>

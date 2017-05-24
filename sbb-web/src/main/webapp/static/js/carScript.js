@@ -24,7 +24,6 @@ function addSaveNewCarClicks() {
     );
 }
 
-
 function saveCar(carsNumber,carsClassId) {
 
     if(carsNumber==""||carsClassId==""){
@@ -63,7 +62,6 @@ function saveCar(carsNumber,carsClassId) {
         });
     }
 }
-
 
 function fillCarsTable() {
 
