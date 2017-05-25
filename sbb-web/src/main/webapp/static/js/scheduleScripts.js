@@ -50,7 +50,6 @@ function fillScheduleTable() {
         return;
     }
 
-    // var json = "/getScheduleJSON?st1=" + st1 + "&st2=" + st2 + "&date1=" + date1 + "&date2=" + date2 + "";
     var json = "/getScheduleJSON?st1=" + st1 + "&st2=" + st2 + "&date1=" + date1 + "&date2=" + date2 + "";
 
     $.getJSON(json, function(data){

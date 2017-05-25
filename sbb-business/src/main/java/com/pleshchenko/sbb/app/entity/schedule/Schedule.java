@@ -122,14 +122,14 @@ public class Schedule {
     public String  getDepartureTimeInFormat() {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.GERMAN).withZone(ZoneOffset.UTC);
-        String date = formatter.format(departureTime);
+        String date = formatter.format(departureTime.plusSeconds(3*3600));
         return date;
     }
 
     public String  getDestinationTimeInFormat() {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.GERMAN).withZone(ZoneOffset.UTC);
-        String date = formatter.format(destinationTime);
+        String date = formatter.format(destinationTime.plusSeconds(3*3600));
         return date;
     }
 

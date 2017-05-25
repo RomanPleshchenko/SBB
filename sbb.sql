@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 12 2017 г., 15:55
+-- Время создания: Май 25 2017 г., 14:15
 -- Версия сервера: 5.5.50
 -- Версия PHP: 5.3.29
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `car` (
   `id` int(11) NOT NULL,
   `carPrototypeId` int(11) NOT NULL,
   `number` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `car`
@@ -41,7 +41,8 @@ INSERT INTO `car` (`id`, `carPrototypeId`, `number`) VALUES
 (2, 1, 2),
 (3, 1, 3),
 (4, 1, 4),
-(5, 2, 5);
+(5, 2, 5),
+(12, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -223,14 +224,16 @@ CREATE TABLE IF NOT EXISTS `route` (
   `id` int(11) NOT NULL,
   `number` varchar(30) NOT NULL,
   `name` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `route`
 --
 
 INSERT INTO `route` (`id`, `number`, `name`) VALUES
-(1, '766A', 'Moskva-Sankt-Peterburg');
+(1, '766A', 'Moskva-Sankt-Peterburg'),
+(2, '766B', 'Sankt-Peterburg-Moskva'),
+(3, '100MV', 'Moscow-Volochek');
 
 -- --------------------------------------------------------
 
@@ -244,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `routeComposition` (
   `segmentId` int(11) NOT NULL,
   `departureTime` int(11) NOT NULL,
   `destinationTime` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=245 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `routeComposition`
@@ -256,7 +259,14 @@ INSERT INTO `routeComposition` (`id`, `routeId`, `segmentId`, `departureTime`, `
 (3, 1, 32, 295, 340),
 (4, 1, 33, 343, 373),
 (5, 1, 34, 376, 507),
-(6, 1, 35, 517, 635);
+(6, 1, 35, 517, 635),
+(216, 2, 44, 0, 100),
+(217, 2, 45, 105, 200),
+(218, 2, 47, 205, 300),
+(219, 2, 48, 305, 400),
+(220, 2, 49, 405, 500),
+(221, 2, 50, 505, 600),
+(244, 3, 41, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -267,19 +277,21 @@ INSERT INTO `routeComposition` (`id`, `routeId`, `segmentId`, `departureTime`, `
 CREATE TABLE IF NOT EXISTS `schedule` (
   `id` int(11) NOT NULL,
   `active` tinyint(1) NOT NULL,
+  `composed` tinyint(1) NOT NULL,
   `routeId` int(11) NOT NULL,
   `trainId` int(11) NOT NULL,
   `departureTime` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   `destinationTime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `schedule`
 --
 
-INSERT INTO `schedule` (`id`, `active`, `routeId`, `trainId`, `departureTime`, `destinationTime`) VALUES
-(1, 1, 1, 4, '2017-05-01 00:00:00', '2017-05-01 10:35:00'),
-(2, 1, 1, 4, '2017-05-02 00:00:00', '2017-05-02 10:35:00');
+INSERT INTO `schedule` (`id`, `active`, `composed`, `routeId`, `trainId`, `departureTime`, `destinationTime`) VALUES
+(1, 1, 1, 1, 4, '2017-05-01 00:00:00', '2017-05-01 10:35:00'),
+(2, 1, 1, 1, 4, '2017-05-01 21:00:00', '2017-05-02 07:35:00'),
+(9, 1, 0, 3, 4, '2017-05-25 02:00:00', '2017-05-25 05:20:00');
 
 -- --------------------------------------------------------
 
@@ -291,7 +303,7 @@ CREATE TABLE IF NOT EXISTS `segment` (
   `id` int(11) NOT NULL,
   `departureStationId` int(11) NOT NULL,
   `destinationStationId` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `segment`
@@ -303,7 +315,17 @@ INSERT INTO `segment` (`id`, `departureStationId`, `destinationStationId`) VALUE
 (32, 6, 7),
 (33, 7, 8),
 (34, 8, 9),
-(35, 9, 10);
+(35, 9, 10),
+(41, 7, 7),
+(42, 7, 1),
+(43, 8, 1),
+(44, 10, 9),
+(45, 9, 8),
+(46, 1, 10),
+(47, 8, 7),
+(48, 7, 6),
+(49, 6, 5),
+(50, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -314,7 +336,7 @@ INSERT INTO `segment` (`id`, `departureStationId`, `destinationStationId`) VALUE
 CREATE TABLE IF NOT EXISTS `siteCarClass` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `siteCarClass`
@@ -322,9 +344,7 @@ CREATE TABLE IF NOT EXISTS `siteCarClass` (
 
 INSERT INTO `siteCarClass` (`id`, `name`) VALUES
 (1, 'standard'),
-(2, 'economy'),
-(3, 'business'),
-(4, 'suite');
+(3, 'business');
 
 -- --------------------------------------------------------
 
@@ -445,7 +465,7 @@ INSERT INTO `sitePrototype` (`id`, `number`, `location`, `level`, `classId`) VAL
 CREATE TABLE IF NOT EXISTS `station` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `station`
@@ -468,9 +488,53 @@ INSERT INTO `station` (`id`, `name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `ticket` (
   `id` int(11) NOT NULL,
-  `idPassenger` int(11) NOT NULL,
-  `scheduleId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `userId` bigint(20) NOT NULL,
+  `destinationStationId` int(11) NOT NULL,
+  `departureStationId` int(11) NOT NULL,
+  `destinationTime` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `departureTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `trainId` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `ticket`
+--
+
+INSERT INTO `ticket` (`id`, `userId`, `destinationStationId`, `departureStationId`, `destinationTime`, `departureTime`, `trainId`) VALUES
+(64, 5, 1, 7, '2017-05-01 05:40:00', '2017-05-01 00:00:00', 4),
+(65, 5, 1, 7, '2017-05-01 00:00:00', '2017-05-01 05:40:00', 4),
+(66, 5, 1, 7, '2017-05-01 00:00:00', '2017-05-01 05:40:00', 4),
+(67, 5, 1, 7, '2017-05-01 00:00:00', '2017-05-01 05:40:00', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ticketComposition`
+--
+
+CREATE TABLE IF NOT EXISTS `ticketComposition` (
+  `id` int(11) NOT NULL,
+  `ticketId` int(11) NOT NULL,
+  `tripsSiteId` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `ticketComposition`
+--
+
+INSERT INTO `ticketComposition` (`id`, `ticketId`, `tripsSiteId`) VALUES
+(157, 64, 673),
+(158, 64, 674),
+(159, 64, 675),
+(160, 65, 661),
+(161, 65, 662),
+(162, 65, 663),
+(163, 66, 661),
+(164, 66, 662),
+(165, 66, 663),
+(166, 67, 661),
+(167, 67, 662),
+(168, 67, 663);
 
 -- --------------------------------------------------------
 
@@ -480,18 +544,17 @@ CREATE TABLE IF NOT EXISTS `ticket` (
 
 CREATE TABLE IF NOT EXISTS `train` (
   `id` int(11) NOT NULL,
-  `number` varchar(45) NOT NULL,
-  `capacity` int(11) NOT NULL
+  `number` varchar(45) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `train`
 --
 
-INSERT INTO `train` (`id`, `number`, `capacity`) VALUES
-(4, 's55', 55),
-(6, 'sd80', 800),
-(10, 'Sapsan100', 100);
+INSERT INTO `train` (`id`, `number`) VALUES
+(4, 's55'),
+(6, 'sd80'),
+(10, 'Sapsan100');
 
 -- --------------------------------------------------------
 
@@ -501,17 +564,21 @@ INSERT INTO `train` (`id`, `number`, `capacity`) VALUES
 
 CREATE TABLE IF NOT EXISTS `trainComposition` (
   `id` int(11) NOT NULL,
-  `carId` int(11) NOT NULL,
-  `trainId` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `trainId` int(11) NOT NULL,
+  `carId` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `trainComposition`
 --
 
-INSERT INTO `trainComposition` (`id`, `carId`, `trainId`) VALUES
-(1, 1, 4),
-(2, 5, 4);
+INSERT INTO `trainComposition` (`id`, `trainId`, `carId`) VALUES
+(1, 4, 1),
+(2, 4, 5),
+(40, 10, 2),
+(41, 10, 3),
+(42, 10, 4),
+(43, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -536,63 +603,63 @@ INSERT INTO `tripsSite` (`id`, `scheduleId`, `carId`, `segmentId`, `sitePrototyp
 (631, 1, 1, 30, 1, 1),
 (632, 1, 1, 31, 1, 1),
 (633, 1, 1, 32, 1, 1),
-(634, 1, 1, 33, 1, 1),
-(635, 1, 1, 34, 1, 1),
-(636, 1, 1, 35, 1, 1),
+(634, 1, 1, 33, 1, 0),
+(635, 1, 1, 34, 1, 0),
+(636, 1, 1, 35, 1, 0),
 (637, 1, 1, 30, 2, 1),
 (638, 1, 1, 31, 2, 1),
 (639, 1, 1, 32, 2, 1),
-(640, 1, 1, 33, 2, 1),
-(641, 1, 1, 34, 2, 1),
-(642, 1, 1, 35, 2, 1),
+(640, 1, 1, 33, 2, 0),
+(641, 1, 1, 34, 2, 0),
+(642, 1, 1, 35, 2, 0),
 (643, 1, 1, 30, 3, 1),
 (644, 1, 1, 31, 3, 1),
 (645, 1, 1, 32, 3, 1),
-(646, 1, 1, 33, 3, 1),
-(647, 1, 1, 34, 3, 1),
-(648, 1, 1, 35, 3, 1),
+(646, 1, 1, 33, 3, 0),
+(647, 1, 1, 34, 3, 0),
+(648, 1, 1, 35, 3, 0),
 (649, 1, 1, 30, 4, 1),
 (650, 1, 1, 31, 4, 1),
 (651, 1, 1, 32, 4, 1),
-(652, 1, 1, 33, 4, 1),
-(653, 1, 1, 34, 4, 1),
-(654, 1, 1, 35, 4, 1),
+(652, 1, 1, 33, 4, 0),
+(653, 1, 1, 34, 4, 0),
+(654, 1, 1, 35, 4, 0),
 (655, 1, 1, 30, 5, 1),
 (656, 1, 1, 31, 5, 1),
 (657, 1, 1, 32, 5, 1),
-(658, 1, 1, 33, 5, 1),
-(659, 1, 1, 34, 5, 1),
-(660, 1, 1, 35, 5, 1),
+(658, 1, 1, 33, 5, 0),
+(659, 1, 1, 34, 5, 0),
+(660, 1, 1, 35, 5, 0),
 (661, 1, 1, 30, 6, 1),
 (662, 1, 1, 31, 6, 1),
 (663, 1, 1, 32, 6, 1),
-(664, 1, 1, 33, 6, 1),
-(665, 1, 1, 34, 6, 1),
-(666, 1, 1, 35, 6, 1),
+(664, 1, 1, 33, 6, 0),
+(665, 1, 1, 34, 6, 0),
+(666, 1, 1, 35, 6, 0),
 (667, 1, 1, 30, 7, 1),
 (668, 1, 1, 31, 7, 1),
 (669, 1, 1, 32, 7, 1),
-(670, 1, 1, 33, 7, 1),
-(671, 1, 1, 34, 7, 1),
-(672, 1, 1, 35, 7, 1),
+(670, 1, 1, 33, 7, 0),
+(671, 1, 1, 34, 7, 0),
+(672, 1, 1, 35, 7, 0),
 (673, 1, 1, 30, 8, 1),
 (674, 1, 1, 31, 8, 1),
 (675, 1, 1, 32, 8, 1),
-(676, 1, 1, 33, 8, 1),
+(676, 1, 1, 33, 8, 0),
 (677, 1, 1, 34, 8, 0),
 (678, 1, 1, 35, 8, 0),
-(679, 1, 1, 30, 9, 1),
-(680, 1, 1, 31, 9, 1),
-(681, 1, 1, 32, 9, 1),
-(682, 1, 1, 33, 9, 1),
+(679, 1, 1, 30, 9, 0),
+(680, 1, 1, 31, 9, 0),
+(681, 1, 1, 32, 9, 0),
+(682, 1, 1, 33, 9, 0),
 (683, 1, 1, 34, 9, 0),
 (684, 1, 1, 35, 9, 0),
-(685, 1, 1, 30, 10, 1),
-(686, 1, 1, 31, 10, 1),
-(687, 1, 1, 32, 10, 1),
-(688, 1, 1, 33, 10, 1),
-(689, 1, 1, 34, 10, 1),
-(690, 1, 1, 35, 10, 1),
+(685, 1, 1, 30, 10, 0),
+(686, 1, 1, 31, 10, 0),
+(687, 1, 1, 32, 10, 0),
+(688, 1, 1, 33, 10, 0),
+(689, 1, 1, 34, 10, 0),
+(690, 1, 1, 35, 10, 0),
 (691, 1, 1, 30, 11, 0),
 (692, 1, 1, 31, 11, 0),
 (693, 1, 1, 32, 11, 0),
@@ -611,15 +678,15 @@ INSERT INTO `tripsSite` (`id`, `scheduleId`, `carId`, `segmentId`, `sitePrototyp
 (706, 1, 1, 33, 13, 0),
 (707, 1, 1, 34, 13, 0),
 (708, 1, 1, 35, 13, 0),
-(709, 1, 1, 30, 14, 1),
-(710, 1, 1, 31, 14, 1),
-(711, 1, 1, 32, 14, 1),
-(712, 1, 1, 33, 14, 1),
-(713, 1, 1, 34, 14, 1),
-(714, 1, 1, 35, 14, 1),
-(715, 1, 1, 30, 15, 0),
-(716, 1, 1, 31, 15, 0),
-(717, 1, 1, 32, 15, 0),
+(709, 1, 1, 30, 14, 0),
+(710, 1, 1, 31, 14, 0),
+(711, 1, 1, 32, 14, 0),
+(712, 1, 1, 33, 14, 0),
+(713, 1, 1, 34, 14, 0),
+(714, 1, 1, 35, 14, 0),
+(715, 1, 1, 30, 15, 1),
+(716, 1, 1, 31, 15, 1),
+(717, 1, 1, 32, 15, 1),
 (718, 1, 1, 33, 15, 0),
 (719, 1, 1, 34, 15, 0),
 (720, 1, 1, 35, 15, 0),
@@ -674,9 +741,9 @@ INSERT INTO `tripsSite` (`id`, `scheduleId`, `carId`, `segmentId`, `sitePrototyp
 (769, 1, 1, 30, 24, 0),
 (770, 1, 1, 31, 24, 0),
 (771, 1, 1, 32, 24, 0),
-(772, 1, 1, 33, 24, 1),
-(773, 1, 1, 34, 24, 1),
-(774, 1, 1, 35, 24, 1),
+(772, 1, 1, 33, 24, 0),
+(773, 1, 1, 34, 24, 0),
+(774, 1, 1, 35, 24, 0),
 (775, 1, 1, 30, 25, 0),
 (776, 1, 1, 31, 25, 0),
 (777, 1, 1, 32, 25, 0),
@@ -869,12 +936,12 @@ INSERT INTO `tripsSite` (`id`, `scheduleId`, `carId`, `segmentId`, `sitePrototyp
 (964, 1, 5, 33, 65, 0),
 (965, 1, 5, 34, 65, 0),
 (966, 1, 5, 35, 65, 0),
-(967, 1, 5, 30, 66, 1),
-(968, 1, 5, 31, 66, 1),
-(969, 1, 5, 32, 66, 1),
-(970, 1, 5, 33, 66, 1),
-(971, 1, 5, 34, 66, 1),
-(972, 1, 5, 35, 66, 1),
+(967, 1, 5, 30, 66, 0),
+(968, 1, 5, 31, 66, 0),
+(969, 1, 5, 32, 66, 0),
+(970, 1, 5, 33, 66, 0),
+(971, 1, 5, 34, 66, 0),
+(972, 1, 5, 35, 66, 0),
 (973, 1, 5, 30, 67, 0),
 (974, 1, 5, 31, 67, 0),
 (975, 1, 5, 32, 67, 0),
@@ -1079,12 +1146,12 @@ INSERT INTO `tripsSite` (`id`, `scheduleId`, `carId`, `segmentId`, `sitePrototyp
 (1174, 2, 1, 33, 1, 0),
 (1175, 2, 1, 34, 1, 0),
 (1176, 2, 1, 35, 1, 0),
-(1177, 2, 1, 30, 2, 1),
-(1178, 2, 1, 31, 2, 1),
-(1179, 2, 1, 32, 2, 1),
-(1180, 2, 1, 33, 2, 1),
-(1181, 2, 1, 34, 2, 1),
-(1182, 2, 1, 35, 2, 1),
+(1177, 2, 1, 30, 2, 0),
+(1178, 2, 1, 31, 2, 0),
+(1179, 2, 1, 32, 2, 0),
+(1180, 2, 1, 33, 2, 0),
+(1181, 2, 1, 34, 2, 0),
+(1182, 2, 1, 35, 2, 0),
 (1183, 2, 1, 30, 3, 0),
 (1184, 2, 1, 31, 3, 0),
 (1185, 2, 1, 32, 3, 0),
@@ -1637,7 +1704,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `sso_id`, `password`, `first_name`, `last_name`, `email`, `state`) VALUES
 (4, 'Roman', '$2a$10$3vNtuUINPjyoPoQTK9/YZOvYtE3RLvnAMGsby5sMd4yMgQabjmDGe', 'Roman', 'Roman', 'Roman', NULL),
 (5, 'sam', '$2a$10$1FSFzdph5d6NP2mcP98EyecpJ94TfpLG0ZEyyfNNujIEUg39tfmAq', 'Sam', 'sam', 'sam', NULL),
-(6, 'sso', '$2a$10$1cMmdszRYJf5MFzRqXjU6esQDFc4wup8rG1KzTJUcuVAKX9XOjhm.', 'First name', 'Last name', '123456', NULL);
+(6, 'sso', '$2a$10$1cMmdszRYJf5MFzRqXjU6esQDFc4wup8rG1KzTJUcuVAKX9XOjhm.', 'First name!!!!!', 'Last name!!!!', '123456', NULL);
 
 -- --------------------------------------------------------
 
@@ -1758,8 +1825,16 @@ ALTER TABLE `station`
 --
 ALTER TABLE `ticket`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `idPassenger_idx` (`idPassenger`),
-  ADD KEY `sheduleId_idx` (`scheduleId`);
+  ADD KEY `userId` (`userId`),
+  ADD KEY `trainId` (`trainId`);
+
+--
+-- Индексы таблицы `ticketComposition`
+--
+ALTER TABLE `ticketComposition`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ticketId` (`ticketId`),
+  ADD KEY `tripsSiteId` (`tripsSiteId`);
 
 --
 -- Индексы таблицы `train`
@@ -1807,7 +1882,7 @@ ALTER TABLE `userRole`
 -- AUTO_INCREMENT для таблицы `car`
 --
 ALTER TABLE `car`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT для таблицы `carPrototype`
 --
@@ -1832,27 +1907,27 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT для таблицы `route`
 --
 ALTER TABLE `route`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `routeComposition`
 --
 ALTER TABLE `routeComposition`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=245;
 --
 -- AUTO_INCREMENT для таблицы `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT для таблицы `segment`
 --
 ALTER TABLE `segment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT для таблицы `siteCarClass`
 --
 ALTER TABLE `siteCarClass`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `sitePrototype`
 --
@@ -1862,12 +1937,17 @@ ALTER TABLE `sitePrototype`
 -- AUTO_INCREMENT для таблицы `station`
 --
 ALTER TABLE `station`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=68;
+--
+-- AUTO_INCREMENT для таблицы `ticketComposition`
+--
+ALTER TABLE `ticketComposition`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=169;
 --
 -- AUTO_INCREMENT для таблицы `train`
 --
@@ -1877,7 +1957,7 @@ ALTER TABLE `train`
 -- AUTO_INCREMENT для таблицы `trainComposition`
 --
 ALTER TABLE `trainComposition`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT для таблицы `tripsSite`
 --
@@ -1929,8 +2009,8 @@ ALTER TABLE `schedule`
 -- Ограничения внешнего ключа таблицы `segment`
 --
 ALTER TABLE `segment`
-  ADD CONSTRAINT `departureStationId` FOREIGN KEY (`departureStationId`) REFERENCES `station` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `destinationStationId` FOREIGN KEY (`destinationStationId`) REFERENCES `station` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `dep` FOREIGN KEY (`departureStationId`) REFERENCES `station` (`id`),
+  ADD CONSTRAINT `des` FOREIGN KEY (`destinationStationId`) REFERENCES `station` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `sitePrototype`
@@ -1942,8 +2022,15 @@ ALTER TABLE `sitePrototype`
 -- Ограничения внешнего ключа таблицы `ticket`
 --
 ALTER TABLE `ticket`
-  ADD CONSTRAINT `idPassenger` FOREIGN KEY (`idPassenger`) REFERENCES `passenger` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `scheduleId` FOREIGN KEY (`scheduleId`) REFERENCES `schedule` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `train_id` FOREIGN KEY (`trainId`) REFERENCES `train` (`id`),
+  ADD CONSTRAINT `user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `ticketComposition`
+--
+ALTER TABLE `ticketComposition`
+  ADD CONSTRAINT `ticket` FOREIGN KEY (`ticketId`) REFERENCES `ticket` (`id`),
+  ADD CONSTRAINT `tripsiteid` FOREIGN KEY (`tripsSiteId`) REFERENCES `tripsSite` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `trainComposition`

@@ -66,8 +66,8 @@ function fillRouteCompositionsTable(routeId) {
                         var htmlrow ="<tr id = 'tr" + ++lastRowId + "'>"  +
                             "<td>" + selectOptions.replace("stationId1","stationId1" + lastRowId) + "</td>" +
                             "<td>" + selectOptions.replace("stationId1","stationId2" + lastRowId) + "</td>" +
-                            "<td><input id = depDate" + lastRowId + " value='0' </td>" +
-                            "<td><input id = desDate" + lastRowId + " value='0' </td>" +
+                            "<td><input type='number' id = depDate" + lastRowId + " value='0' </td>" +
+                            "<td><input type='number' id = desDate" + lastRowId + " value='0' </td>" +
                             "<td><button id = del" + lastRowId + " name = 'delBtn' class='btn btn-danger'>delete</btn></td>" +
                             "<tr>";
                         $('#routeCompositionTable').append(htmlrow);
@@ -165,8 +165,8 @@ function fillRouteCompositionsTable(routeId) {
                 var htmlrow ="<tr id = 'tr" + ++lastRowId + "'>"  +
                     "<td>" + selectStation1.replace("stationId1","stationId1" + lastRowId) + "</td>" +
                     "<td>" + selectStation2.replace("stationId1","stationId2" + lastRowId) + "</td>" +
-                    "<td><input id = depDate" + lastRowId + " value='" + value.departureTime + "'</td>" +
-                    "<td><input id = desDate" + lastRowId + " value='" + value.destinationTime + "'</td>";
+                    "<td><input type='number' id = depDate'" + lastRowId + " value='" + value.departureTime + "'</td>" +
+                    "<td><input type='number' id = desDate'" + lastRowId + " value='" + value.destinationTime + "'</td>";
 
                 if(routeIsEditable){
                     htmlrow += "<td><button id = del" + lastRowId + " name = 'delBtn' class='btn btn-danger'>delete</btn></td>";

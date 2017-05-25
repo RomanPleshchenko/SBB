@@ -133,15 +133,11 @@ public class ScheduleController {
         String json = search.getText();
 
         JSONObject jsonObject = new JSONObject(json);
-        int routeId = Integer.parseInt((String)jsonObject.get("routeId"));//3
-        int trainId = Integer.parseInt((String)jsonObject.get("trainId"));//4
-        String departureTimeString = (String)jsonObject.get("departureTime");//2017-05-01
+        int routeId = Integer.parseInt((String)jsonObject.get("routeId"));
+        int trainId = Integer.parseInt((String)jsonObject.get("trainId"));
+        String departureTimeString = (String)jsonObject.get("departureTime");
 
-        if(departureTimeString.length()==10){
-            departureTimeString+=" 00:00:00";
-        }
-
-        Instant departureTime = Instant.parse(departureTimeString.replace(" ","T") + ".00Z").plusSeconds(-3600*3);
+        Instant departureTime = Instant.parse(departureTimeString).plusSeconds(-3600*3);
 
         try{
             Route route = routeService.findById(routeId);

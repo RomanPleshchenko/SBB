@@ -5,6 +5,10 @@ var csrfToken;
 
 $(document).ready(function() {
 
+
+
+        $('#departureTime').datetimepicker();
+
         headerName = $("#headerName").val();
         csrfToken = $("#csrfToken").val();
 
@@ -18,8 +22,16 @@ function addSaveNewScheduleClick() {
         function () {
 
             var departureTime = $('#departureTime').val();
+
+            if(departureTime==""){
+                alert("You must cheat date")
+            }
+
+            departureTime = departureTime.replace("/","-").replace("/","-").replace(" ","T") + ":00.00Z";
+
             var routeId = $('#routeId').val();
             var trainId = $('#trainId').val();
+
             saveSchedule(routeId,trainId,departureTime);
         }
     );

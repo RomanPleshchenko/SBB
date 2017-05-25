@@ -21,8 +21,8 @@ function fillUserTicketTable() {
                     "<td>" + value.trainNumber + "</td>" +
                     "<td>" + value.destinationStation + "</td>" +
                     "<td>" + value.departureStation + "</td>" +
-                    "<td>" + value.destinationTime.replace("T"," ").replace("Z"," ") + "</td>" +
                     "<td>" + value.departureTime.replace("T"," ").replace("Z"," ") + "</td>" +
+                    "<td>" + value.destinationTime.replace("T"," ").replace("Z"," ") + "</td>" +
                     "<tr>";
 
                 $('#ticketTable').append(htmlrow);

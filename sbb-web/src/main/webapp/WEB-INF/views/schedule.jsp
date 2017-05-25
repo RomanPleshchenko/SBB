@@ -14,7 +14,12 @@
         <jsp:param name="title" value="Schedule"/>
     </jsp:include>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <link href="<c:url value='/static/css/jquery.datetimepicker.css'/>" rel="stylesheet"></link>
+    <script type="text/javascript" src="/static/js/jquery.datetimepicker.full.js"></script>
+
     <script type="text/javascript" src="/static/js/saveScheduleScripts.js"></script>
+
 </head>
 <body>
 
@@ -77,9 +82,8 @@
         </select>
 
         <label>Select departure time</label>
-        <input id="departureTime" path="departureTime" type = "date" />
+        <input id="departureTime" path="departureTime" type = "text" />
 
-        <%--<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />--%>
         <button id = "saveNewSchedule" type="button" class="btn btn-primary"> Save new schedule </button>
     </div>
 
