@@ -112,21 +112,6 @@ public class ScheduleController {
         return routeIsEditable;
     }
 
-    @RequestMapping(value = "/getScheduleJSONByStationsName", method = RequestMethod.GET)
-    public @ResponseBody String getScheduleJSONByStationsName(@RequestParam("stationsName") String stationsName) throws JSONException {
-
-        String scheduleJSON = scheduleService.getScheduleJSONByStationsName(stationsName);
-        return scheduleJSON;
-    }
-
-    @RequestMapping(value = "/getScheduleJSONByStationsNameAndID", method = RequestMethod.GET)
-    public @ResponseBody String getScheduleJSONByID(@RequestParam("id") int id,@RequestParam("stationsName") String stationsName) throws JSONException {
-
-        String scheduleJSON = scheduleService.getScheduleJSONByStationsNameAndID(id,stationsName);
-        return scheduleJSON;
-    }
-
-
     @RequestMapping(value = {"/saveNewSchedule"}, method = RequestMethod.POST)
     public ResponseEntity<?> saveNewSchedule(@RequestBody SearchCriteria search) {
 

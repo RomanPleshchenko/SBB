@@ -10,24 +10,33 @@ import java.util.Arrays;
 @Configuration
 public class MessagingConfiguration {
 
-	private static final String DEFAULT_BROKER_URL = "tcp://localhost:61616";
-	
-	private static final String ORDER_QUEUE = "sbb-queue";
+    private static final String DEFAULT_BROKER_URL = "tcp://localhost:61616";
 
-	@Bean
-	public ActiveMQConnectionFactory connectionFactory(){
-		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-		connectionFactory.setBrokerURL(DEFAULT_BROKER_URL);
-		connectionFactory.setTrustedPackages(Arrays.asList("com.pleshchenko.sbb.web"));
-		return connectionFactory;
-	}
-	
-	@Bean
-	public JmsTemplate jmsTemplate(){
-		JmsTemplate template = new JmsTemplate();
-		template.setConnectionFactory(connectionFactory());
-		template.setDefaultDestinationName(ORDER_QUEUE);
-		return template;
-	}
-	
+    private static final String ORDER_QUEUE = "sbb-queue";
+
+//    @Bean
+//    public ActiveMQConnectionFactory connectionFactory(){
+//        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
+//        connectionFactory.setBrokerURL(DEFAULT_BROKER_URL);
+//        connectionFactory.setTrustedPackages(Arrays.asList("com.pleshchenko.sbb.web"));
+//        return connectionFactory;
+//    }
+
+    @Bean
+    public ActiveMQConnectionFactory connectionFactory(){
+        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
+        return connectionFactory;
+    }
+
+
+
+    @Bean
+    public JmsTemplate jmsTemplate(){
+        JmsTemplate template = new JmsTemplate();
+        template.setConnectionFactory(connectionFactory());
+        template.setDefaultDestinationName(ORDER_QUEUE);
+        template.setPubSubDomain(true);
+        return template;
+    }
+
 }

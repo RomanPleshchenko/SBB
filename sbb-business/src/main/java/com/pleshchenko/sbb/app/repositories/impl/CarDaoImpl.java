@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.app.service.impl;
+package com.pleshchenko.sbb.app.repositories.impl;
 
 import com.pleshchenko.sbb.app.entity.ticket.Car;
 import com.pleshchenko.sbb.app.repositories.interfaces.AbstractDao;
