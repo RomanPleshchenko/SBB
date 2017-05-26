@@ -34,22 +34,6 @@ public class TrainController {
         return "trainslist";
     }
 
-    @RequestMapping(value = { "/delete-train-{number}" }, method = RequestMethod.GET)
-    public String deleteTrain(@PathVariable String number,ModelMap model) {
-
-        try {
-            trainService.deleteByNumber(number);
-            return RequestType.REDIRECT + "trains";
-        }catch (Exception e){
-
-            logger.error("Unsuccessful attempt to delete a train:" + number);
-            logger.error(e.getMessage());
-
-            model.addAttribute("message","You cannot delete this train!!!");
-            return "notification";
-        }
-    }
-
     @RequestMapping(value = {"/newTrain"}, method = RequestMethod.GET)
     public String addNewTrain() {
         return "newTrain";
@@ -101,6 +85,22 @@ public class TrainController {
         trainService.updateTrainFromJSON(jsonString);
 
         return ResponseEntity.ok("OK");
+
+    }
+
+    @RequestMapping(value = {"/deleteTrainByNumber"}, method = RequestMethod.POST)
+    public  ResponseEntity<?> deleteTrainByNumber(@RequestBody SearchCriteria search) {
+
+        String trainsNumber = search.getText();
+        try {
+            trainService.deleteByNumber(trainsNumber);
+            return ResponseEntity.ok("Train deleted");
+        }catch (Exception e){
+
+            logger.error("Unsuccessful attempt to delete a train:" + trainsNumber);
+            logger.error(e.getMessage());
+            return ResponseEntity.ok("You cannot delete this train!!!");
+        }
 
     }
 

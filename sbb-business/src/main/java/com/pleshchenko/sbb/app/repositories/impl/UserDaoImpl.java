@@ -20,7 +20,6 @@ import java.util.Set;
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
-//	static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 	@Autowired
 	RoleService roleService;
 

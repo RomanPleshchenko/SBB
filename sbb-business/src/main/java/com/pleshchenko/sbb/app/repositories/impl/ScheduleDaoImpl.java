@@ -90,7 +90,7 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
                 "    rc.destinationTime desTime\n" +
                 "FROM route r LEFT JOIN routeComposition rc on r.id=rc.routeId LEFT JOIN segment s on rc.segmentId=s.id) t2 ON t2.stId = :st2 AND t2.routeId = dir.routeId\n" +
                 "  \n" +
-                "WHERE t1.depTime < t2.depTime " +
+                "WHERE t1.depTime < t2.desTime " +
                 "AND dir.departureTime + INTERVAL t1.depTime MINUTE BETWEEN :date1 AND (:date2 + INTERVAL 24*3600-1 SECOND) " +
                 "AND dir.active";
 

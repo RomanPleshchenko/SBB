@@ -46,22 +46,5 @@ public class RouteDaoImpl extends AbstractDao<Integer,Route> implements RouteDao
         }
         return routes.get(0);
 
-
-//
-//        try {
-//            List<Route> routes = (Route)getEntityManager()
-//                    .createQuery("SELECT r FROM Route r WHERE r.number =:number ORDER BY r.name ASC")
-//                    .setParameter("number",routesNumber)
-//                    .getResultList();
-//
-//            return routes.get(0);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return null;
-//
-//        }
-
-
-
     }
 }

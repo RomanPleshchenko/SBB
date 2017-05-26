@@ -108,8 +108,11 @@ function addDeleteClicks() {
                 url: "/deleteCarById",
                 data: JSON.stringify(search),
                 success: function (data) {
-                    alert("Car deleted");
-                    $("#tr"+cId).remove();
+
+                    if(data=="Car deleted"){
+                        alert("Car deleted");
+                        $("#tr"+cId).remove();
+                    }
                 }
                 ,
                 error: function (error) {

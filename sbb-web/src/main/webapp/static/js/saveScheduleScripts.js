@@ -5,7 +5,7 @@ var csrfToken;
 
 $(document).ready(function() {
 
-
+        addComposeFreeClicks();
 
         $('#departureTime').datetimepicker();
 
@@ -75,4 +75,44 @@ function saveSchedule(routeId,trainId,departureTime) {
             }
         });
     }
+}
+
+function addComposeFreeClicks() {
+
+    $('body').off('click', '[id="addRow"]');
+
+    $('body').off('click', '[value="compose"]');
+    $('body').on('click', '[value="compose"]', function() {
+
+            var ScheduleId = $(this).attr("id");
+            var search = {};
+            search["text"] = ScheduleId.replace("compose","");
+
+            $.ajax({
+                type : "POST",
+
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader(headerName, csrfToken);
+                },
+
+                contentType : "application/json",
+                url : "/composeFreeSitesByScheduleId",
+                data : JSON.stringify(search),
+
+                success : function(data) {
+                    alert(data);
+
+                    if(data=="Sites composed"){
+                        window.location.replace("/schedule");
+                    }else {
+                        alert("error")
+                    }
+                }
+                ,
+                error : function(error) {
+                    alert("Error");
+                }
+            });
+        }
+    );
 }

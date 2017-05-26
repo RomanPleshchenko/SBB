@@ -6,9 +6,7 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
 
-        <RollingFile name="fileLogger" fileName="D:\my.log" filePattern="$D:\my-%d{yyyy-MM-dd}.log">
-        <!--<RollingFile name="fileLogger" fileName="${basePath}/app-info.log" filePattern="${basePath}/app-info-%d{yyyy-MM-dd}.log">-->
-            <!--(C:\Program Files\apache-tomcat-8.0.42\bin\${basePath} )   -->
+        <RollingFile name="errorLog" fileName="${basePath}/app-error.log" filePattern="${basePath}/app-info-%d{yyyy-MM-dd}.log">
             <PatternLayout>
                 <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
             </PatternLayout>
@@ -21,7 +19,8 @@
     <Loggers>
         <Logger name= "com.pleshchenko.sbb.web.controller.TrainController" level="error" additivity="true">
             <!--<AppenderRef ref="Console"/>-->
-            <AppenderRef ref="fileLogger"/>
+            <!--<AppenderRef ref="fileLogger"/>-->
+            <AppenderRef ref="errorLog"/>
         </Logger>
 
         <!--Root Logger -->

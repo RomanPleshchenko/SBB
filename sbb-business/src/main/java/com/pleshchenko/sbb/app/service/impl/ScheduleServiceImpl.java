@@ -119,6 +119,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void composeFreeSites(int id) {
 
         Schedule dir = findById(id);
+
+        if (dir.isComposed()){
+            throw new RuntimeException();
+        }
+
         Set<Car> cars = dir.getTrain().getCars();
         Set<RouteComposition> routeCompositions = dir.getRoute().getRouteCompositions();
 

@@ -13,8 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RoleConverter implements Converter<Object, Role> {
 
-//	static final Logger logger = LoggerFactory.getLogger(RoleToUserProfileConverter.class);
-	
+
 	@Autowired
 	RoleService roleService;
 
@@ -25,7 +24,6 @@ public class RoleConverter implements Converter<Object, Role> {
 	public Role convert(Object element) {
 		Integer id = Integer.parseInt((String)element);
 		Role role= roleService.findById(id);
-//		logger.info("Profile : {}",profile);
 		return role;
 	}
 	

@@ -25,12 +25,6 @@ public class MessagingConfiguration {
 
     @Bean
     public JmsTemplate jmsTemplate() {
-//        JmsTemplate template = new JmsTemplate();
-//        template.setConnectionFactory(connectionFactory());
-//        template.setDefaultDestination(new ActiveMQTopic(TOPIC));
-//        template.setTimeToLive(10_000);
-//
-//        return template;
 
         JmsTemplate template = new JmsTemplate();
         template.setConnectionFactory(connectionFactory());

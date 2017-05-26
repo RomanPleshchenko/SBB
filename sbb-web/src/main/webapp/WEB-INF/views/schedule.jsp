@@ -57,7 +57,8 @@
                     <td><a href="<c:url value='/make-active-dir-${dir.id}' />" class="btn btn-success custom-width">make active</a></td>
                 </c:if>
                 <c:if test="${dir.composed!=true}">
-                    <td><a href="<c:url value='/compose-free-sites-${dir.id}' />" class="btn btn-success custom-width">compose free sites</a></td>
+                    <%--<td><a href="<c:url value='/compose-free-sites-${dir.id}' />" class="btn btn-success custom-width">compose free sites</a></td>--%>
+                    <td><input id = "compose${dir.id}" class="btn btn-info" value="compose" type="button" tabindex="4"></td>
                 </c:if>
             </tr>
 

@@ -6,7 +6,6 @@ import java.sql.Date;
 /**
  * Created by РОМАН on 31.03.2017.
  */
-//qqqqqqqqqqqqqqqqqqqqqq удалить сущность и все что связано
 @Entity
 @Table(name = "Passenger")
 public class Passenger {

@@ -38,14 +38,11 @@
                 <td> <input id = trainRadioId${train.id} type=radio name=trainRadio value=${train.id} </td>
                 <td>${train.number}  </td>
                 <td>${train.capacity}  </td>
-                <td><a href="<c:url value='/delete-train-${train.number}' />" class="btn btn-success custom-width">delete</a></td>
+                <td><input id = "del${train.number}" class="btn btn-danger" value="delete" type="button" tabindex="4"></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-
-
-
 
     <div class="well well-sm">
 
@@ -65,7 +62,6 @@
             <input type="hidden" id="csrfToken" value="${_csrf.token}"/>
             <input type="hidden" id="headerName" value="${_csrf.headerName}"/>
             <div id='btns'>
-
             </div>
         </center>
     </div>

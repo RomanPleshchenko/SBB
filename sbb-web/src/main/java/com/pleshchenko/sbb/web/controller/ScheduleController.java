@@ -91,11 +91,18 @@ public class ScheduleController {
         return RequestType.REDIRECT + "schedule";
     }
 
-    @RequestMapping(value = { "/compose-free-sites-dir-{id}" }, method = RequestMethod.GET)
-    public String composeFreeSites(@PathVariable int id, ModelMap model) {
+    @RequestMapping(value = {"/composeFreeSitesByScheduleId"}, method = RequestMethod.POST)
+    public  ResponseEntity<?> composeFreeSitesByScheduleId(@RequestBody SearchCriteria search) {
 
-        scheduleService.composeFreeSites(id);
-        return RequestType.REDIRECT + "schedule";
+        int scheduleId = Integer.parseInt(search.getText());
+        try {
+            scheduleService.composeFreeSites(scheduleId);
+            return ResponseEntity.ok("Sites composed");
+        }catch (Exception e){
+            logger.error("Unsuccessful attempt composed schedule: " + scheduleId);
+            logger.error(e.getMessage());
+            return ResponseEntity.ok("");
+        }
     }
 
     @RequestMapping(value = "/getScheduleJSON", method = RequestMethod.GET)

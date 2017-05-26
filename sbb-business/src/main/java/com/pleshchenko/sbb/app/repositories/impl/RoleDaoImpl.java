@@ -20,9 +20,6 @@ public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao{
 	}
 
 	public Role findByType(String type) {
-//		Criteria crit = createEntityCriteria();
-//		crit.add(Restrictions.eq("type", type));
-//		return (Role) crit.uniqueResult();
 
 		Query query = getEntityManager()
 				.createQuery("SELECT r FROM Role r " +
@@ -40,9 +37,6 @@ public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao{
 	
 	@SuppressWarnings("unchecked")
 	public List<Role> findAll(){
-//		Criteria crit = createEntityCriteria();
-//		crit.addOrder(Order.asc("type"));
-//		return (List<Role>)crit.list();
 
 		List<Role> roles = getEntityManager()
 				.createQuery("SELECT r FROM Role r")

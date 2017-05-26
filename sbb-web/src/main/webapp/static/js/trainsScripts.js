@@ -7,6 +7,7 @@ $(document).ready(function() {
         csrfToken = $("#csrfToken").val();
         addSaveTrainClicks();
         addRouteRadioClicks();
+        addTrainsDeleteClicks();
     }
 );
 
@@ -62,6 +63,42 @@ function addRouteRadioClicks() {
     $('body').off('click', '[name="trainRadio"]');
     $('body').on('click', '[name="trainRadio"]', function() {
             fillTrainsCompositionTable($(this).val());
+        }
+    );
+}
+
+function addTrainsDeleteClicks() {
+
+    $('body').off('click', '[value="delete"]');
+    $('body').on('click', '[value="delete"]', function() {
+
+            var trainId = $(this).attr("id");
+            var search = {};
+            search["text"] = trainId.replace("del","");
+
+            $.ajax({
+                type : "POST",
+
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader(headerName, csrfToken);
+                },
+
+                contentType : "application/json",
+                url : "/deleteTrainByNumber",
+                data : JSON.stringify(search),
+
+                success : function(data) {
+                    alert(data);
+
+                    if(data=="Train deleted"){
+                        window.location.replace("/trains");
+                    }
+                }
+                ,
+                error : function(error) {
+                    alert("Train is not deleted");
+                }
+            });
         }
     );
 }

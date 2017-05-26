@@ -25,4 +25,8 @@ public interface CarPrototypeService {
      * @return
      */
     CarPrototype findByCarClassId(int id);
+
 }
+
+
+

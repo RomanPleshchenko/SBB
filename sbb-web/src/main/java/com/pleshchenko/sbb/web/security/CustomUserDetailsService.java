@@ -20,8 +20,7 @@ import java.util.List;
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
-//	static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);??????
-	
+
 	@Autowired
 	private UserService userService;
 	
@@ -29,9 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String ssoId)
 			throws UsernameNotFoundException {
 		User user = userService.findBySSO(ssoId);
-//		logger.info("User : {}", user);
 		if(user==null){
-//			logger.info("User not found");
 			throw new UsernameNotFoundException("Username not found");
 		}
 			return new org.springframework.security.core.userdetails.User(user.getSsoId(), user.getPassword(), 
@@ -43,10 +40,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		
 		for(Role role : user.getRoles()){
-//			logger.info("UserProfile : {}", userProfile);
 			authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getType()));
 		}
-//		logger.info("authorities : {}", authorities);
 		return authorities;
 	}
 	
