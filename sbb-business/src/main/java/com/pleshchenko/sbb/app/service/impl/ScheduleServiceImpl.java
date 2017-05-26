@@ -88,7 +88,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         Schedule schedule = findById(id);
 
-
         ScheduleByStationDTO scheduleByStationDTO = new ScheduleByStationDTO(schedule,stationsName);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

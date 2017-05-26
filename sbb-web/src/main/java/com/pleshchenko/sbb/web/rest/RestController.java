@@ -1,4 +1,4 @@
-package com.pleshchenko.sbb.web.restController;
+package com.pleshchenko.sbb.web.rest;
 
 import com.pleshchenko.sbb.app.service.interfaces.ScheduleService;
 import org.json.JSONException;

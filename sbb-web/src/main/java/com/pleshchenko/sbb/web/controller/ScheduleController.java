@@ -71,7 +71,9 @@ public class ScheduleController {
     @RequestMapping(value = { "/make-active-dir-{id}" }, method = RequestMethod.GET)
     public String makeActive(@PathVariable int id, ModelMap model) {
 
-        messageSender.sendMessage("update" + id);
+        //qqqqqqqqqqqqqqq   сделать отправку для всех станций
+        //messageSender.sendMessage("update" + id);
+        messageSender.sendMessage("update","Moscow",id);
 
         scheduleService.makeActive(id);
         return RequestType.REDIRECT + "schedule";
@@ -80,7 +82,10 @@ public class ScheduleController {
     @RequestMapping(value = { "/make-not-active-dir-{id}" }, method = RequestMethod.GET)
     public String makeNotActive(@PathVariable int id, ModelMap model) {
 
-        messageSender.sendMessage("remove" + id);
+        //qqqqqqqqqqqqqqq
+        //messageSender.sendMessage("remove" + id);
+        messageSender.sendMessage("remove","Moscow",id);
+
 
         scheduleService.makeNotActive(id);
         return RequestType.REDIRECT + "schedule";
