@@ -37,9 +37,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/","/login","/getScheduleJSONBy*").permitAll()
                 .antMatchers("/trains","/schedule","/ticketSucces","/myTickets","/routesPage"
-                        ,"/schedule","/searchTicket","/buyTicket","/sendRouteCompositionsJSON","/getStationslistJSON").hasRole("USER")
+                        ,"/schedule","/searchTicket","/buyTicket","/sendRouteCompositionsJSON","/getStationslistJSON"
+						,"/getScheduleJSON*","/getTicketsJSONByUserSSO*").hasRole("USER")
                 .antMatchers("/tickets","/delete-user-*","/edit-user-*","/userslist","/newTrain","/newStation"
-                        ,"/newStation","/stations","/getTicketsJSON*","/getScheduleJSON*"
+                        ,"/newStation","/stations","/getTicketsJSON*"
 						,"/cars","/deleteCarById","/newRoute","/getTrainsCompositionJSONByTrainId"
 						,"/getAllCarsJSON").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login")

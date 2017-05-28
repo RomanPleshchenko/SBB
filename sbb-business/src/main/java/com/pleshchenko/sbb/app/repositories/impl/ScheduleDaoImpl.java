@@ -11,8 +11,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -62,6 +65,11 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
     @Override
     public String getScheduleJSONByParameters(int st1,int st2,Date date1,Date date2) {
 
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MINUTE,10);
+        String minDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calendar.getTime());
+
         String NATIVE_QUERY = "SELECT \n" +
                 "   dir.id, " +
                 "   dir.active, " +
@@ -92,7 +100,8 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
                 "  \n" +
                 "WHERE t1.depTime < t2.desTime " +
                 "AND dir.departureTime + INTERVAL t1.depTime MINUTE BETWEEN :date1 AND (:date2 + INTERVAL 24*3600-1 SECOND) " +
-                "AND dir.active";
+                "AND dir.active " +
+                "AND dir.departureTime + INTERVAL t1.depTime MINUTE > :minDate";
 
         List schedule = getEntityManager()
                 .createNativeQuery(NATIVE_QUERY)
@@ -100,6 +109,7 @@ public class ScheduleDaoImpl extends AbstractDao<Integer,Schedule> implements Sc
                 .setParameter("st2",st2)
                 .setParameter("date1",date1)
                 .setParameter("date2",date2)
+                .setParameter("minDate",minDate)
                 .getResultList();
 
         JSONArray dirArray = new JSONArray();

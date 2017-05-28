@@ -22,76 +22,79 @@
 </head>
 <body>
 
-    <jsp:include page="navigation.jsp"></jsp:include>
+<input type="hidden" id="csrfToken" value="${_csrf.token}"/>
+<input type="hidden" id="headerName" value="${_csrf.headerName}"/>
 
-    <div class="container">
-        <h2>Find a train</h2>
+<jsp:include page="navigation.jsp"></jsp:include>
 
-        <form id = "searchForm" class="box login">
+<div class="container">
+    <h2>Find a train</h2>
 
-            <label>Select station</label>
+    <form id = "searchForm" class="box login">
 
-            <select select id = "station1" path="station1">
-                <c:forEach items="${stations}" var="station">
-                    <option value = ${station.id}> ${station.name}</option>
-                </c:forEach>
-            </select>
-            -
-            <select select id = "station2" path="station2">
-                <c:forEach items="${stations}" var="station">
-                    <option value = ${station.id}> ${station.name}</option>
-                </c:forEach>
-            </select>
+        <label>Select station</label>
 
-            <br>
+        <select select id = "station1" path="station1">
+            <c:forEach items="${stations}" var="station">
+                <option value = ${station.id}> ${station.name}</option>
+            </c:forEach>
+        </select>
+        -
+        <select select id = "station2" path="station2">
+            <c:forEach items="${stations}" var="station">
+                <option value = ${station.id}> ${station.name}</option>
+            </c:forEach>
+        </select>
 
-            <label>Select date</label>
+        <br>
 
-            <input id="data1" path="data1" type = "date" /> - <input id="data2" path="data2" type = "date"/>
+        <label>Select date</label>
 
-            <footer>
-                <input id = "toFind" class="btn btn-success" value="to find"  type="button" tabindex="4">
-            </footer>
+        <input id="data1" path="data1" type = "date" /> - <input id="data2" path="data2" type = "date"/>
 
-        </form>
+        <footer>
+            <input id = "toFind" class="btn btn-success" value="to find"  type="button" tabindex="4">
+        </footer>
+
+    </form>
 
 
-        <table id="scheduleTable" class="table" cellspacing="0" width="100%">
-            <thead>
-            <tr>
-                <th> </th>
-                <th>train</th>
-                <th>route</th>
-                <th>departure time</th>
-                <th>destination time</th>
-                <th>number of station</th>
-                <th>tickets count</th>
-            </tr>
-            </thead>
-        </table>
+    <table id="scheduleTable" class="table" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th> </th>
+            <th>train</th>
+            <th>route</th>
+            <th>departure time</th>
+            <th>destination time</th>
+            <th>number of station</th>
+            <th>tickets count</th>
+        </tr>
+        </thead>
+    </table>
+
+</div>
+
+<center>
+
+    <input type="hidden" id="userName" value= ${pageContext.request.userPrincipal.name}>
+
+    <div id = "imaps" >
 
     </div>
 
-    <center>
+    <div id='btns'>
+        <div id='choosed'></div>
+        <div id='btnBuy'></div>
+    </div>
 
-        <input type="hidden" id="userName" value= ${pageContext.request.userPrincipal.name}>
+</center>
 
-        <div id = "imaps" >
+<br>
+<br>
+<br>
+<br>
 
-        </div>
-
-        <div id='btns'>
-            <div id='choosed'></div>
-            <div id='btnBuy'></div>
-        </div>
-
-    </center>
-
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

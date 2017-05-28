@@ -4,7 +4,7 @@ import com.pleshchenko.sbb.app.entity.schedule.Route;
 import com.pleshchenko.sbb.app.entity.schedule.RouteComposition;
 import com.pleshchenko.sbb.app.entity.schedule.Segment;
 import com.pleshchenko.sbb.app.entity.schedule.Station;
-import com.pleshchenko.sbb.app.entity.ticket.Ticket;
+import com.pleshchenko.sbb.app.exception.IncorrectRouteCompositionException;
 import com.pleshchenko.sbb.app.repositories.interfaces.RouteDao;
 import com.pleshchenko.sbb.app.service.interfaces.RouteCompositionService;
 import com.pleshchenko.sbb.app.service.interfaces.RouteService;
@@ -95,8 +95,10 @@ public class RouteServiceImpl implements RouteService {
         return routeArray.toString();
     }
 
+    //QQQQQQQQQQQQQQQQQqq не работает транзакция
+    @Transactional
     @Override
-    public void updateRouteFromJSON(String routeJSON) {
+    public void updateRouteFromJSON(String routeJSON) throws IncorrectRouteCompositionException {
 
         JSONObject jsonObject = new JSONObject(routeJSON);
         int routeId = (int)jsonObject.get("routeId");
@@ -104,12 +106,7 @@ public class RouteServiceImpl implements RouteService {
 
         Route route = dao.findById(routeId);
 
-        for (RouteComposition rc:route.getRouteCompositions()) {
-            routeCompositionService.deleteRouteComposition(rc);
-        }
-
-        route.getRouteCompositions().clear();
-
+        TreeSet<RouteComposition> routeCompositions = new TreeSet<>();
         for (Object obj:jsonArray) {
 
             JSONObject jobj = (JSONObject)obj;
@@ -131,14 +128,80 @@ public class RouteServiceImpl implements RouteService {
             routeComposition.setDepartureTime(t1);
             routeComposition.setDestinationTime(t2);
 
-
             routeComposition.setRoute(route);
-            route.getRouteCompositions().add(routeComposition);
+            routeCompositions.add(routeComposition);
+        }
+
+        if(jsonArray.length()!=routeCompositions.size()){
+            throw new IncorrectRouteCompositionException("There should not be two components with the same departure time");
+        }
+
+        cheakRouteCompositions(routeCompositions);
+
+        //удалим старые элементы
+        for (RouteComposition rc:route.getRouteCompositions()) {
+            routeCompositionService.deleteRouteComposition(rc);
+        }
+
+        //очистим таблицу элементов для маршрута
+        route.getRouteCompositions().clear();
+
+        //заполним новыми элементами
+        for (RouteComposition rc:routeCompositions) {
+            route.getRouteCompositions().add(rc);
         }
 
         //пытаемся сохранить в бд
         dao.saveRoute(route);
 
+    }
+
+    private void cheakRouteCompositions(TreeSet<RouteComposition> routeCompositions) throws IncorrectRouteCompositionException {
+
+        RouteComposition lastRC = null;
+
+        TreeSet<Station> depStations = new TreeSet<>();
+        TreeSet<Station> desStations = new TreeSet<>();
+
+        TreeSet<Station> usedStations = new TreeSet<>();
+
+        for (RouteComposition rc:routeCompositions) {
+            if(rc.getDepartureTime()>=rc.getDestinationTime()){
+                throw new IncorrectRouteCompositionException("The departure time and destination time should differ and the departure time should be more than the destination");
+            }
+
+            if(rc.getSegment().getDepartureStation()==rc.getSegment().getDestinationStation()){
+                throw new IncorrectRouteCompositionException("The departure station and destination station should differ");
+            }
+
+            if(lastRC!=null){
+                //станция отправления каждого следующего сегмента должна совпадать со станцией прибытия предыдущей
+                if(rc.getSegment().getDepartureStation()!=lastRC.getSegment().getDestinationStation()){
+                    throw new IncorrectRouteCompositionException("The departure station of previous route composition and destination station of next route composition must coincide");
+                }
+
+                if(rc.getDepartureTime() <= lastRC.getDestinationTime()){
+                    throw new IncorrectRouteCompositionException("The destination time of next route composition should be more than the departure time of the previous route composition");
+                }
+
+                if(usedStations.contains(rc.getSegment().getDepartureStation())){
+                    throw new IncorrectRouteCompositionException("Station:" + rc.getSegment().getDepartureStation().getName() + "already used");
+                }
+
+            }
+
+            lastRC = rc;
+            depStations.add(rc.getSegment().getDepartureStation());
+            desStations.add(rc.getSegment().getDestinationStation());
+        }
+
+        if (desStations.size()<routeCompositions.size()){
+            throw new IncorrectRouteCompositionException("departure station repeated");
+        }
+
+        if (depStations.size()<routeCompositions.size()){
+            throw new IncorrectRouteCompositionException("destination station repeated");
+        }
     }
 
     @Override

@@ -132,11 +132,16 @@ function markFreeSite(dirId,routeId,departureTimeInFormat,destinationTimeInForma
                     var id = $(this).attr("id");
                     document.getElementById('choosed').innerHTML = '<h4>Selected plase: ' + id.replace("s","") + " car № " + carNumber + "</h4>";
 
-                    btnRef = "/buyTicket?st1=" + st1 + "&st2=" + st2 + "&dirId=" + dirId
-                        + "&carId=" + carNumber + "&siteId="+ id.replace("s","") + "&userName=" + userName
-                        + "&desTime=" + destinationTimeInFormat + "&depTime=" + departureTimeInFormat ;
+                    // btnRef = "/buyTicket?st1=" + st1 + "&st2=" + st2 + "&dirId=" + dirId
+                    //     + "&carId=" + carNumber + "&siteId="+ id.replace("s","") + "&userName=" + userName
+                    //     + "&desTime=" + destinationTimeInFormat + "&depTime=" + departureTimeInFormat ;
+                    //
+                    // var btnBuy = "<a href=" + btnRef + " class='btn btn-success'>to buy ticket</a>";
 
-                    var btnBuy = "<a href=" + btnRef + " class='btn btn-success'>to buy ticket</a>";
+                    var siteId = id.replace("s","");
+
+                    var btnBuy = "<button id='buttonBuy' type='button' class='btn btn-success' st1='" + st1 + "' st2='" + st2 + "' dirId='" + dirId + "' carNumber='" + carNumber
+                        + "' siteId='" + siteId + "' userName='" + userName + "' desTime='" + destinationTimeInFormat + "' depTime='" + departureTimeInFormat + "'>to buy ticket</button>";
 
                     document.getElementById('btnBuy').innerHTML = btnBuy;
 
@@ -151,8 +156,68 @@ function markFreeSite(dirId,routeId,departureTimeInFormat,destinationTimeInForma
                     }
                     selectedCar = carNumber;
                     svgdom.getElementById(id).setAttribute("class","selected");
+
+                    setTimeout(addBtnBuyClicks,10);
                 }
             );
         }
     });
+}
+
+
+function addBtnBuyClicks() {
+
+
+    $('body').off('click', '[id="buttonBuy"]');
+    $('body').on('click', '[id="buttonBuy"]', function() {
+
+        var st1 = $(this).attr("st1");
+        var st2 = $(this).attr("st2");
+        var dirId = $(this).attr("dirId");
+        var carNumber = $(this).attr("carNumber");
+        var siteId = $(this).attr("siteId");
+        var userName = $(this).attr("userName");
+        var destinationTimeInFormat = $(this).attr("desTime");
+        var departureTimeInFormat = $(this).attr("depTime");
+
+        var jsonOb = {};
+        jsonOb["st1"] = st1;
+        jsonOb["st2"] = st2;
+        jsonOb["dirId"] = dirId;
+        jsonOb["carNumber"] = carNumber;
+        jsonOb["siteId"] = siteId;
+        jsonOb["userName"] = userName;
+        jsonOb["destinationTimeInFormat"] = destinationTimeInFormat;
+        jsonOb["departureTimeInFormat"] = departureTimeInFormat;
+
+        var search = {};
+        search["text"] = JSON.stringify(jsonOb);
+
+        $.ajax({
+                type: "POST",
+
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(headerName, csrfToken);
+                },
+
+                contentType: "application/json",
+                url: "/buyTicket",
+                data: JSON.stringify(search),
+                success: function (data) {
+
+                    if(data=="Ticket purchased"){
+                        alert(data);
+                        window.location.replace("/myTickets");
+                    }else {
+                        alert(data);
+                    }
+                }
+                ,
+                error: function (error) {
+                    alert("Ticket is not purchased");
+                }
+            })
+
+        }
+    );
 }

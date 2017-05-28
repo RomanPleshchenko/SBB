@@ -2,11 +2,16 @@ package com.pleshchenko.sbb.web.controller;
 
 
 import com.pleshchenko.sbb.app.entity.ticket.Ticket;
+import com.pleshchenko.sbb.app.exception.ExistingTicketException;
 import com.pleshchenko.sbb.app.service.interfaces.*;
+import com.pleshchenko.sbb.web.SearchCriteria;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,6 +39,8 @@ public class TicketController {
 
     @Autowired
     TrainService trainService;
+
+    static final Logger logger = LogManager.getLogger(TrainController.class);
 
     @RequestMapping(value = "/tickets",method = RequestMethod.GET)
     public String goTicketsLis(ModelMap model){
@@ -97,16 +104,25 @@ public class TicketController {
         return jsonArray.toString();
     }
 
-    @RequestMapping(value = "/buyTicket", method = RequestMethod.GET)
-    public String showData(@RequestParam("st1") int st1, @RequestParam("st2") int st2,
-                                         @RequestParam("dirId") int dirId,@RequestParam("carId") int carId,
-                           @RequestParam("siteId") int siteId,@RequestParam("userName") String userName,
-                           @RequestParam("desTime") String desTime,@RequestParam("depTime") String depTime,  Model model) throws JSONException {
 
-        Ticket ticket = ticketService.buyTicket(st1,st2,dirId,carId,siteId,userName,desTime,depTime);
-        return "usersTicketslist";
+    @RequestMapping(value = {"/buyTicket"}, method = RequestMethod.POST)
+    public ResponseEntity<?> buyTicket(@RequestBody SearchCriteria search) {
+
+        String json = search.getText();
+
+        try{
+            Ticket ticket = ticketService.buyTicket(json);
+            return ResponseEntity.ok("Ticket purchased");
+        } catch (ExistingTicketException e) {
+            logger.error("Ticket is not purchased:" + e.getMessage());
+            return ResponseEntity.ok(e.getMessage());
+        }catch (Exception e){
+            logger.error("Ticket is not purchased:" + e.getMessage());
+            return ResponseEntity.ok("");
+        }
+
+
     }
-
 
 
     @RequestMapping(value = "/getTicketsJSONByTrainId", method = RequestMethod.GET)

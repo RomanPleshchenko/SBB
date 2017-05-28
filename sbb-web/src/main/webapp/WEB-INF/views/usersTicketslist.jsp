@@ -30,6 +30,7 @@
         <thead>
         <tr>
             <th>tickets number</th>
+            <th>plases number</th>
             <th>trains number</th>
             <th>destination station</th>
             <th>departure station</th>

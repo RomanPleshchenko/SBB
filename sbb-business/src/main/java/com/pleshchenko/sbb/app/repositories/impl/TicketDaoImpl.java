@@ -137,4 +137,24 @@ public class TicketDaoImpl extends AbstractDao<Integer,Ticket> implements Ticket
                 .getResultList();
         return tickets;
     }
+
+    @Override
+    public Ticket findByUserNamedirId(String userName, int dirId){
+
+        List<Ticket> tickets = getTicketsByUserSSO(userName);
+
+        if(tickets.isEmpty()){
+            return null;
+
+        }else {
+            for (Ticket ticket:tickets){
+                for (TripsSite tripsSite:ticket.getTripsSites()){
+                    if (tripsSite.getSchedule().getId()==dirId){
+                        return ticket;
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }

@@ -2,6 +2,7 @@ package com.pleshchenko.sbb.web.controller;
 
 import com.pleshchenko.sbb.app.entity.schedule.Route;
 import com.pleshchenko.sbb.app.entity.ticket.Train;
+import com.pleshchenko.sbb.app.exception.IncorrectRouteCompositionException;
 import com.pleshchenko.sbb.app.service.interfaces.RouteService;
 import com.pleshchenko.sbb.web.SearchCriteria;
 import org.apache.logging.log4j.LogManager;
@@ -48,9 +49,18 @@ public class RouteController {
     @RequestMapping(value = "/sendRouteCompositionsJSON",method = RequestMethod.POST)
     public ResponseEntity<?> getSearchResultViaAjax(@RequestBody SearchCriteria search) {
 
-        String jsonString = search.getText();
-        routeService.updateRouteFromJSON(jsonString);
-        return ResponseEntity.ok("OK");
+
+        return ResponseEntity.ok("Temporarily disabled, the error in js");
+
+//        String jsonString = search.getText();
+//        try {
+//            routeService.updateRouteFromJSON(jsonString);
+//            return ResponseEntity.ok("OK");
+//        } catch (IncorrectRouteCompositionException e) {
+//            logger.error(e.getMessage());
+//            return ResponseEntity.ok(e.getMessage());
+//        }
+
 
     }
 

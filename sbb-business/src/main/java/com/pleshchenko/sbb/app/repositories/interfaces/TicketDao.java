@@ -20,4 +20,6 @@ public interface TicketDao {
     public List<Ticket> getTicketsByTrainId(int trainId);
 
     public List<Ticket> getTicketsByUserSSO(String userSSO);
+
+    Ticket findByUserNamedirId(String userName, int dirId);
 }

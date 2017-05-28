@@ -2,11 +2,28 @@ var selectOptions = "";
 var lastRowId = 0;
 $(document).ready(function() {
 
+        fillSelect();
         fillRoutesTable();
         addSaveRouteClicks();
         setTimeout(addRouteRadioClicks,100);
     }
 );
+
+function fillSelect() {
+
+    //получим селект чтобы потом в каждой строке таблицы выбирать станции
+    var StationsJson = "/getStationslistJSON";
+    selectOptions = "<select id = stationId1> ";
+    $.getJSON(StationsJson, function(stationsList){
+
+            $.each(stationsList, function (index, val) {
+                    selectOptions += "<option value='" + val.stationId + "'>" + val.stationName + "</option>\n"
+                }
+            );
+            selectOptions+= " </select>";
+        }
+    );
+}
 
 function fillRoutesTable() {
 
@@ -38,7 +55,6 @@ function fillRoutesTable() {
 function fillRouteCompositionsTable(routeId) {
 
     var json = "/getRoutesCompositionJSONByRouteId?routeId=" + routeId;
-    var StationsJson = "/getStationslistJSON";
     var routeIsEditableJson = "/routeIsEditable?routeId=" + routeId;
 
     routeIsEditable = false;
@@ -121,11 +137,16 @@ function fillRouteCompositionsTable(routeId) {
                             url : "/sendRouteCompositionsJSON",
                             data : JSON.stringify(search),
                             success : function(data) {
-                                alert("All changes confirmed");
+                                if(data=="OK"){
+                                    alert("All changes confirmed");
+                                }else{
+                                    alert("." + data);
+                                }
+
                             }
                             ,
                             error : function(error) {
-                                alert(error);
+                                alert("error:" + error);
                             }
 
 
@@ -137,18 +158,6 @@ function fillRouteCompositionsTable(routeId) {
                 $("#msg").append("<div id='attent'> <label>You cannot edit composition</label></div>");
             }
 
-        }
-    );
-
-    //получим селект чтобы потом в каждой строке таблицы выбирать станции
-    selectOptions = "<select id = stationId1> ";
-    $.getJSON(StationsJson, function(stationsList){
-
-            $.each(stationsList, function (index, val) {
-                    selectOptions += "<option value='" + val.stationId + "'>" + val.stationName + "</option>\n"
-                }
-            );
-            selectOptions+= " </select>";
         }
     );
 

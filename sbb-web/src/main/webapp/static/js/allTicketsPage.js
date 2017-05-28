@@ -22,6 +22,7 @@ function fillTicketTable() {
 
                 var htmlrow ="<tr>" +
                     "<td>" + value.ticketId + "</td>" +
+                    "<td>" + value.plasesNumber + "</td>" +
                     "<td>" + value.trainNumber + "</td>" +
                     "<td>" + value.destinationStation + "</td>" +
                     "<td>" + value.departureStation + "</td>" +

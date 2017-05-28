@@ -1,6 +1,7 @@
 package com.pleshchenko.sbb.app.service.interfaces;
 
 import com.pleshchenko.sbb.app.entity.ticket.Ticket;
+import com.pleshchenko.sbb.app.exception.ExistingTicketException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,18 +35,18 @@ public interface TicketService {
     Ticket findById(Integer id);
 
     /**
-     *
-     * @param st1 id of departure station
-     * @param st2 id of destination station
-     * @param dirId id of schedule
-     * @param carId id of car
-     * @param siteId namber of site
-     * @param userName
-     * @param depTime departure time
-     * @param desTime destination time
-     * @return
+     * @param json with atribute:
+     * id of departure station
+     * st2 id of destination station
+     * dirId id of schedule
+     * carId id of car
+     * siteId namber of site
+     * userName
+     * depTime departure time
+     * desTime destination time
+     * @return ticket
      */
-    Ticket buyTicket(int st1,int st2,int dirId,int carId,int siteId,String userName,String desTime,String depTime);
+    Ticket buyTicket(String json) throws ExistingTicketException;
 
     String getTicketsJSONByTrainId(int trainId);
 

@@ -116,6 +116,17 @@ public class Ticket {
         this.train = train;
     }
 
+
+    public String getPlasesNumber() {
+
+        if(tripsSites!=null&&tripsSites.size()!=0){
+            for (TripsSite tripsSite:tripsSites){
+                return tripsSite.getSitePrototypeId().getNumber();
+            }
+        }
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
