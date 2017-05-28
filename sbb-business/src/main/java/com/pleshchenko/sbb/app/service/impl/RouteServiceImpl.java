@@ -160,10 +160,9 @@ public class RouteServiceImpl implements RouteService {
 
         RouteComposition lastRC = null;
 
-        TreeSet<Station> depStations = new TreeSet<>();
-        TreeSet<Station> desStations = new TreeSet<>();
-
-        TreeSet<Station> usedStations = new TreeSet<>();
+        HashSet<Station> depStations = new HashSet<>();
+        HashSet<Station> desStations = new HashSet<>();
+        HashSet<Station> usedStations = new HashSet<>();
 
         for (RouteComposition rc:routeCompositions) {
             if(rc.getDepartureTime()>=rc.getDestinationTime()){
@@ -185,14 +184,21 @@ public class RouteServiceImpl implements RouteService {
                 }
 
                 if(usedStations.contains(rc.getSegment().getDepartureStation())){
-                    throw new IncorrectRouteCompositionException("Station:" + rc.getSegment().getDepartureStation().getName() + "already used");
+                    throw new IncorrectRouteCompositionException("Station:" + rc.getSegment().getDepartureStation().getName() + " - already used");
                 }
+
+                if(usedStations.contains(rc.getSegment().getDestinationStation())){
+                    throw new IncorrectRouteCompositionException("Station:" + rc.getSegment().getDestinationStation().getName() + " - already used");
+                }
+
 
             }
 
             lastRC = rc;
+
             depStations.add(rc.getSegment().getDepartureStation());
             desStations.add(rc.getSegment().getDestinationStation());
+            usedStations.add(rc.getSegment().getDepartureStation());
         }
 
         if (desStations.size()<routeCompositions.size()){

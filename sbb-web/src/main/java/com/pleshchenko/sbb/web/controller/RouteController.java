@@ -49,18 +49,14 @@ public class RouteController {
     @RequestMapping(value = "/sendRouteCompositionsJSON",method = RequestMethod.POST)
     public ResponseEntity<?> getSearchResultViaAjax(@RequestBody SearchCriteria search) {
 
-
-        return ResponseEntity.ok("Temporarily disabled, the error in js");
-
-//        String jsonString = search.getText();
-//        try {
-//            routeService.updateRouteFromJSON(jsonString);
-//            return ResponseEntity.ok("OK");
-//        } catch (IncorrectRouteCompositionException e) {
-//            logger.error(e.getMessage());
-//            return ResponseEntity.ok(e.getMessage());
-//        }
-
+        String jsonString = search.getText();
+        try {
+            routeService.updateRouteFromJSON(jsonString);
+            return ResponseEntity.ok("OK");
+        } catch (IncorrectRouteCompositionException e) {
+            logger.error(e.getMessage());
+            return ResponseEntity.ok(e.getMessage());
+        }
 
     }
 

@@ -102,6 +102,7 @@ function fillRouteCompositionsTable(routeId) {
 
                                 var cId = $(this).attr("id");
                                 if(cId!=undefined){
+
                                     var id = cId.replace("tr","");
 
                                     var depDate = $("#depDate" + id).val();
@@ -140,7 +141,7 @@ function fillRouteCompositionsTable(routeId) {
                                 if(data=="OK"){
                                     alert("All changes confirmed");
                                 }else{
-                                    alert("." + data);
+                                    alert(data);
                                 }
 
                             }
@@ -174,8 +175,8 @@ function fillRouteCompositionsTable(routeId) {
                 var htmlrow ="<tr id = 'tr" + ++lastRowId + "'>"  +
                     "<td>" + selectStation1.replace("stationId1","stationId1" + lastRowId) + "</td>" +
                     "<td>" + selectStation2.replace("stationId1","stationId2" + lastRowId) + "</td>" +
-                    "<td><input type='number' id = depDate'" + lastRowId + " value='" + value.departureTime + "'</td>" +
-                    "<td><input type='number' id = desDate'" + lastRowId + " value='" + value.destinationTime + "'</td>";
+                    "<td><input type='number' id = depDate" + lastRowId + " value='" + value.departureTime + "'</td>" +
+                    "<td><input type='number' id = desDate" + lastRowId + " value='" + value.destinationTime + "'</td>";
 
                 if(routeIsEditable){
                     htmlrow += "<td><button id = del" + lastRowId + " name = 'delBtn' class='btn btn-danger'>delete</btn></td>";
