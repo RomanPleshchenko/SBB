@@ -1,6 +1,7 @@
 package com.pleshchenko.sbb.app.service.impl;
 
 import com.pleshchenko.sbb.app.entity.schedule.Station;
+import com.pleshchenko.sbb.app.repositories.interfaces.CarPrototypeCompositionDao;
 import com.pleshchenko.sbb.app.repositories.interfaces.StationDao;
 import com.pleshchenko.sbb.app.service.interfaces.StationService;
 import org.json.JSONArray;
@@ -21,6 +22,13 @@ public class StationServiceImpl implements StationService {
 
     @Autowired
     private StationDao dao;
+
+    public StationServiceImpl() {
+    }
+
+    public StationServiceImpl(StationDao dao) {
+        this.dao = dao;
+    }
 
     @Override
     public List<Station> findAll() {

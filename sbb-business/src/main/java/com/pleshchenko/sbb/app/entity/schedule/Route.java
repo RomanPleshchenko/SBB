@@ -37,6 +37,7 @@ public class Route {
         this.name = name;
     }
 
+
     public Integer getId() {
         return id;
     }
@@ -77,7 +78,7 @@ public class Route {
 
         Route route = (Route) o;
 
-        return id.equals(route.id);
+        return id != null ? id.equals(route.id) : route.id == null;
     }
 
     @Override

@@ -62,14 +62,12 @@ public class Segment {
 
         Segment segment = (Segment) o;
 
-        if (id != segment.id) return false;
-        return true;
+        return id == segment.id;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        return result;
+        return id;
     }
 
     @Override

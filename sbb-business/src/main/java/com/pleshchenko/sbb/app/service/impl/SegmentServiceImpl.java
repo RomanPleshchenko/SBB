@@ -19,6 +19,14 @@ public class SegmentServiceImpl implements SegmentService {
 
     @Autowired
     SegmentDao dao;
+
+    public SegmentServiceImpl() {
+    }
+
+    public SegmentServiceImpl(SegmentDao segmentDao) {
+        this.dao = segmentDao;
+    }
+
     @Override
     public Segment findByStation(Station departureStation, Station destinationStation, boolean createNew) {
         Segment segment = dao.findByStation(departureStation,destinationStation,createNew);

@@ -40,6 +40,14 @@ public class RouteServiceImpl implements RouteService {
     @Autowired
     RouteCompositionService routeCompositionService;
 
+    public RouteServiceImpl() {
+    }
+
+    public RouteServiceImpl(RouteDao dao) {
+        this.dao = dao;
+
+    }
+
     @Override
     public List<Route> findAll() {
         List<Route> routes = dao.findAll();
@@ -136,7 +144,7 @@ public class RouteServiceImpl implements RouteService {
             throw new IncorrectRouteCompositionException("There should not be two components with the same departure time");
         }
 
-        cheakRouteCompositions(routeCompositions);
+        validateRouteCompositions(routeCompositions);
 
         //удалим старые элементы
         for (RouteComposition rc:route.getRouteCompositions()) {
@@ -156,7 +164,8 @@ public class RouteServiceImpl implements RouteService {
 
     }
 
-    private void cheakRouteCompositions(TreeSet<RouteComposition> routeCompositions) throws IncorrectRouteCompositionException {
+    @Override
+    public void validateRouteCompositions(Set<RouteComposition> routeCompositions) throws IncorrectRouteCompositionException {
 
         RouteComposition lastRC = null;
 

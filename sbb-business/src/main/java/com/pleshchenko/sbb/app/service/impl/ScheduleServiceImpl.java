@@ -30,6 +30,14 @@ import java.util.Set;
 @Transactional
 public class ScheduleServiceImpl implements ScheduleService {
 
+
+    public ScheduleServiceImpl() {
+    }
+
+    public ScheduleServiceImpl(ScheduleDao dao) {
+        this.dao = dao;
+    }
+
     public Schedule findById(Integer id){
         return dao.findById(id);
     }

@@ -114,9 +114,18 @@ public class Schedule {
         this.composed = composed;
     }
 
+
     @Override
     public String toString() {
-        return getTrain().getNumber() + "(Schedule" + id + ")" + " [" + departureTime + " - " + getDestinationTime() + "]";
+        return "Schedule{" +
+                "id=" + id +
+                ", departureTime=" + departureTime +
+                ", destinationTime=" + destinationTime +
+                ", train=" + train +
+                ", route=" + route +
+                ", active=" + active +
+                ", composed=" + composed +
+                '}';
     }
 
     public String  getDepartureTimeInFormat() {

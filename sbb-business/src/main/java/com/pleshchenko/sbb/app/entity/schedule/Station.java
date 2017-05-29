@@ -21,6 +21,13 @@ public class Station {
     @NotEmpty
     private String name;
 
+    public Station() {
+    }
+
+    public Station(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

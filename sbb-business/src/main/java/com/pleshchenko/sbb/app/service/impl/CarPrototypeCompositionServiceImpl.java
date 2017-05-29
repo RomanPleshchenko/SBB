@@ -19,6 +19,13 @@ public class CarPrototypeCompositionServiceImpl implements CarPrototypeCompositi
     @Autowired
     CarPrototypeCompositionDao dao;
 
+    public CarPrototypeCompositionServiceImpl() {
+    }
+
+    public CarPrototypeCompositionServiceImpl(CarPrototypeCompositionDao dao) {
+        this.dao = dao;
+    }
+
     @Override
     public List<CarPrototypeComposition> findAll() {
         List<CarPrototypeComposition> carPrototypeCompositions = dao.findAll();

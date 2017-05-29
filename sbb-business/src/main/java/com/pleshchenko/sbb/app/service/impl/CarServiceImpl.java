@@ -22,6 +22,13 @@ public class CarServiceImpl implements CarService {
     @Autowired
     CarDao dao;
 
+    public CarServiceImpl() {
+    }
+
+    public CarServiceImpl(CarDao dao) {
+        this.dao = dao;
+    }
+
     @Override
     public String getAllCarsJSON() {
 

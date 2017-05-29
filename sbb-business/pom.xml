@@ -39,6 +39,12 @@
             <artifactId>spring-orm</artifactId>
             <version>${springframework.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${springframework.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Hibernate -->
         <dependency>
@@ -149,7 +155,11 @@
             <version>4.12</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <version>${jmock-junit.version}</version>
+        </dependency>
 
 
     </dependencies>
