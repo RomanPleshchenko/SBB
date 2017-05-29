@@ -11,7 +11,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp" flush="true" >
-        <jsp:param name="title" value="Train list"/>
+        <jsp:param name="title" value="Trains"/>
     </jsp:include>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/trainsScripts.js"></script>

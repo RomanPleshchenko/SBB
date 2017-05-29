@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.app.service.interfaces;
 
 import com.pleshchenko.sbb.app.entity.ticket.Ticket;
-import com.pleshchenko.sbb.app.exception.ExistingTicketException;
+import com.pleshchenko.sbb.app.exception.RepeatingFieldsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,7 +46,7 @@ public interface TicketService {
      * desTime destination time
      * @return ticket
      */
-    Ticket buyTicket(String json) throws ExistingTicketException;
+    Ticket buyTicket(String json) throws RepeatingFieldsException;
 
     String getTicketsJSONByTrainId(int trainId);
 

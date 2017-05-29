@@ -39,4 +39,18 @@ public class CarDaoImpl  extends AbstractDao<Integer,Car> implements CarDao {
     public void save(Car car){
         persist(car);
     }
+
+    @Override
+    public Car findByNumber(int carsNumber){
+
+        List<Car> cars = getEntityManager()
+                .createQuery("SELECT c FROM Car c WHERE c.number = :carsNumber")
+                .setParameter("carsNumber",carsNumber)
+                .getResultList();
+        if(cars.size()==0){
+            return null;
+        }else {
+            return cars.get(0);
+        }
+    }
 }

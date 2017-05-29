@@ -2,7 +2,7 @@ package com.pleshchenko.sbb.web.controller;
 
 
 import com.pleshchenko.sbb.app.entity.ticket.Ticket;
-import com.pleshchenko.sbb.app.exception.ExistingTicketException;
+import com.pleshchenko.sbb.app.exception.RepeatingFieldsException;
 import com.pleshchenko.sbb.app.service.interfaces.*;
 import com.pleshchenko.sbb.web.SearchCriteria;
 import org.apache.logging.log4j.LogManager;
@@ -13,7 +13,6 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -113,7 +112,7 @@ public class TicketController {
         try{
             Ticket ticket = ticketService.buyTicket(json);
             return ResponseEntity.ok("Ticket purchased");
-        } catch (ExistingTicketException e) {
+        } catch (RepeatingFieldsException e) {
             logger.error("Ticket is not purchased:" + e.getMessage());
             return ResponseEntity.ok(e.getMessage());
         }catch (Exception e){

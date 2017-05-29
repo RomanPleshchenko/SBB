@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/","/login","/getScheduleJSONBy*").permitAll()
+                .antMatchers("/","/login","/getScheduleJSONBy*","/exception").permitAll()
                 .antMatchers("/trains","/schedule","/ticketSucces","/myTickets","/routesPage"
                         ,"/schedule","/searchTicket","/buyTicket","/sendRouteCompositionsJSON","/getStationslistJSON"
 						,"/getScheduleJSON*","/getTicketsJSONByUserSSO*").hasRole("USER")

@@ -11,7 +11,7 @@
 <html>
 <head>
 	<jsp:include page="header.jsp" flush="true" >
-		<jsp:param name="title" value="Train list"/>
+		<jsp:param name="title" value="Users"/>
 	</jsp:include>
 </head>
 

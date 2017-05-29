@@ -1,6 +1,7 @@
 package com.pleshchenko.sbb.app.service.interfaces;
 
 import com.pleshchenko.sbb.app.entity.ticket.Car;
+import com.pleshchenko.sbb.app.exception.RepeatingFieldsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,4 +36,16 @@ public interface CarService {
      * @param car
      */
     void save(Car car);
+
+    /**
+     *
+     * @param carJSON
+     */
+    void save(String carJSON) throws RepeatingFieldsException;
+
+    /**
+     *
+     * @param carsNumber
+     */
+    void findByNumber(int carsNumber);
 }

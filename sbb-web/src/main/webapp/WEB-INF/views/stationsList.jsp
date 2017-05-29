@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Spring pagination using data tables</title>
+    <title>Stations</title>
 
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>

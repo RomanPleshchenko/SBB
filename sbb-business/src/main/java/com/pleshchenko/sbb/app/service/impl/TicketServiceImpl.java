@@ -1,7 +1,7 @@
 package com.pleshchenko.sbb.app.service.impl;
 
 import com.pleshchenko.sbb.app.entity.ticket.Ticket;
-import com.pleshchenko.sbb.app.exception.ExistingTicketException;
+import com.pleshchenko.sbb.app.exception.RepeatingFieldsException;
 import com.pleshchenko.sbb.app.repositories.interfaces.TicketDao;
 import com.pleshchenko.sbb.app.service.interfaces.TicketService;
 import org.json.JSONArray;
@@ -41,7 +41,7 @@ public class TicketServiceImpl implements TicketService {
 
 
     @Override
-    public Ticket buyTicket(String json) throws ExistingTicketException {
+    public Ticket buyTicket(String json) throws RepeatingFieldsException {
 
         JSONObject jsonObject = new JSONObject(json);
 
@@ -57,7 +57,7 @@ public class TicketServiceImpl implements TicketService {
         Ticket existingTicket = dao.findByUserNamedirId(userName,dirId);
 
         if (existingTicket!=null){
-            throw new ExistingTicketException("Existing a ticket for car: " + carId + " site number: " + siteId);
+            throw new RepeatingFieldsException("Existing a ticket for car: " + carId + " site number: " + siteId);
         }
 
         Ticket ticket = dao.buyTicket(st1, st2, dirId, carId, siteId, userName, desTime, depTime);

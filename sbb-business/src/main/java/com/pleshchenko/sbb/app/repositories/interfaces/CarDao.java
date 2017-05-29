@@ -16,4 +16,6 @@ public interface CarDao {
     void deleteById(int id);
 
     void save(Car car);
+
+    Car findByNumber(int carsNumber);
 }

@@ -12,7 +12,7 @@
 <html>
 <head>
     <jsp:include page="header.jsp" flush="true" >
-        <jsp:param name="title" value="Tickets"/>
+        <jsp:param name="title" value="My tickets"/>
     </jsp:include>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/userTicketsPage.js"></script>
